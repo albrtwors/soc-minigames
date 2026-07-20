@@ -1,0 +1,73 @@
+[gd_scene format=3 uid="uid://d34rq4trhix2t"]
+
+[ext_resource type="Texture2D" uid="uid://csem7nwg5y01a" path="res://assets/images/minigame_cards/config_card.png" id="1_2kejd"]
+[ext_resource type="Script" uid="uid://d1tyjyrr1vfhh" path="res://scripts/ui/minigames/minigame_card/minigame_card.gd" id="1_4ugjh"]
+[ext_resource type="FontFile" uid="uid://dwslao7f08kcp" path="res://assets/fonts/RobotoMono-Bold.ttf" id="2_4ugjh"]
+[ext_resource type="FontFile" uid="uid://cpggr766j0hry" path="res://assets/fonts/RobotoMono-Regular.ttf" id="3_bcw5j"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b84x7"]
+bg_color = Color(0, 0.07279218, 0.18687326, 0.6666667)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0.9090024, 0.9412103, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ore4f"]
+corner_radius_top_left = 15
+corner_radius_bottom_left = 15
+
+[node name="MinigameCard" type="PanelContainer" unique_id=940555103]
+custom_minimum_size = Vector2(509.19, 103.21)
+offset_right = 509.19
+offset_bottom = 106.17
+theme_override_styles/panel = SubResource("StyleBoxFlat_b84x7")
+script = ExtResource("1_4ugjh")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=764925878]
+layout_mode = 2
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 339
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer" unique_id=1650783457]
+clip_children = 1
+custom_minimum_size = Vector2(15.83, 0)
+clip_contents = true
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ore4f")
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/PanelContainer" unique_id=880819010]
+clip_contents = true
+layout_mode = 2
+texture = ExtResource("1_2kejd")
+expand_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="." unique_id=1853457917]
+layout_mode = 2
+theme_override_constants/margin_left = 184
+theme_override_constants/margin_bottom = 42
+
+[node name="Label" type="Label" parent="MarginContainer2" unique_id=1546111383]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_4ugjh")
+theme_override_font_sizes/font_size = 15
+text = "INFRAESTRUCTURA TECNOLÓGICA"
+
+[node name="MarginContainer3" type="MarginContainer" parent="." unique_id=978140656]
+layout_mode = 2
+theme_override_constants/margin_left = 184
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_bottom = 0
+
+[node name="Label" type="Label" parent="MarginContainer3" unique_id=1418649633]
+layout_mode = 2
+theme_override_constants/line_spacing = -4
+theme_override_fonts/font = ExtResource("3_bcw5j")
+theme_override_font_sizes/font_size = 13
+text = "OPTIMIZA Y CONFIGURA SERVIDORES
+IMPRESORAS Y FIREWALLS"
+autowrap_mode = 3

@@ -1,0 +1,81 @@
+[gd_scene format=3 uid="uid://l1ovdf1j77he"]
+
+[ext_resource type="PackedScene" uid="uid://dnbq7k8b7har6" path="res://scenes/ui/menus/main_menu/main_menu_component.tscn" id="1_hyk8p"]
+[ext_resource type="Script" uid="uid://bw56whkd16nyo" path="res://scripts/main/save_component/save_component.gd" id="1_iuonh"]
+[ext_resource type="Script" uid="uid://yw7vcpoyk7gk" path="res://scripts/main/main.gd" id="1_k2fmo"]
+[ext_resource type="Script" uid="uid://dc30pomnubcqi" path="res://scripts/ui/menus/main_ui.gd" id="3_l3cfh"]
+[ext_resource type="PackedScene" uid="uid://chy3hiiwuo5m3" path="res://scenes/ui/menus/loading_screen/loading_screen_component.tscn" id="5_6q06x"]
+[ext_resource type="PackedScene" uid="uid://bsaixasud2hqa" path="res://scenes/ui/menus/new_game/new_game_component.tscn" id="6_ow5a4"]
+[ext_resource type="PackedScene" uid="uid://cy5f5p8vf86gk" path="res://scenes/ui/menus/background/background.tscn" id="7_hujxm"]
+[ext_resource type="PackedScene" uid="uid://bjdlc3ct8asdk" path="res://scenes/ui/menus/minigames/minigame_menu.tscn" id="7_yyfjg"]
+[ext_resource type="Script" uid="uid://iwe5rebi4q1q" path="res://scripts/ui/menus/main_menu_3d.gd" id="8_b1x3f"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hujxm"]
+bg_color = Color(4.8882793e-08, 0.035906155, 0.06264658, 0.40784314)
+
+[node name="Main" type="Node" unique_id=1578975515]
+script = ExtResource("1_k2fmo")
+
+[node name="SaveComponent" type="Node" parent="." unique_id=1459664333]
+script = ExtResource("1_iuonh")
+
+[node name="MainUI" type="Control" parent="." unique_id=1187378128]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_l3cfh")
+
+[node name="PanelContainer" type="PanelContainer" parent="MainUI" unique_id=927764827]
+layout_mode = 0
+offset_right = 1164.0
+offset_bottom = 646.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_hujxm")
+
+[node name="MainMenuComponent" parent="MainUI" unique_id=978345639 instance=ExtResource("1_hyk8p")]
+layout_mode = 1
+
+[node name="MinigameFrame" type="Control" parent="MainUI" unique_id=386114896]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -350.0
+offset_top = -250.0
+offset_right = 350.0
+offset_bottom = 250.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(350, 250)
+
+[node name="LoadingScreenComponent" parent="MainUI" unique_id=1054385974 instance=ExtResource("5_6q06x")]
+visible = false
+layout_mode = 1
+
+[node name="NewGameComponent" parent="MainUI" unique_id=496092223 instance=ExtResource("6_ow5a4")]
+visible = false
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 582.0
+offset_top = 260.0
+offset_right = 582.0
+offset_bottom = 260.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="MinigameMenu" parent="MainUI" unique_id=336037539 instance=ExtResource("7_yyfjg")]
+visible = false
+layout_mode = 1
+
+[node name="MainMenu3D" type="Node3D" parent="." unique_id=510952548]
+script = ExtResource("8_b1x3f")
+
+[node name="Background" parent="MainMenu3D" unique_id=1714251641 instance=ExtResource("7_hujxm")]

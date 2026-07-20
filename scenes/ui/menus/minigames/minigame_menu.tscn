@@ -1,0 +1,114 @@
+[gd_scene format=3 uid="uid://bjdlc3ct8asdk"]
+
+[ext_resource type="PackedScene" uid="uid://d34rq4trhix2t" path="res://scenes/ui/menus/minigames/minigame_card/minigame_card.tscn" id="1_34juq"]
+[ext_resource type="Script" uid="uid://ce8fss8vcrded" path="res://scripts/ui/minigames/minigame_menu/minigame_menu.gd" id="1_j7ftu"]
+[ext_resource type="FontFile" uid="uid://bqvys55l4eplu" path="res://assets/fonts/Orbitron-Black.ttf" id="1_olc83"]
+[ext_resource type="FontFile" uid="uid://dwslao7f08kcp" path="res://assets/fonts/RobotoMono-Bold.ttf" id="4_h1ya4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_olc83"]
+bg_color = Color(0.015409293, 0.027542468, 0.099538825, 0.54901963)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+expand_margin_left = 30.0
+expand_margin_top = 30.0
+expand_margin_right = 30.0
+expand_margin_bottom = 30.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5cw81"]
+bg_color = Color(0.6862745, 0, 0.03529412, 0.30980393)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[node name="MinigameMenu" type="Control" unique_id=336037539]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_j7ftu")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1734048943]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -521.0
+offset_top = -213.5
+offset_right = 521.0
+offset_bottom = 213.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_olc83")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=1683879160]
+layout_mode = 2
+theme_override_constants/separation = 22
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer" unique_id=1714138960]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.41275156, 0.85660833, 0.87169224, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = -6
+theme_override_fonts/font = ExtResource("1_olc83")
+theme_override_font_sizes/font_size = 38
+text = "SELECCIONA UN MÓDULO"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=191914833]
+layout_mode = 2
+alignment = 1
+
+[node name="MinigameCard" parent="PanelContainer/VBoxContainer/HBoxContainer" unique_id=940555103 instance=ExtResource("1_34juq")]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=258673920]
+layout_mode = 2
+theme_override_constants/separation = 22
+
+[node name="MinigameCard" parent="PanelContainer/VBoxContainer/HBoxContainer2" unique_id=481520060 instance=ExtResource("1_34juq")]
+layout_mode = 2
+
+[node name="MinigameCard2" parent="PanelContainer/VBoxContainer/HBoxContainer2" unique_id=1661023643 instance=ExtResource("1_34juq")]
+layout_mode = 2
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=770386599]
+layout_mode = 2
+theme_override_constants/separation = 22
+
+[node name="MinigameCard" parent="PanelContainer/VBoxContainer/HBoxContainer3" unique_id=2095169876 instance=ExtResource("1_34juq")]
+layout_mode = 2
+
+[node name="MinigameCard2" parent="PanelContainer/VBoxContainer/HBoxContainer3" unique_id=1309704075 instance=ExtResource("1_34juq")]
+layout_mode = 2
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=1707418505]
+layout_mode = 2
+alignment = 1
+
+[node name="BackButton" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer4" unique_id=576873313]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("4_h1ya4")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_5cw81")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_5cw81")
+theme_override_styles/hover = SubResource("StyleBoxFlat_5cw81")
+text = "Salir"

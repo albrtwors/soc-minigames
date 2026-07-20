@@ -1,0 +1,64 @@
+[gd_scene format=3 uid="uid://vk0idhrjgwat"]
+
+[ext_resource type="Script" uid="uid://dt3rigeqs2h2e" path="res://scripts/ui/inputs/file_dialog/file_dialog.gd" id="1_wigsc"]
+[ext_resource type="FontFile" uid="uid://dwslao7f08kcp" path="res://assets/fonts/RobotoMono-Bold.ttf" id="2_l8usv"]
+[ext_resource type="Texture2D" uid="uid://doo23lx5k0c56" path="res://assets/icons/images.png" id="3_l8usv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ore4f"]
+bg_color = Color(0.023109775, 0.12385178, 0.20907792, 0.6627451)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.2619095, 0.8883391, 0.99999994, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="PanelContainer" type="PanelContainer" unique_id=1092074549]
+custom_minimum_size = Vector2(200, 200)
+theme_override_styles/panel = SubResource("StyleBoxFlat_ore4f")
+script = ExtResource("1_wigsc")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=694720068]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Control" type="Control" parent="MarginContainer" unique_id=242980249]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="MarginContainer/Control" unique_id=739563858]
+layout_mode = 0
+offset_right = 190.0
+offset_bottom = 190.0
+theme_override_constants/outline_size = 11
+theme_override_constants/icon_max_width = 81
+theme_override_fonts/font = ExtResource("2_l8usv")
+text = "Añade una imagen"
+icon = ExtResource("3_l8usv")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/Control" unique_id=131115079]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 0
+offset_left = -5.0
+offset_top = 3.0
+offset_right = 195.0
+offset_bottom = 183.0
+mouse_filter = 2
+expand_mode = 2
+stretch_mode = 5
+
+[node name="Button2" type="Button" parent="MarginContainer/Control" unique_id=2008977922]
+layout_mode = 0
+offset_left = 170.0
+offset_top = 3.0
+offset_right = 187.0
+offset_bottom = 34.0
+text = "x"

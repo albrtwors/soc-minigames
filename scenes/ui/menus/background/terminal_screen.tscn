@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://d04psgfrhsd35"]
+
+[ext_resource type="Script" uid="uid://kct45en6xf6i" path="res://scripts/ui/menus/background/rich_text_label.gd" id="1_qawct"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_2odnk"]
+viewport_path = NodePath("MeshInstance3D/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f5kt5"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_2odnk")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_2odnk"]
+
+[node name="TerminalScreen" type="Node3D" unique_id=922755971]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=840896734]
+material_override = SubResource("StandardMaterial3D_f5kt5")
+mesh = SubResource("PlaneMesh_2odnk")
+
+[node name="SubViewport" type="SubViewport" parent="MeshInstance3D" unique_id=853881542]
+
+[node name="ColorRect" type="ColorRect" parent="MeshInstance3D/SubViewport" unique_id=1640569385]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MeshInstance3D/SubViewport/ColorRect" unique_id=1816362406]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_colors/default_color = Color(1.732707e-06, 0.77136827, 0.18467063, 1)
+text = "sdasdasdasdasd"
+fit_content = true
+autowrap_mode = 0
+script = ExtResource("1_qawct")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1051506367]
+transform = Transform3D(0.98808885, 0.15388459, -0.00012253436, 0, 0.0007962743, 0.9999997, 0.15388463, -0.98808855, 0.0007867897, -0.43289807, 2.5237257, -0.24263124)

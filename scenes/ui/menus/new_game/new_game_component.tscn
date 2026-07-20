@@ -1,0 +1,224 @@
+[gd_scene format=3 uid="uid://bsaixasud2hqa"]
+
+[ext_resource type="PackedScene" uid="uid://vk0idhrjgwat" path="res://scenes/ui/menus/inputs/file_dialog/ContenedorPerfil.tscn" id="1_ma0ij"]
+[ext_resource type="Script" uid="uid://h8la381oqeg" path="res://scripts/ui/menus/new_game_component.gd" id="1_o4ogh"]
+[ext_resource type="FontFile" uid="uid://bqvys55l4eplu" path="res://assets/fonts/Orbitron-Black.ttf" id="2_23dfb"]
+[ext_resource type="FontFile" uid="uid://dwslao7f08kcp" path="res://assets/fonts/RobotoMono-Bold.ttf" id="3_fest6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_b84x7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wxoqa"]
+bg_color = Color(0.11764706, 0.18431373, 0.23921569, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(3.272891e-06, 0.9080373, 0.9476611, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+shadow_color = Color(11.3562565, 10.088535, 3.9612129, 0)
+shadow_size = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ij4f7"]
+bg_color = Color(0.003921569, 0.25490198, 0, 0.48235294)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1.21289495e-05, 0.9630125, 0.28942847, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 10.0
+expand_margin_top = 5.0
+expand_margin_right = 10.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_23dfb"]
+bg_color = Color(0.6862745, 0, 0.03529412, 0.30980393)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[node name="NewGameComponent" type="Control" unique_id=496092223]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_o4ogh")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1298441575]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 35
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1709550310]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer" unique_id=557353576]
+layout_mode = 2
+theme_override_constants/outline_size = 11
+theme_override_constants/shadow_outline_size = 7
+theme_override_fonts/font = ExtResource("2_23dfb")
+theme_override_font_sizes/font_size = 41
+text = "CREAR OPERADOR DEL SOC"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer" unique_id=1421189190]
+layout_mode = 2
+theme_override_constants/separation = 32
+theme_override_styles/separator = SubResource("StyleBoxEmpty_b84x7")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=2108981912]
+layout_mode = 2
+theme_override_constants/separation = 36
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=981609206]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="NameLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=1927628332]
+layout_mode = 2
+theme_override_constants/outline_size = 7
+theme_override_fonts/font = ExtResource("3_fest6")
+theme_override_font_sizes/font_size = 23
+text = "Nombre        "
+
+[node name="NameEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=852209387]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.42384723, 0.9699202, 0.99999994, 1)
+theme_override_colors/caret_color = Color(0, 0.9490196, 0.9490196, 1)
+theme_override_fonts/font = ExtResource("3_fest6")
+theme_override_styles/normal = SubResource("StyleBoxFlat_wxoqa")
+theme_override_styles/read_only = SubResource("StyleBoxFlat_wxoqa")
+theme_override_styles/focus = SubResource("StyleBoxFlat_wxoqa")
+
+[node name="SurNameLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=867417264]
+layout_mode = 2
+theme_override_constants/outline_size = 7
+theme_override_fonts/font = ExtResource("3_fest6")
+theme_override_font_sizes/font_size = 23
+text = "Apellido"
+
+[node name="SurNameEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=1398133756]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_fest6")
+theme_override_styles/normal = SubResource("StyleBoxFlat_wxoqa")
+theme_override_styles/read_only = SubResource("StyleBoxFlat_wxoqa")
+theme_override_styles/focus = SubResource("StyleBoxFlat_wxoqa")
+
+[node name="VBoxContainer4" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=1283813484]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="PNFLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer4" unique_id=1381650062]
+layout_mode = 2
+theme_override_constants/outline_size = 7
+theme_override_fonts/font = ExtResource("3_fest6")
+theme_override_font_sizes/font_size = 23
+text = "PNF           "
+
+[node name="PNFOption" type="OptionButton" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer4" unique_id=25318317]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_fest6")
+theme_override_styles/normal = SubResource("StyleBoxFlat_wxoqa")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_wxoqa")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_wxoqa")
+theme_override_styles/hover = SubResource("StyleBoxFlat_wxoqa")
+selected = 0
+item_count = 8
+popup/item_0/text = "Informatica"
+popup/item_0/id = 0
+popup/item_1/text = "Electronica"
+popup/item_1/id = 1
+popup/item_2/text = "Telecomunicaciones"
+popup/item_2/id = 2
+popup/item_3/text = "Electricidad"
+popup/item_3/id = 3
+popup/item_4/text = "Mecanica"
+popup/item_4/id = 4
+popup/item_5/text = "Mantenimiento"
+popup/item_5/id = 5
+popup/item_6/text = "Instrumentacion"
+popup/item_6/id = 6
+popup/item_7/text = "Sistemas de Calidad"
+popup/item_7/id = 7
+
+[node name="RoleLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer4" unique_id=967832854]
+layout_mode = 2
+theme_override_constants/outline_size = 7
+theme_override_fonts/font = ExtResource("3_fest6")
+theme_override_font_sizes/font_size = 23
+text = "Rol"
+
+[node name="RoleOption" type="OptionButton" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer4" unique_id=1637482290]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_fest6")
+theme_override_styles/normal = SubResource("StyleBoxFlat_wxoqa")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_wxoqa")
+theme_override_styles/hover = SubResource("StyleBoxFlat_wxoqa")
+selected = 0
+item_count = 3
+popup/item_0/text = "Novato"
+popup/item_0/id = 0
+popup/item_1/text = "Estudiante"
+popup/item_1/id = 1
+popup/item_2/text = "Experto"
+popup/item_2/id = 2
+
+[node name="PanelContainer" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=1092074549 instance=ExtResource("1_ma0ij")]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1746982743]
+layout_mode = 2
+theme_override_constants/separation = 21
+alignment = 1
+
+[node name="CreateButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1746727619]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("3_fest6")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_ij4f7")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ij4f7")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ij4f7")
+text = "Crear"
+
+[node name="BackButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer2" unique_id=757755835]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("3_fest6")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_23dfb")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_23dfb")
+theme_override_styles/hover = SubResource("StyleBoxFlat_23dfb")
+text = "Volver"

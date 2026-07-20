@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://j5vucsjaqlcj"]
+
+[ext_resource type="PackedScene" uid="uid://d1yw0ukv4oyt4" path="res://assets/models/maps/among_us/among_us_-_map_the_skeld.glb" id="1_hdg1s"]
+[ext_resource type="Script" uid="uid://6v0kbhul3pqv" path="res://scripts/levels/main_level_3d.gd" id="1_s2ivi"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_s2ivi"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_10wsu"]
+sky_material = SubResource("ProceduralSkyMaterial_s2ivi")
+
+[sub_resource type="Environment" id="Environment_i0nqg"]
+background_mode = 1
+background_color = Color(0.6169205, 0.6115252, 1, 1)
+sky = SubResource("Sky_10wsu")
+glow_enabled = true
+
+[node name="MainLevel3D" type="Node3D" unique_id=805652944]
+script = ExtResource("1_s2ivi")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=704963913]
+environment = SubResource("Environment_i0nqg")
+
+[node name="Map" parent="." unique_id=829693292 instance=ExtResource("1_hdg1s")]
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=459585806]
+transform = Transform3D(0.9999619, 0.007972092, -0.0035493989, 0, 0.4067362, 0.91354567, 0.008726538, -0.9135109, 0.4067207, 4.807894, 1.0659753, -2.7979918)
+
+[node name="CameraPositions" type="Node3D" parent="." unique_id=1184193395]
+
+[node name="MapOverviewMarker" type="Marker3D" parent="CameraPositions" unique_id=511760527]
+transform = Transform3D(1, 9.943294e-08, -6.596674e-09, 0, 0.066197425, 0.99780655, 9.9651515e-08, -0.99780655, 0.066197425, 3.9248462, 2.3145266, -2.1404302)
+
+[node name="ConfigStationMarker" type="Marker3D" parent="CameraPositions" unique_id=1403725125]
+transform = Transform3D(0.9988484, 0.018131549, -0.044420246, 0, 0.92584157, 0.37791193, 0.047978237, -0.37747672, 0.92477536, 2.38359, 0.1389519, -2.959062)
+
+[node name="AttackStationMarker" type="Marker3D" parent="CameraPositions" unique_id=796248847]

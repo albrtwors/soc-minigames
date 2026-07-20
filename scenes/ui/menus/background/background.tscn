@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://cy5f5p8vf86gk"]
+
+[ext_resource type="PackedScene" uid="uid://d1yw0ukv4oyt4" path="res://assets/models/maps/among_us/among_us_-_map_the_skeld.glb" id="1_bbdi0"]
+[ext_resource type="Script" uid="uid://3xq6540ldg4g" path="res://scenes/ui/menus/background/background.gd" id="1_x5u0w"]
+[ext_resource type="PackedScene" uid="uid://d04psgfrhsd35" path="res://scenes/ui/menus/background/terminal_screen.tscn" id="2_s2kkb"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_s2kkb"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_x5u0w"]
+sky_material = SubResource("ProceduralSkyMaterial_s2kkb")
+
+[sub_resource type="Environment" id="Environment_3yowk"]
+background_mode = 1
+background_color = Color(7.893444e-06, 0.58484083, 0.81554323, 1)
+background_energy_multiplier = 1.66
+sky = SubResource("Sky_x5u0w")
+
+[node name="Background" type="Node3D" unique_id=1714251641]
+script = ExtResource("1_x5u0w")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1142959021]
+environment = SubResource("Environment_3yowk")
+
+[node name="Sketchfab_Scene" parent="." unique_id=829693292 instance=ExtResource("1_bbdi0")]
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=653556338]
+transform = Transform3D(0.5202925, -0.1062627, 0.84735113, 0, 0.99222827, 0.124431126, -0.8539881, -0.06474058, 0.51624894, 5.269874, 0.082446724, -0.5753746)
+
+[node name="TerminalScreen" parent="." unique_id=922755971 instance=ExtResource("2_s2kkb")]
+transform = Transform3D(0.016605996, 0.03867259, -3.864444e-05, -0.0008510793, 9.8429126e-05, -0.03999645, -0.06283722, 0.010218672, 0.00053150696, 5.130082, 0.09181625, -0.5957784)

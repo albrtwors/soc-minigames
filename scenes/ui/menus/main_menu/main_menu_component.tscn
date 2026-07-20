@@ -1,0 +1,94 @@
+[gd_scene format=3 uid="uid://dnbq7k8b7har6"]
+
+[ext_resource type="Script" uid="uid://buc08hyxmj7ml" path="res://scripts/ui/menus/main_menu_component.gd" id="1_f5acx"]
+[ext_resource type="FontFile" uid="uid://dwslao7f08kcp" path="res://assets/fonts/RobotoMono-Bold.ttf" id="2_tobqf"]
+[ext_resource type="FontFile" uid="uid://bqvys55l4eplu" path="res://assets/fonts/Orbitron-Black.ttf" id="3_qy8rn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hujxm"]
+bg_color = Color(0.005916232, 0.080498, 0.17764312, 0.65882355)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.08085386, 0.89833015, 0.99999994, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+corner_detail = 5
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[node name="MainMenuComponent" type="Control" unique_id=978345639]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_f5acx")
+
+[node name="ButtonColumn" type="VBoxContainer" parent="." unique_id=1394723364]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -502.0
+offset_top = -76.0
+offset_right = -102.0
+offset_bottom = 228.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_constants/separation = 19
+
+[node name="Start" type="Button" parent="ButtonColumn" unique_id=742906946]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_tobqf")
+theme_override_font_sizes/font_size = 27
+theme_override_styles/normal = SubResource("StyleBoxFlat_hujxm")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_hujxm")
+theme_override_styles/hover = SubResource("StyleBoxFlat_hujxm")
+text = "Nueva Partida "
+
+[node name="Load" type="Button" parent="ButtonColumn" unique_id=1528101324]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_tobqf")
+theme_override_font_sizes/font_size = 27
+theme_override_styles/normal = SubResource("StyleBoxFlat_hujxm")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_hujxm")
+theme_override_styles/hover = SubResource("StyleBoxFlat_hujxm")
+text = "Cargar Partida"
+
+[node name="Exit" type="Button" parent="ButtonColumn" unique_id=1950620407]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_tobqf")
+theme_override_font_sizes/font_size = 27
+theme_override_styles/normal = SubResource("StyleBoxFlat_hujxm")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_hujxm")
+theme_override_styles/hover = SubResource("StyleBoxFlat_hujxm")
+text = "Salir"
+
+[node name="Label" type="Label" parent="." unique_id=2110412777]
+layout_mode = 0
+offset_left = 587.0
+offset_top = 122.0
+offset_right = 1108.0
+offset_bottom = 223.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = -7
+theme_override_constants/outline_size = 7
+theme_override_fonts/font = ExtResource("3_qy8rn")
+theme_override_font_sizes/font_size = 38
+text = "SECURITY OPERATIONS
+CENTER"
+horizontal_alignment = 1
+
+[connection signal="pressed" from="ButtonColumn/Start" to="." method="_on_btn_nueva_partida_pressed"]
+[connection signal="pressed" from="ButtonColumn/Load" to="." method="_on_btn_cargar_partida_pressed"]
+[connection signal="pressed" from="ButtonColumn/Exit" to="." method="_on_btn_salir_pressed"]
