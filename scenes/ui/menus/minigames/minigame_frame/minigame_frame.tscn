@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://bvckapdp6w0co"]
+
+[ext_resource type="Script" uid="uid://cx6bors575mos" path="res://scripts/ui/minigames/minigame_frame/minigame_frame.gd" id="1_rydop"]
+
+[node name="MinigameFrame" type="Control" unique_id=931256169]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(350, 250)
+mouse_filter = 2
+script = ExtResource("1_rydop")
+
+[node name="PuzzleContainer" type="Control" parent="." unique_id=1050510436]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="LevelSelectorPanel" type="CenterContainer" parent="." unique_id=861240163]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LevelSelectorPanel" unique_id=710843917]
+layout_mode = 2
+
+[node name="LabelTitulo" type="Label" parent="LevelSelectorPanel/VBoxContainer" unique_id=278348600]
+layout_mode = 2
+text = "Níveles"
+horizontal_alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="LevelSelectorPanel/VBoxContainer" unique_id=2137430231]
+custom_minimum_size = Vector2(600, 300)
+layout_mode = 2
+columns = 3
+
+[node name="UIHeader" type="MarginContainer" parent="." unique_id=83164576]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BtnVolverMenu" type="Button" parent="UIHeader" unique_id=565346348]
+layout_mode = 2
+text = "Salir"

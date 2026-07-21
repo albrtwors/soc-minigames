@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="NivelConfigData" format=3 uid="uid://c7nj0r8osekq2"]
+
+[ext_resource type="Script" uid="uid://doe8pxqccsw5c" path="res://scripts/data/NivelConfigData.gd" id="1_wjmxs"]
+
+[resource]
+script = ExtResource("1_wjmxs")
+briefing_teoria = "Conectar un terminal directamente a un servidor crítico sin pasar por un concentrador de red o firewall expone los datos a interceptación no autorizada (Man-in-the-Middle) y dificulta la auditoría de tráfico."
+briefing_mision = "Conecta el equipo 'PC_Empleado' con el 'Servidor_BD' pasando obligatoriamente por el 'Switch_Seguro'. Utiliza únicamente cables cifrados (AZUL)."
+debriefing_exito = "¡Excelente trabajo! El tráfico en tránsito ahora viaja segmentado y protegido a través del Switch_Seguro, reduciendo el riesgo de espionaje en la red local."
+conexiones_requeridas = Array[Dictionary]([{
+"cable": "AZUL",
+"destino": "Switch_Seguro",
+"origen": "PC_Empleado"
+}, {
+"cable": "AZUL",
+"destino": "Servidor_BD",
+"origen": "Switch_Seguro"
+}])
+nodos_disponibles = Array[Dictionary]([{
+"id": "PC_Empleado",
+"posicion": Vector2(100, 200),
+"tipo": "CLIENTE"
+}, {
+"id": "Switch_Seguro",
+"posicion": Vector2(400, 200),
+"tipo": "Switch"
+}, {
+"id": "Servidor_BD",
+"posicion": Vector2(700, 200),
+"tipo": "SERVIDOR"
+}])
+metadata/_custom_type_script = "uid://doe8pxqccsw5c"

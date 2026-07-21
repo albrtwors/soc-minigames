@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://cd8ql5t5bj0s7"]
+
+[ext_resource type="Script" uid="uid://c73e4dw085vs3" path="res://scripts/minigames/configuracion/cable_puzzle.gd" id="1_1ynck"]
+[ext_resource type="PackedScene" uid="uid://b8raw4rk3qjnt" path="res://scenes/minigames/briefing_modal/briefing_modal.tscn" id="1_qrbip"]
+[ext_resource type="Resource" uid="uid://c7nj0r8osekq2" path="res://scripts/data/config_levels/nivel_1.tres" id="2_bsb47"]
+
+[node name="CablePuzzle" type="Control" unique_id=1710381029]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_1ynck")
+nivel_data = ExtResource("2_bsb47")
+
+[node name="ContenedorNodos" type="Control" parent="." unique_id=550819810]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ContenedorCables" type="Control" parent="." unique_id=816643815]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="CableEnProceso" type="Line2D" parent="." unique_id=890357203]
+
+[node name="BriefingModal" parent="." unique_id=804302361 instance=ExtResource("1_qrbip")]
+layout_mode = 1
+
+[node name="UIHeader" type="HBoxContainer" parent="." unique_id=2092945017]
+layout_mode = 0
+offset_left = 276.0
+offset_top = 544.0
+offset_right = 876.0
+offset_bottom = 628.0
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="BtnVolver" type="Button" parent="UIHeader" unique_id=1903872954]
+layout_mode = 2
+text = "Salir"
+
+[node name="BtnReiniciar" type="Button" parent="UIHeader" unique_id=277000129]
+layout_mode = 2
+text = "Reiniciar"
+
+[node name="BtnValidar" type="Button" parent="UIHeader" unique_id=340010326]
+layout_mode = 2
+text = "Validar"
+
+[node name="BtnVerEnunciado" type="Button" parent="UIHeader" unique_id=582910473]
+layout_mode = 2
+text = "Enunciado"
+
+[node name="BtnInfo" type="Button" parent="UIHeader" unique_id=734182950]
+layout_mode = 2
+text = "Info"

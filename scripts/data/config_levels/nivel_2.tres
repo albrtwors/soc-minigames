@@ -1,0 +1,44 @@
+[gd_resource type="Resource" script_class="NivelConfigData" format=3 uid="uid://b8kq2x5m7n3p"]
+
+[ext_resource type="Script" uid="uid://doe8pxqccsw5c" path="res://scripts/data/NivelConfigData.gd" id="1_wjmxs"]
+
+[resource]
+script = ExtResource("1_wjmxs")
+briefing_teoria = "Una DMZ (Demilitarized Zone) es una subred expuesta que actúa intermedio entre la red interna e Internet. Todo tráfico debe atravesar el firewall para llegar a los servidores públicos. Conectar directamente un empleado a un servidor web sin pasar por el firewall y el switch DMZ crea una ruta sin inspección."
+briefing_mision = "Conecta 'PC_Empleado' al 'Servidor_Web' pasando obligatoriamente por 'Firewall' y 'Switch_DMZ'. Utiliza únicamente cables cifrados (AZUL). ¡Cuidado! No todos los servidores necesitan acceso directo desde la DMZ."
+debriefing_exito = "¡Misión cumplida! Tu red ahora segmenta correctamente el tráfico: el empleado accede al servidor web únicamente a través del firewall y el switch DMZ, manteniendo la inspección de paquetes en cada salto."
+conexiones_requeridas = Array[Dictionary]([{
+"cable": "AZUL",
+"destino": "Firewall",
+"origen": "PC_Empleado"
+}, {
+"cable": "AZUL",
+"destino": "Switch_DMZ",
+"origen": "Firewall"
+}, {
+"cable": "AZUL",
+"destino": "Servidor_Web",
+"origen": "Switch_DMZ"
+}])
+nodos_disponibles = Array[Dictionary]([{
+"id": "PC_Empleado",
+"posicion": Vector2(80, 200),
+"tipo": "CLIENTE"
+}, {
+"id": "Firewall",
+"posicion": Vector2(320, 200),
+"tipo": "FIREWALL"
+}, {
+"id": "Switch_DMZ",
+"posicion": Vector2(560, 200),
+"tipo": "SWITCH"
+}, {
+"id": "Servidor_Web",
+"posicion": Vector2(800, 120),
+"tipo": "SERVIDOR"
+}, {
+"id": "Servidor_BD",
+"posicion": Vector2(800, 300),
+"tipo": "SERVIDOR"
+}])
+metadata/_custom_type_script = "uid://doe8pxqccsw5c"

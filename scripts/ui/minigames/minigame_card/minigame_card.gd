@@ -47,7 +47,6 @@ func _on_mouse_exited() -> void:
 	tween.tween_property(self, "modulate", _base_modulate, 0.15).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 
 func _on_gui_input(event: InputEvent) -> void:
-	# La señal y procesamiento del minijuego ocurren ÚNICAMENTE al hacer clic izquierdo
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
-		print("Click en minijuego: ", minigame_id)
-		EventBus.minigame_selected.emit(minigame_id, 1)
+		print("Minijuego seleccionado: ", minigame_id)
+		EventBus.minigame_selected.emit(minigame_id)

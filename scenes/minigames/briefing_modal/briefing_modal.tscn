@@ -1,0 +1,86 @@
+[gd_scene format=3 uid="uid://b8raw4rk3qjnt"]
+
+[ext_resource type="Script" uid="uid://dee12xx851d5n" path="res://scripts/ui/minigames/briefing_modal/briefing_modal.gd" id="1_7pw2t"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b84x7"]
+bg_color = Color(0, 0, 0, 0.36078432)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[node name="BriefingModal" type="Control" unique_id=804302361]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_7pw2t")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1655864886]
+modulate = Color(0.02571374, 0.045818873, 0.121872656, 0.2901961)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1898334504]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer" unique_id=1975075862]
+custom_minimum_size = Vector2(600, 400)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_b84x7")
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/PanelContainer" unique_id=891597345]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer" unique_id=1756136551]
+layout_mode = 2
+
+[node name="LabelTitulo" type="RichTextLabel" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=233129430]
+layout_mode = 2
+bbcode_enabled = true
+text = "[B]ASDASDOPADS[B]
+"
+fit_content = true
+
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1739869244]
+layout_mode = 2
+
+[node name="LabelTeoria" type="RichTextLabel" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1999588144]
+layout_mode = 2
+bbcode_enabled = true
+text = "[B]ASDASDOPADS[B]
+"
+fit_content = true
+
+[node name="LabelMision" type="RichTextLabel" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=765437035]
+layout_mode = 2
+bbcode_enabled = true
+text = "[B]ASDASDOPADS[B]
+"
+fit_content = true
+
+[node name="Control" type="Control" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1285916154]
+custom_minimum_size = Vector2(0, 20.11)
+layout_mode = 2
+
+[node name="BtnAccion" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1395760678]
+layout_mode = 2
+text = "Comenzar"

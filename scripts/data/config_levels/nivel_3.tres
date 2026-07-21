@@ -1,0 +1,56 @@
+[gd_resource type="Resource" script_class="NivelConfigData" format=3 uid="uid://d4jgaw1r6t8v"]
+
+[ext_resource type="Script" uid="uid://doe8pxqccsw5c" path="res://scripts/data/NivelConfigData.gd" id="1_wjmxs"]
+
+[resource]
+script = ExtResource("1_wjmxs")
+briefing_teoria = "La segmentación de red por VLANs separa dominios de confianza. El tráfico entre segmentos debe pasar por un router de borde con políticas de firewall. Los dispositivos de distinto nivel de confianza no deben compartir el mismo cable lógico sin filtrado."
+briefing_mision = "Conecta la red interna y la red de invitados al servidor de base de datos. El 'PC_Admin' (confianza alta) usa cables cifrados (AZUL). El 'PC_Invitado' (confianza baja) usa cables de emergencia (ROJO). Cada flujo debe atravesar 'Firewall' → 'Router_Borde' → su VLAN correspondiente. Utiliza las teclas 1-4 para cambiar el color del cable."
+debriefing_exito = "¡Red segmentada correctamente! El tráfico administrativo viaja por VLAN_A con cifrado AZUL y el tráfico de invitados por VLAN_B con cable ROJO de emergencia. Ambos flujos están filtrados por el firewall y el router de borde, garantizando auditoría y aislamiento."
+conexiones_requeridas = Array[Dictionary]([{
+"cable": "AZUL",
+"destino": "Firewall",
+"origen": "PC_Admin"
+}, {
+"cable": "ROJO",
+"destino": "Firewall",
+"origen": "PC_Invitado"
+}, {
+"cable": "AZUL",
+"destino": "Router_Borde",
+"origen": "Firewall"
+}, {
+"cable": "AZUL",
+"destino": "Switch_VLAN_A",
+"origen": "Router_Borde"
+}, {
+"cable": "ROJO",
+"destino": "Switch_VLAN_B",
+"origen": "Router_Borde"
+}])
+nodos_disponibles = Array[Dictionary]([{
+"id": "PC_Admin",
+"posicion": Vector2(60, 100),
+"tipo": "CLIENTE"
+}, {
+"id": "PC_Invitado",
+"posicion": Vector2(60, 320),
+"tipo": "CLIENTE"
+}, {
+"id": "Firewall",
+"posicion": Vector2(300, 210),
+"tipo": "FIREWALL"
+}, {
+"id": "Router_Borde",
+"posicion": Vector2(520, 210),
+"tipo": "ROUTER"
+}, {
+"id": "Switch_VLAN_A",
+"posicion": Vector2(760, 120),
+"tipo": "SWITCH"
+}, {
+"id": "Switch_VLAN_B",
+"posicion": Vector2(760, 310),
+"tipo": "SWITCH"
+}])
+metadata/_custom_type_script = "uid://doe8pxqccsw5c"
