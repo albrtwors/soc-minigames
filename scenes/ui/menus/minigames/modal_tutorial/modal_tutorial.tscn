@@ -1,0 +1,96 @@
+[gd_scene format=3 uid="uid://0cctd2ubu3uj"]
+
+[ext_resource type="Script" uid="uid://bcu6x53jt28h4" path="res://scripts/ui/minigames/modal_tutorial/modal_tutorial.gd" id="1_8egm7"]
+[ext_resource type="Texture2D" uid="uid://c2n0nfgovc0g3" path="res://assets/backgrounds/main.png" id="1_805om"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b84x7"]
+bg_color = Color(0.11858138, 0.11858139, 0.11858132, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="ModalTutorial" type="Control" unique_id=1968603354]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8egm7")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1808151261]
+modulate = Color(0.015686275, 0, 0.19607843, 0.3137255)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1339283746]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -185.5
+offset_top = -124.5
+offset_right = 185.5
+offset_bottom = 124.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_b84x7")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=1110854807]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer" unique_id=1446704583]
+layout_mode = 2
+alignment = 1
+
+[node name="Header" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1418722040]
+layout_mode = 2
+
+[node name="LblTitulo" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/Header" unique_id=776741371]
+layout_mode = 2
+text = "TItulo del tutorial "
+
+[node name="LblPagina" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/Header" unique_id=647980025]
+layout_mode = 2
+text = "Pag 3"
+
+[node name="Content" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=667948878]
+layout_mode = 2
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/Content" unique_id=1574898318]
+custom_minimum_size = Vector2(0.625, 201.365)
+layout_mode = 2
+texture = ExtResource("1_805om")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="LblTextoTeoria" type="RichTextLabel" parent="PanelContainer/MarginContainer/VBoxContainer/Content" unique_id=917243249]
+layout_mode = 2
+bbcode_enabled = true
+text = "el tutorial constaraasd"
+
+[node name="Footer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1470674265]
+layout_mode = 2
+
+[node name="BtnAnterior" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/Footer" unique_id=1112808080]
+layout_mode = 2
+text = "Prev"
+
+[node name="Control" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer/Footer" unique_id=1577197666]
+layout_mode = 2
+
+[node name="BtnSiguiente" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/Footer" unique_id=1622255077]
+layout_mode = 2
+text = "Next"

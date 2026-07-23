@@ -22,10 +22,8 @@ const LEVEL_DATA_PATHS = {
 
 var minigame_id_actual: String = ""
 var indice_nivel_actual: int = 0
-var font_bold: FontFile
 
 func _ready() -> void:
-	font_bold = load("res://assets/fonts/RobotoMono-Bold.ttf")
 	EventBus.minigame_selected.connect(_on_minigame_selected)
 	if btn_volver:
 		btn_volver.pressed.connect(_on_volver_pressed)
@@ -47,28 +45,13 @@ func _mostrar_selector_niveles() -> void:
 	for child in container_niveles.get_children():
 		child.queue_free()
 		
-	# Generar botones para los niveles configurados
+	# Generar botones simples (su estilo lo heredan del Theme del proyecto o del nodo padre)
 	if LEVEL_DATA_PATHS.has(minigame_id_actual):
 		var rutas = LEVEL_DATA_PATHS[minigame_id_actual]
 		for i in range(rutas.size()):
 			var btn = Button.new()
 			btn.text = "NIVEL " + str(i + 1)
 			btn.custom_minimum_size = Vector2(140, 55)
-			
-			# Estilo cyan como el resto del proyecto
-			var s = StyleBoxFlat.new()
-			s.bg_color = Color(0.0059, 0.0805, 0.1776, 0.659)
-			s.border_color = Color(0.0809, 0.8983, 1.0, 1.0)
-			s.set_border_width_all(2)
-			s.set_corner_radius_all(5)
-			s.set_content_margin_all(10)
-			btn.add_theme_stylebox_override("normal", s)
-			btn.add_theme_stylebox_override("hover", s)
-			btn.add_theme_stylebox_override("pressed", s)
-			btn.add_theme_font_override("font", font_bold)
-			btn.add_theme_font_size_override("font_size", 16)
-			btn.add_theme_color_override("font_color", Color.WHITE)
-			btn.add_theme_color_override("font_hover_color", Color(0.0809, 0.8983, 1.0, 1.0))
 			
 			var idx = i
 			btn.pressed.connect(func(): _cargar_nivel_por_indice(idx))

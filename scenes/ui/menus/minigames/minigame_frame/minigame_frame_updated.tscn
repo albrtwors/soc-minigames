@@ -1,0 +1,118 @@
+[gd_scene format=3 uid="uid://b13rbd5r5knbf"]
+
+[ext_resource type="Script" uid="uid://ds6al5t5fixae" path="res://scripts/ui/minigames/minigame_frame/minigame_frame_updated.gd" id="1_2ibf1"]
+[ext_resource type="PackedScene" uid="uid://0cctd2ubu3uj" path="res://scenes/ui/menus/minigames/modal_tutorial/modal_tutorial.tscn" id="2_u6sd6"]
+[ext_resource type="PackedScene" uid="uid://xrglgnmf1a2h" path="res://scenes/ui/components/buttons/level_button/level_button.tscn" id="3_hiumq"]
+
+[node name="MinigameFrame" type="Control" unique_id=931256169]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(350, 250)
+mouse_filter = 2
+script = ExtResource("1_2ibf1")
+modal_tutorial_scene = ExtResource("2_u6sd6")
+level_button_scene = ExtResource("3_hiumq")
+
+[node name="ColorRectFondo" type="ColorRect" parent="." unique_id=1096810140]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.15294118, 0.15294118, 0.15294118, 0)
+
+[node name="PlayArea" type="Control" parent="." unique_id=281030599]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Container2D" type="Control" parent="PlayArea" unique_id=1424205133]
+custom_minimum_size = Vector2(800, 500)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -400.0
+offset_top = -250.0
+offset_right = 400.0
+offset_bottom = 250.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HUD" type="Control" parent="." unique_id=1636791093]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TopBar" type="HBoxContainer" parent="HUD" unique_id=1175198069]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
+
+[node name="LblTimer" type="Label" parent="HUD/TopBar" unique_id=1293390760]
+layout_mode = 2
+
+[node name="Spacer" type="Control" parent="HUD/TopBar" unique_id=515582004]
+layout_mode = 2
+
+[node name="LblScore" type="Label" parent="HUD/TopBar" unique_id=303891805]
+layout_mode = 2
+
+[node name="BtnSalir" type="Button" parent="HUD" unique_id=83414089]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+text = "x"
+
+[node name="MenuNiveles" type="PanelContainer" parent="." unique_id=1716113612]
+custom_minimum_size = Vector2(800, 500)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MenuNiveles" unique_id=336225315]
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="MenuNiveles/ScrollContainer" unique_id=799431484]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 5
+
+[node name="ModalContainer" type="Control" parent="." unique_id=1243924064]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2

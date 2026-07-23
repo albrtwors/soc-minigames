@@ -15,6 +15,12 @@ const BACKGROUND_SCENE_PATH = "res://scenes/ui/menus/background/background.tscn"
 const MAPA_3D_SCENE_PATH = "res://scenes/levels/main/main_level_3d.tscn"
 const POST_LOAD_DELAY: float = 0.8
 
+# Lista de IDs de minijuegos que ocurren directamente sobre el mapa 3D
+const MINIJUEGOS_EN_MAPA_3D: Array[String] = [
+	"configuracion_cables",
+	"servidor_fisico"
+]
+
 # Mapa de vistas registradas para la UI
 @onready var views: Dictionary = {
 	"MainMenuComponent": main_menu_component,
@@ -45,6 +51,10 @@ func _conectar_senales() -> void:
 	if minigame_menu.has_signal("exit_requested"):
 		minigame_menu.exit_requested.connect(_on_minigame_menu_exit)
 		
+	# Conectar la señal de cámara 3D emitida por el MinigameFrame
+	if minigame_frame.has_signal("solicitar_camara_3d"):
+		minigame_frame.solicitar_camara_3d.connect(_on_solicitar_camara_3d)
+		
 	# Conectar SIEMPRE la salida global emitida por MinigameFrame o el Bus
 	EventBus.user_exit.connect(_on_minigame_menu_exit)
 		
@@ -65,7 +75,23 @@ func _on_menu_changed_requested(view_name: String) -> void:
 # --- FLUJO DE MINIJUEGOS Y NAVEGACIÓN ---
 func _on_minigame_selected(minigame_id: String, _level: int = 1) -> void:
 	print("Desplegando marco para el minijuego: ", minigame_id)
+	
+	# 1. Cambiar a la vista del MinigameFrame
 	_switch_to_view(minigame_frame)
+	
+	# 2. Evaluar si el minijuego es 3D (en el mundo) o 2D (aislado)
+	var es_en_mundo_3d: bool = minigame_id in MINIJUEGOS_EN_MAPA_3D
+	
+	# 3. Invocar activamente la carga de la grilla de niveles en el MinigameFrame
+	minigame_frame.abrir_minijuego(minigame_id, es_en_mundo_3d)
+
+func _on_solicitar_camara_3d(id_minijuego: String, activar: bool) -> void:
+	# Notificar al nivel 3D activo para enfocar la cámara en la estación interactiva
+	var root = get_tree().root.get_node_or_null("Main")
+	if root and root.has_node("MainLevel3D"):
+		var mapa_3d = root.get_node("MainLevel3D")
+		if mapa_3d.has_method("enfocar_interaccion_3d"):
+			mapa_3d.enfocar_interaccion_3d(id_minijuego, activar)
 
 func _on_minigame_menu_exit() -> void:
 	# Si estábamos en el marco del minijuego (o acaba de cerrarse), regresamos al menú del selector

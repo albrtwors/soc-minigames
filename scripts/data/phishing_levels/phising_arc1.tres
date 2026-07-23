@@ -1,0 +1,62 @@
+[gd_resource type="Resource" script_class="NivelPhishingArcadeData" format=3 uid="uid://cr8108osy8msv"]
+
+[ext_resource type="Script" uid="uid://dxobj2i0rmdy5" path="res://scripts/data/NivelPhishingArcadeData.gd" id="1_ieqa2"]
+
+[resource]
+script = ExtResource("1_ieqa2")
+items_auditoria = Array[Dictionary]([{
+"asunto": "Factura Mensual Servidores Cloud",
+"cuerpo": "Estimado equipo, adjuntamos la factura correspondiente al consumo de infraestructura del mes actual. Por favor validar para el desembolso.",
+"emisor": "facturacion@aws-cloud.com",
+"es_fraude": false,
+"hash_impreso": "8f3a1c9b4e72d0a",
+"hash_real": "8f3a1c9b4e72d0a",
+"monto": "$1,450.00",
+"motivo_fraude": "",
+"ssl_valido": true
+}, {
+"asunto": "URGENTE: Actualización Datos Directiva",
+"cuerpo": "Se requiere transferencia inmediata para la renovación del certificado corporativo anual. De lo contrario, los servicios caerán en 2 horas.",
+"emisor": "soporte@paypaI.com",
+"es_fraude": true,
+"hash_impreso": "1a2b3c4d5e6f",
+"hash_real": "ff9988776655",
+"monto": "$850.00",
+"motivo_fraude": "Typosquatting ('I' mayúscula en paypaI), SSL no válido y firma hash alterada.",
+"ssl_valido": false
+}, {
+"asunto": "Licencias Anuales de Software CAD",
+"cuerpo": "Adjunto orden de compra y clave PGP del proveedor para la renovación de 10 licencias de diseño.",
+"emisor": "ventas@autodesk-partner.org",
+"es_fraude": false,
+"hash_impreso": "e4d3c2b1a09988",
+"hash_real": "e4d3c2b1a09988",
+"monto": "$3,200.00",
+"motivo_fraude": "",
+"ssl_valido": true
+}, {
+"asunto": "Reembolso por Duplicado de Nómina",
+"cuerpo": "Detectamos un cobro doble en la última transferencia. Solicito aprobar la devolución del excedente a la cuenta indicada.",
+"emisor": "recursos.humanos@empresa-rrhh.net",
+"es_fraude": true,
+"hash_impreso": "7a6b5c4d3e2f",
+"hash_real": "001122334455",
+"monto": "$500.00",
+"motivo_fraude": "Firma Hash no coincide con la base de datos interna de la empresa.",
+"ssl_valido": true
+}, {
+"asunto": "Suscripción Seguridad Endpoint (Antivirus)",
+"cuerpo": "Factura automatizada por protección activa del último trimestre en estaciones de trabajo.",
+"emisor": "billing@crowd-strike.co",
+"es_fraude": true,
+"hash_impreso": "99aabbccdd11",
+"hash_real": "99aabbccdd11",
+"monto": "$2,100.00",
+"motivo_fraude": "Dominio falso/typosquatting (.co en lugar del dominio corporativo oficial) y SSL no válido.",
+"ssl_valido": false
+}])
+tiempo_limite = 60.0
+penalizacion_error = 30
+id_nivel = "phishing_arc1"
+titulo_ui = "NIVEL 1: AUDITORÍA INICIAL"
+metadata/_custom_type_script = "uid://dxobj2i0rmdy5"

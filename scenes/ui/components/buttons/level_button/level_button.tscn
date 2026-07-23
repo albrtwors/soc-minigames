@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://xrglgnmf1a2h"]
+
+[ext_resource type="Script" uid="uid://drgj1thmw6fpx" path="res://scripts/ui/components/level_button/level_button.gd" id="1_dc0jo"]
+
+[node name="LevelButton" type="Button" unique_id=947935310]
+offset_right = 8.0
+offset_bottom = 8.0
+script = ExtResource("1_dc0jo")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=2082851121]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=93806794]
+layout_mode = 2
+
+[node name="IconType" type="TextureRect" parent="MarginContainer/HBoxContainer" unique_id=1127939933]
+layout_mode = 2
+
+[node name="LblTitulo" type="Label" parent="MarginContainer/HBoxContainer" unique_id=1463905863]
+layout_mode = 2
