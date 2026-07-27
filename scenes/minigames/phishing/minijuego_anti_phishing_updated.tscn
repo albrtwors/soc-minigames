@@ -1,0 +1,288 @@
+[gd_scene format=3 uid="uid://b5s18x4s60gri"]
+
+[ext_resource type="Script" uid="uid://cpabaqf0bwpnf" path="res://scripts/minigames/phishing/minijuego_anti_phishing.gd" id="1_m3567"]
+[ext_resource type="FontFile" uid="uid://cpggr766j0hry" path="res://assets/fonts/RobotoMono-Regular.ttf" id="2_e0r44"]
+[ext_resource type="FontFile" uid="uid://bbayt7i2hwcen" path="res://assets/fonts/VT323-Regular.ttf" id="2_msdh1"]
+[ext_resource type="FontFile" uid="uid://dwslao7f08kcp" path="res://assets/fonts/RobotoMono-Bold.ttf" id="3_huwu1"]
+[ext_resource type="Texture2D" uid="uid://bcscf3gigtrbx" path="res://assets/icons/Arch-linux-logo.png" id="5_dvqxr"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel_doc"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+bg_color = Color(0.082, 0.098, 0.122, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.188, 0.212, 0.239, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel_mando"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+bg_color = Color(0.075, 0.09, 0.114, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.188, 0.212, 0.239, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m3567"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mpokq"]
+bg_color = Color(0, 0, 0, 1)
+
+[node name="MinijuegoAntiPhishing" type="Control" unique_id=1373017276]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_m3567")
+
+[node name="Fondo" type="ColorRect" parent="." unique_id=968355281]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.051, 0.067, 0.09, 1)
+
+[node name="MainLayout" type="VBoxContainer" parent="." unique_id=1116776098]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="TitleBar" type="HBoxContainer" parent="MainLayout" unique_id=576819848]
+layout_mode = 2
+
+[node name="LblTituloApp" type="Label" parent="MainLayout/TitleBar" unique_id=2034398307]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_e0r44")
+text = "SOC MailGuard v1.0 - Mail Inspector"
+
+[node name="Spacer" type="Control" parent="MainLayout/TitleBar" unique_id=1872188649]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="BtnMinimizar" type="Button" parent="MainLayout/TitleBar" unique_id=39753437]
+custom_minimum_size = Vector2(28, 24)
+layout_mode = 2
+text = "—"
+
+[node name="BtnCerrar" type="Button" parent="MainLayout/TitleBar" unique_id=1147508859]
+custom_minimum_size = Vector2(28, 24)
+layout_mode = 2
+text = "X"
+
+[node name="HSplitContainer" type="HSplitContainer" parent="MainLayout" unique_id=801384831]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_constants/separation = 2
+
+[node name="PanelDocumento" type="PanelContainer" parent="MainLayout/HSplitContainer" unique_id=1871522129]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel_doc")
+
+[node name="MarginContainer" type="MarginContainer" parent="MainLayout/HSplitContainer/PanelDocumento" unique_id=2006733955]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainLayout/HSplitContainer/PanelDocumento/MarginContainer" unique_id=373921789]
+custom_minimum_size = Vector2(242.425, 0)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="HeaderGrid" type="GridContainer" parent="MainLayout/HSplitContainer/PanelDocumento/MarginContainer/VBoxContainer" unique_id=432734172]
+layout_mode = 2
+mouse_filter = 2
+columns = 2
+
+[node name="LblEmisor" type="Label" parent="MainLayout/HSplitContainer/PanelDocumento/MarginContainer/VBoxContainer/HeaderGrid" unique_id=1749408887]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 0
+autowrap_mode = 3
+
+[node name="LblAsunto" type="Label" parent="MainLayout/HSplitContainer/PanelDocumento/MarginContainer/VBoxContainer/HeaderGrid" unique_id=1960211889]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0, 1, 1, 1)
+autowrap_mode = 3
+
+[node name="LblMonto" type="Label" parent="MainLayout/HSplitContainer/PanelDocumento/MarginContainer/VBoxContainer/HeaderGrid" unique_id=435131980]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+autowrap_mode = 3
+
+[node name="IconSSL" type="TextureRect" parent="MainLayout/HSplitContainer/PanelDocumento/MarginContainer/VBoxContainer/HeaderGrid" unique_id=637589258]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="HSeparator" type="HSeparator" parent="MainLayout/HSplitContainer/PanelDocumento/MarginContainer/VBoxContainer" unique_id=1950310704]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MainLayout/HSplitContainer/PanelDocumento/MarginContainer/VBoxContainer" unique_id=713819360]
+layout_mode = 2
+mouse_filter = 2
+vertical_scroll_mode = 2
+
+[node name="TxtCuerpo" type="RichTextLabel" parent="MainLayout/HSplitContainer/PanelDocumento/MarginContainer/VBoxContainer/ScrollContainer" unique_id=1338965465]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+bbcode_enabled = true
+fit_content = true
+
+[node name="HSeparator2" type="HSeparator" parent="MainLayout/HSplitContainer/PanelDocumento/MarginContainer/VBoxContainer" unique_id=1290616376]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="LblHashImpreso" type="Label" parent="MainLayout/HSplitContainer/PanelDocumento/MarginContainer/VBoxContainer" unique_id=425922478]
+layout_mode = 2
+size_flags_horizontal = 3
+autowrap_mode = 3
+
+[node name="HBoxDecisiones" type="HBoxContainer" parent="MainLayout/HSplitContainer/PanelDocumento/MarginContainer/VBoxContainer" unique_id=621541892]
+layout_mode = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="BtnAprobar" type="Button" parent="MainLayout/HSplitContainer/PanelDocumento/MarginContainer/VBoxContainer/HBoxDecisiones" unique_id=106050400]
+modulate = Color(0.2, 0.8, 0.2, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("3_huwu1")
+text = "Aprobar"
+
+[node name="BtnRechazar" type="Button" parent="MainLayout/HSplitContainer/PanelDocumento/MarginContainer/VBoxContainer/HBoxDecisiones" unique_id=88893800]
+modulate = Color(0.9, 0.2, 0.2, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("3_huwu1")
+text = "Rechazar"
+
+[node name="PanelMando" type="PanelContainer" parent="MainLayout/HSplitContainer" unique_id=518746747]
+custom_minimum_size = Vector2(244.45, 0)
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel_mando")
+
+[node name="MarginContainer" type="MarginContainer" parent="MainLayout/HSplitContainer/PanelMando" unique_id=29508256]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainLayout/HSplitContainer/PanelMando/MarginContainer" unique_id=1796464654]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 8
+
+[node name="LblTituloHerramientas" type="Label" parent="MainLayout/HSplitContainer/PanelMando/MarginContainer/VBoxContainer" unique_id=724385192]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_huwu1")
+text = "Herramientas"
+
+[node name="BtnVerificarHash" type="Button" parent="MainLayout/HSplitContainer/PanelMando/MarginContainer/VBoxContainer" unique_id=1262250461]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_huwu1")
+text = "Verificar Hash"
+
+[node name="StatusHash" type="Label" parent="MainLayout/HSplitContainer/PanelMando/MarginContainer/VBoxContainer" unique_id=1958117441]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_msdh1")
+text = "Hash: Sin verificar"
+autowrap_mode = 3
+
+[node name="HSeparator3" type="HSeparator" parent="MainLayout/HSplitContainer/PanelMando/MarginContainer/VBoxContainer" unique_id=881754255]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="ManualDominio" type="Control" parent="MainLayout/HSplitContainer/PanelMando/MarginContainer/VBoxContainer" unique_id=339234434]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="HSeparator4" type="HSeparator" parent="MainLayout/HSplitContainer/PanelMando/MarginContainer/VBoxContainer" unique_id=1293779104]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="TxtConsoleLog" type="RichTextLabel" parent="MainLayout/HSplitContainer/PanelMando/MarginContainer/VBoxContainer" unique_id=238633961]
+custom_minimum_size = Vector2(0, 230)
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.12198677, 0.79012203, 1.540184e-06, 1)
+theme_override_fonts/normal_font = ExtResource("2_msdh1")
+theme_override_fonts/bold_font = ExtResource("2_msdh1")
+theme_override_fonts/bold_italics_font = ExtResource("2_msdh1")
+theme_override_fonts/italics_font = ExtResource("2_msdh1")
+theme_override_fonts/mono_font = ExtResource("2_msdh1")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_m3567")
+theme_override_styles/focus = SubResource("StyleBoxFlat_m3567")
+bbcode_enabled = true
+scroll_following = true
+
+[node name="CliInterface" type="LineEdit" parent="MainLayout/HSplitContainer/PanelMando/MarginContainer/VBoxContainer" unique_id=1792633058]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_msdh1")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_mpokq")
+theme_override_styles/read_only = SubResource("StyleBoxFlat_mpokq")
+theme_override_styles/focus = SubResource("StyleBoxFlat_mpokq")
+
+[node name="TaskBar" type="HBoxContainer" parent="MainLayout" unique_id=1934197473]
+custom_minimum_size = Vector2(0, 9.56)
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="TextureRect" type="TextureRect" parent="MainLayout/TaskBar" unique_id=754736672]
+layout_mode = 2
+texture = ExtResource("5_dvqxr")
+expand_mode = 2
+
+[node name="SeparatorLeft" type="VSeparator" parent="MainLayout/TaskBar" unique_id=1090795357]
+custom_minimum_size = Vector2(2, 20)
+layout_mode = 2
+
+[node name="LblActiveApp" type="Label" parent="MainLayout/TaskBar" unique_id=1897983398]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_huwu1")
+text = "MailGuard - Activo"
+
+[node name="Spacer" type="Control" parent="MainLayout/TaskBar" unique_id=899326264]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SeparatorRight" type="VSeparator" parent="MainLayout/TaskBar" unique_id=1981011058]
+custom_minimum_size = Vector2(2, 20)
+layout_mode = 2
+
+[node name="LblNetwork" type="Label" parent="MainLayout/TaskBar" unique_id=1965326715]
+layout_mode = 2
+text = "Red: Segura"

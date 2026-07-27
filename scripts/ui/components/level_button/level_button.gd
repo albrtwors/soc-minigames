@@ -13,7 +13,7 @@ var data_nivel: NivelBaseData
 
 func setup(data: NivelBaseData) -> void:
 	data_nivel = data
-	lbl_titulo.text = data.titulo_ui
+	lbl_titulo.text = data.titulo_ui 
 	
 	if data is NivelTutorialData:
 		modulate = Color.CYAN

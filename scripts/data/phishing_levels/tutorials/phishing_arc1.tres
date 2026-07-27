@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="NivelTutorialData" format=3 uid="uid://jgx4ywc4s8ru"]
+
+[ext_resource type="Script" uid="uid://geoqhb1uar6d" path="res://scripts/data/NivelTutorialData.gd" id="1_script"]
+
+[resource]
+script = ExtResource("1_script")
+paginas_teoria = Array[Dictionary]([{
+"imagen": null,
+"texto": "¡Bienvenido, Agente! En esta estación aprenderás a auditar la autenticidad de los documentos y correos que ingresan al sistema."
+}, {
+"imagen": null,
+"texto": "Paso 1: Revisa el remitente y el estado SSL. Si la conexión o firma carece de certificado SSL (ícono rojo), desconfía de la integridad."
+}, {
+"imagen": null,
+"texto": "Paso 2: Presiona 'Verificar Hash'. Si el Hash de la firma impreso no coincide con el Hash real, el documento fue interceptado y modificado. Presiona RECHAZAR."
+}])
+tiene_demo_jugable = false
+titulo_ui = "TUTORIAL PHISHING"
+tipo_nivel = 0

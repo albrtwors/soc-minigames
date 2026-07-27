@@ -16,5 +16,7 @@ signal minigame_selected(minigame_id: String, level: int)
 
 # Emitido por el minijuego activo al terminar (gane o pierda)
 signal minigame_completed(minigame_id: String, level: int, score: int, success: bool)
+signal puntos_actualizados(points: int)
+
 
 signal user_exit

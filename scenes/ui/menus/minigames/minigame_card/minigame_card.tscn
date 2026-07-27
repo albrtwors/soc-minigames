@@ -22,9 +22,12 @@ corner_radius_top_left = 15
 corner_radius_bottom_left = 15
 
 [node name="MinigameCard" type="PanelContainer" unique_id=940555103]
+modulate = Color(1, 1, 1, 0.85)
 custom_minimum_size = Vector2(509.19, 103.21)
 offset_right = 509.19
 offset_bottom = 106.17
+pivot_offset = Vector2(254.595, 53.085)
+mouse_default_cursor_shape = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_b84x7")
 script = ExtResource("1_4ugjh")
 

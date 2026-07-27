@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://dmwccx8vsojjt"]
 
+[ext_resource type="Script" uid="uid://cpabaqf0bwpnf" path="res://scripts/minigames/phishing/minijuego_anti_phishing.gd" id="1_30h48"]
+
 [node name="MinijuegoAntiPhishing" type="Control" unique_id=396162838]
 layout_mode = 3
 anchors_preset = 15
@@ -7,3 +9,120 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_30h48")
+
+[node name="HSplitContainer" type="HSplitContainer" parent="." unique_id=1400339164]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 2
+
+[node name="PanelDocumento" type="PanelContainer" parent="HSplitContainer" unique_id=1316420352]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HSplitContainer/PanelDocumento" unique_id=1101485564]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HSplitContainer/PanelDocumento/MarginContainer" unique_id=918419342]
+custom_minimum_size = Vector2(242.425, 0)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="HeaderGrid" type="VBoxContainer" parent="HSplitContainer/PanelDocumento/MarginContainer/VBoxContainer" unique_id=1333085614]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="LblEmisor" type="Label" parent="HSplitContainer/PanelDocumento/MarginContainer/VBoxContainer/HeaderGrid" unique_id=229692698]
+layout_mode = 2
+autowrap_mode = 3
+
+[node name="LblAsunto" type="Label" parent="HSplitContainer/PanelDocumento/MarginContainer/VBoxContainer/HeaderGrid" unique_id=1462592080]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 1, 1, 1)
+autowrap_mode = 3
+
+[node name="LblMonto" type="Label" parent="HSplitContainer/PanelDocumento/MarginContainer/VBoxContainer/HeaderGrid" unique_id=723835136]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+autowrap_mode = 3
+
+[node name="IconSSL" type="TextureRect" parent="HSplitContainer/PanelDocumento/MarginContainer/VBoxContainer/HeaderGrid" unique_id=4390094]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="HSeparator" type="HSeparator" parent="HSplitContainer/PanelDocumento/MarginContainer/VBoxContainer" unique_id=799944087]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="HSplitContainer/PanelDocumento/MarginContainer/VBoxContainer" unique_id=230899348]
+layout_mode = 2
+mouse_filter = 2
+vertical_scroll_mode = 2
+
+[node name="TxtCuerpo" type="RichTextLabel" parent="HSplitContainer/PanelDocumento/MarginContainer/VBoxContainer/ScrollContainer" unique_id=809322055]
+layout_mode = 2
+mouse_filter = 2
+bbcode_enabled = true
+fit_content = true
+
+[node name="HSeparator2" type="HSeparator" parent="HSplitContainer/PanelDocumento/MarginContainer/VBoxContainer" unique_id=208439640]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="LblHashImpreso" type="Label" parent="HSplitContainer/PanelDocumento/MarginContainer/VBoxContainer" unique_id=33684227]
+layout_mode = 2
+
+[node name="PanelMando" type="PanelContainer" parent="HSplitContainer" unique_id=104542288]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HSplitContainer/PanelMando" unique_id=997400438]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HSplitContainer/PanelMando/MarginContainer" unique_id=2138068874]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 8
+
+[node name="LblTituloHerramientas" type="Label" parent="HSplitContainer/PanelMando/MarginContainer/VBoxContainer" unique_id=1311418243]
+layout_mode = 2
+text = "Herramientas"
+
+[node name="BtnVerificarHash" type="Button" parent="HSplitContainer/PanelMando/MarginContainer/VBoxContainer" unique_id=2042132555]
+layout_mode = 2
+text = "Verificar Hash"
+
+[node name="StatusHash" type="Label" parent="HSplitContainer/PanelMando/MarginContainer/VBoxContainer" unique_id=368679979]
+layout_mode = 2
+text = "Hash: Sin verificar"
+autowrap_mode = 3
+
+[node name="HSeparator3" type="HSeparator" parent="HSplitContainer/PanelMando/MarginContainer/VBoxContainer" unique_id=1716965957]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="ManualDominio" type="PanelContainer" parent="HSplitContainer/PanelMando/MarginContainer/VBoxContainer" unique_id=1577724576]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="HBoxDecisiones" type="HBoxContainer" parent="HSplitContainer/PanelMando/MarginContainer/VBoxContainer" unique_id=1701057588]
+layout_mode = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="BtnAprobar" type="Button" parent="HSplitContainer/PanelMando/MarginContainer/VBoxContainer/HBoxDecisiones" unique_id=162812964]
+modulate = Color(0.2, 0.8, 0.2, 1)
+layout_mode = 2
+text = "Aprobar"
+
+[node name="BtnRechazar" type="Button" parent="HSplitContainer/PanelMando/MarginContainer/VBoxContainer/HBoxDecisiones" unique_id=2059208129]
+modulate = Color(0.9, 0.2, 0.2, 1)
+layout_mode = 2
+text = "Rechazar"

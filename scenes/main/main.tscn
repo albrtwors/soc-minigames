@@ -12,7 +12,7 @@
 [ext_resource type="Script" uid="uid://iwe5rebi4q1q" path="res://scripts/ui/menus/main_menu_3d.gd" id="8_b1x3f"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hujxm"]
-bg_color = Color(4.8882793e-08, 0.035906155, 0.06264658, 0.40784314)
+bg_color = Color(0, 0.03529412, 0.0627451, 0.13333334)
 
 [node name="Main" type="Node" unique_id=1578975515]
 script = ExtResource("1_k2fmo")
@@ -61,6 +61,7 @@ visible = false
 layout_mode = 1
 
 [node name="MinigameFrame" parent="MainUI" unique_id=931256169 instance=ExtResource("8_a8run")]
+visible = false
 layout_mode = 1
 
 [node name="MainMenu3D" type="Node3D" parent="." unique_id=510952548]

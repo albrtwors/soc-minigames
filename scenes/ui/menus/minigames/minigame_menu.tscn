@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://d34rq4trhix2t" path="res://scenes/ui/menus/minigames/minigame_card/minigame_card.tscn" id="1_34juq"]
 [ext_resource type="Script" uid="uid://ce8fss8vcrded" path="res://scripts/ui/minigames/minigame_menu/minigame_menu.gd" id="1_j7ftu"]
 [ext_resource type="FontFile" uid="uid://bqvys55l4eplu" path="res://assets/fonts/Orbitron-Black.ttf" id="1_olc83"]
+[ext_resource type="Texture2D" uid="uid://ca30fsev4jopt" path="res://assets/images/minigame_cards/phishing_card.png" id="4_5cw81"]
 [ext_resource type="FontFile" uid="uid://dwslao7f08kcp" path="res://assets/fonts/RobotoMono-Bold.ttf" id="4_h1ya4"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_olc83"]
@@ -84,6 +85,11 @@ theme_override_constants/separation = 22
 
 [node name="MinigameCard" parent="PanelContainer/VBoxContainer/HBoxContainer2" unique_id=481520060 instance=ExtResource("1_34juq")]
 layout_mode = 2
+minigame_id = "phishing"
+es_en_mundo_3d = true
+titulo = "Tienda de Transacciones"
+descripcion = "Evita estafas de phishing verificando certificados"
+icono_imagen = ExtResource("4_5cw81")
 
 [node name="MinigameCard2" parent="PanelContainer/VBoxContainer/HBoxContainer2" unique_id=1661023643 instance=ExtResource("1_34juq")]
 layout_mode = 2

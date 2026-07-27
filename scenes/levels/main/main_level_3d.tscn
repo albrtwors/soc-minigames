@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://d1yw0ukv4oyt4" path="res://assets/models/maps/among_us/among_us_-_map_the_skeld.glb" id="1_hdg1s"]
 [ext_resource type="Script" uid="uid://6v0kbhul3pqv" path="res://scripts/levels/main_level_3d.gd" id="1_s2ivi"]
+[ext_resource type="PackedScene" uid="uid://dqhyj3u52mb6b" path="res://scenes/work_stations/estacion_trabajo_3d.tscn" id="3_10wsu"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_s2ivi"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -35,4 +36,12 @@ transform = Transform3D(1, 9.943294e-08, -6.596674e-09, 0, 0.066197425, 0.997806
 [node name="ConfigStationMarker" type="Marker3D" parent="CameraPositions" unique_id=1403725125]
 transform = Transform3D(0.9988484, 0.018131549, -0.044420246, 0, 0.92584157, 0.37791193, 0.047978237, -0.37747672, 0.92477536, 2.38359, 0.1389519, -2.959062)
 
+[node name="PhishingStationMarker" type="Marker3D" parent="CameraPositions" unique_id=1584733675]
+transform = Transform3D(0.015675567, 0.39706433, -0.91765696, 0, 0.9177697, 0.39711314, 0.99987715, -0.006224973, 0.014386561, 2.442636, 0.18701267, -2.589722)
+
 [node name="AttackStationMarker" type="Marker3D" parent="CameraPositions" unique_id=796248847]
+
+[node name="Estaciones" type="Node3D" parent="." unique_id=266061568]
+
+[node name="EstacionTrabajo3D" parent="Estaciones" unique_id=917441692 instance=ExtResource("3_10wsu")]
+transform = Transform3D(-0.775, 0, -1.1702174e-07, 0, 0.775, 0, 1.1702174e-07, 0, -0.775, 2.6749115, 0.15922707, -2.586592)

@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://dqhyj3u52mb6b"]
+
+[ext_resource type="Script" uid="uid://ttc2sxtsg1te" path="res://scripts/work_stations/estacion_trabajo_3d.gd" id="1_i1vca"]
+[ext_resource type="PackedScene" uid="uid://c0ks6qcfj12i1" path="res://assets/models/work_stations/low_poly_pc_monitor.glb" id="2_pnkln"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lhaix"]
+size = Vector3(1.331665, 0.00869751, 1.3747864)
+
+[sub_resource type="PlaceholderMesh" id="PlaceholderMesh_b84x7"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_b84x7"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lhaix"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_b84x7")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_b84x7"]
+
+[node name="EstacionTrabajo3D" type="Area3D" unique_id=917441692 groups=["estaciones_trabajo"]]
+script = ExtResource("1_i1vca")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1020394358]
+transform = Transform3D(7.726561e-09, 1.1143703, 0.02024183, 7.465111e-09, 0.24037173, -0.09384172, -0.165, 6.30585e-08, -3.2978131e-09, 0.18383165, -0.011011111, 0.0018026814)
+shape = SubResource("BoxShape3D_lhaix")
+
+[node name="ModeloMueble" type="MeshInstance3D" parent="." unique_id=1227902149]
+mesh = SubResource("PlaceholderMesh_b84x7")
+
+[node name="MarkerCamara" type="Marker3D" parent="." unique_id=1042191066]
+
+[node name="Sketchfab_Scene" parent="." unique_id=1990483026 instance=ExtResource("2_pnkln")]
+transform = Transform3D(0.29, 0, 0, 0, 0.29, 0, 0, 0, 0.29, 0, 0, 0)
+
+[node name="MeshPantalla" type="MeshInstance3D" parent="Sketchfab_Scene" unique_id=298797881]
+transform = Transform3D(1.826278e-08, 2.6393, 0.049550343, 1.7644817e-08, 0.5693019, -0.22971687, -0.39000022, 1.493491e-07, -8.0727744e-09, 0.6285798, -0.041824408, 0.0060126623)
+material_override = SubResource("StandardMaterial3D_lhaix")
+mesh = SubResource("PlaneMesh_b84x7")
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=713384634]
+size = Vector2i(1280, 720)
+render_target_update_mode = 4

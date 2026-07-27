@@ -32,6 +32,10 @@ window/vsync/vsync_mode=0
 
 enabled=PackedStringArray("res://addons/godot_ai/plugin.cfg")
 
+[global_group]
+
+estaciones_trabajo=""
+
 [physics]
 
 3d/physics_engine="Jolt Physics"
