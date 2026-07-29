@@ -1,0 +1,94 @@
+[gd_scene format=3 uid="uid://b4dql0w7i1h6j"]
+
+[ext_resource type="Script" uid="uid://c2cc4uwob6814" path="res://scenes/ui/components/MarcoContenedor3D/MarcoContenedor3D.gd" id="1_3dwc5"]
+[ext_resource type="FontFile" uid="uid://cpggr766j0hry" path="res://assets/fonts/RobotoMono-Regular.ttf" id="1_56g2v"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.082, 0.098, 0.122, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.188, 0.212, 0.239, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_close"]
+bg_color = Color(0, 0, 0, 0)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_close_hover"]
+bg_color = Color(0.8, 0.1, 0.1, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[node name="MarcoContenedor3D" type="PanelContainer" unique_id=1341286877]
+custom_minimum_size = Vector2(320, 240)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+script = ExtResource("1_3dwc5")
+
+[node name="VBox" type="VBoxContainer" parent="." unique_id=200698311]
+custom_minimum_size = Vector2(968, 485)
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Titulo" type="HBoxContainer" parent="VBox" unique_id=1859864177]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="LblTitulo" type="Label" parent="VBox/Titulo" unique_id=816269438]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.6, 0.65, 0.75, 1)
+theme_override_fonts/font = ExtResource("1_56g2v")
+text = " Security Operations Center.exe"
+
+[node name="BtnCerrar" type="Button" parent="VBox/Titulo" unique_id=768852363]
+custom_minimum_size = Vector2(24, 20)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.6, 0.65, 0.75, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_close")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_close_hover")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_close_hover")
+text = "✕"
+
+[node name="MarginContainer" type="MarginContainer" parent="VBox" unique_id=419200683]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="VBox/MarginContainer" unique_id=930838069]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="VBox/MarginContainer/SubViewportContainer" unique_id=2091670094]
+own_world_3d = true
+handle_input_locally = false
+physics_object_picking = true
+size = Vector2i(1144, 617)
+render_target_update_mode = 4

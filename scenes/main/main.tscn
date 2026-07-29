@@ -27,6 +27,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("3_l3cfh")
 
 [node name="PanelContainer" type="PanelContainer" parent="MainUI" unique_id=927764827]
@@ -38,6 +39,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_hujxm")
 
 [node name="MainMenuComponent" parent="MainUI" unique_id=978345639 instance=ExtResource("1_hyk8p")]
 layout_mode = 1
+mouse_filter = 2
 
 [node name="LoadingScreenComponent" parent="MainUI" unique_id=1054385974 instance=ExtResource("5_6q06x")]
 visible = false
@@ -55,10 +57,12 @@ offset_right = 582.0
 offset_bottom = 260.0
 grow_horizontal = 1
 grow_vertical = 1
+mouse_filter = 2
 
 [node name="MinigameMenu" parent="MainUI" unique_id=336037539 instance=ExtResource("7_yyfjg")]
 visible = false
 layout_mode = 1
+mouse_filter = 2
 
 [node name="MinigameFrame" parent="MainUI" unique_id=931256169 instance=ExtResource("8_a8run")]
 visible = false

@@ -4,11 +4,39 @@
 [ext_resource type="PackedScene" uid="uid://0cctd2ubu3uj" path="res://scenes/ui/menus/minigames/modal_tutorial/modal_tutorial.tscn" id="2_u6sd6"]
 [ext_resource type="PackedScene" uid="uid://xrglgnmf1a2h" path="res://scenes/ui/components/buttons/level_button/level_button.tscn" id="3_hiumq"]
 [ext_resource type="PackedScene" uid="uid://capihxvfl2u04" path="res://scenes/ui/menus/minigames/modal_puntuacion/modal_puntuacion.tscn" id="3_wqr4x"]
+[ext_resource type="PackedScene" uid="uid://b4dql0w7i1h6j" path="res://scenes/ui/components/MarcoContenedor3D/MarcoContenedor3D.tscn" id="5_wqr4x"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wqr4x"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fondo_play"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b84x7"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bottombar"]
+content_margin_left = 10.0
+content_margin_top = 4.0
+content_margin_right = 10.0
+content_margin_bottom = 4.0
+bg_color = Color(0.06, 0.08, 0.12, 0.92)
+border_width_top = 1
+border_color = Color(0.2, 0.35, 0.55, 0.8)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_stats_widget"]
+content_margin_left = 12.0
+content_margin_top = 4.0
+content_margin_right = 12.0
+content_margin_bottom = 4.0
+bg_color = Color(0.1, 0.14, 0.22, 0.9)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.25, 0.5, 0.8, 0.6)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_menu_bg"]
 bg_color = Color(0.02745098, 0.08235294, 0.20784314, 0.5294118)
 border_width_left = 2
 border_width_top = 2
@@ -37,6 +65,7 @@ script = ExtResource("1_2ibf1")
 modal_tutorial_scene = ExtResource("2_u6sd6")
 modal_score_scene = ExtResource("3_wqr4x")
 level_button_scene = ExtResource("3_hiumq")
+marco_contenedor_3d_scene = ExtResource("5_wqr4x")
 
 [node name="ColorRectFondo" type="ColorRect" parent="." unique_id=1096810140]
 layout_mode = 1
@@ -58,22 +87,23 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="PlayArea" unique_id=381766644]
+custom_minimum_size = Vector2(960, 520)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -400.0
-offset_top = -250.0
-offset_right = 400.0
-offset_bottom = 250.0
+offset_left = -480.0
+offset_top = -271.0
+offset_right = 480.0
+offset_bottom = 229.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_wqr4x")
+theme_override_styles/panel = SubResource("StyleBoxFlat_fondo_play")
 
 [node name="Container2D" type="Control" parent="PlayArea/PanelContainer" unique_id=1424205133]
-custom_minimum_size = Vector2(800, 500)
+custom_minimum_size = Vector2(960, 500)
 layout_mode = 2
 
 [node name="HUD" type="Control" parent="." unique_id=1636791093]
@@ -85,30 +115,71 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="TopBar" type="HBoxContainer" parent="HUD" unique_id=1175198069]
+[node name="BottomBar" type="PanelContainer" parent="HUD" unique_id=304156324]
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -20.0
-offset_right = 20.0
-offset_bottom = 40.0
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -50.0
 grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_bottombar")
 
-[node name="LblTimer" type="Label" parent="HUD/TopBar" unique_id=1293390760]
+[node name="MarginContainer" type="MarginContainer" parent="HUD/BottomBar" unique_id=1602616041]
 layout_mode = 2
 
-[node name="Spacer" type="Control" parent="HUD/TopBar" unique_id=515582004]
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/BottomBar/MarginContainer" unique_id=1480803510]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="ControlesNavegacion" type="HBoxContainer" parent="HUD/BottomBar/MarginContainer/HBoxContainer" unique_id=1396301312]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="BtnPausa" type="Button" parent="HUD/BottomBar/MarginContainer/HBoxContainer/ControlesNavegacion" unique_id=4520565]
+custom_minimum_size = Vector2(36, 30)
+layout_mode = 2
+text = "☰"
+
+[node name="BtnAnterior" type="Button" parent="HUD/BottomBar/MarginContainer/HBoxContainer/ControlesNavegacion" unique_id=184734606]
+custom_minimum_size = Vector2(36, 30)
+layout_mode = 2
+text = "◀"
+
+[node name="BtnSiguiente" type="Button" parent="HUD/BottomBar/MarginContainer/HBoxContainer/ControlesNavegacion" unique_id=1265164887]
+custom_minimum_size = Vector2(36, 30)
+layout_mode = 2
+text = "▶"
+
+[node name="BtnTutorial" type="Button" parent="HUD/BottomBar/MarginContainer/HBoxContainer/ControlesNavegacion" unique_id=2121596666]
+custom_minimum_size = Vector2(36, 30)
+layout_mode = 2
+text = "?"
+
+[node name="Spacer" type="Control" parent="HUD/BottomBar/MarginContainer/HBoxContainer" unique_id=1094130738]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="StatsWidget" type="PanelContainer" parent="HUD/BottomBar/MarginContainer/HBoxContainer" unique_id=1929816662]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_stats_widget")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/BottomBar/MarginContainer/HBoxContainer/StatsWidget" unique_id=1543757301]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="LblTimer" type="Label" parent="HUD/BottomBar/MarginContainer/HBoxContainer/StatsWidget/HBoxContainer" unique_id=1293390760]
+layout_mode = 2
+text = "⏱️ 00:00"
+
+[node name="VSeparator" type="VSeparator" parent="HUD/BottomBar/MarginContainer/HBoxContainer/StatsWidget/HBoxContainer" unique_id=1860547684]
+custom_minimum_size = Vector2(2, 0)
 layout_mode = 2
 
-[node name="LblScore" type="Label" parent="HUD/TopBar" unique_id=303891805]
+[node name="LblScore" type="Label" parent="HUD/BottomBar/MarginContainer/HBoxContainer/StatsWidget/HBoxContainer" unique_id=303891805]
 layout_mode = 2
-
-[node name="BtnSalir" type="Button" parent="HUD" unique_id=83414089]
-layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
-text = "x"
+text = "⭐ 0 PTS"
 
 [node name="MenuNiveles" type="PanelContainer" parent="." unique_id=1716113612]
 custom_minimum_size = Vector2(800, 500)
@@ -125,7 +196,7 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_b84x7")
+theme_override_styles/panel = SubResource("StyleBoxFlat_menu_bg")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MenuNiveles" unique_id=336225315]
 layout_mode = 2

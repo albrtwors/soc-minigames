@@ -18,7 +18,9 @@ const POST_LOAD_DELAY: float = 0.8
 # Lista de IDs de minijuegos que ocurren directamente sobre el mapa 3D
 const MINIJUEGOS_EN_MAPA_3D: Array[String] = [
 	"configuracion_cables",
-	"servidor_fisico"
+	"servidor_fisico",
+	"cyber_tools",
+	"bullet_dodge"
 ]
 
 # Mapa de vistas registradas para la UI
@@ -45,23 +47,24 @@ func _conectar_senales() -> void:
 		main_menu_component.load_game_pressed.connect(_on_load_game_pressed)
 	if main_menu_component.has_signal("exit_pressed"):
 		main_menu_component.exit_pressed.connect(func(): get_tree().quit())
+		
+	# Frame de Minijuegos
 	if minigame_frame.has_signal("solicitar_montar_pc_3d"):
 		minigame_frame.solicitar_montar_pc_3d.connect(_on_solicitar_montar_pc_3d)
+	if minigame_frame.has_signal("solicitar_camara_3d"):
+		minigame_frame.solicitar_camara_3d.connect(_on_solicitar_camara_3d)
+	if minigame_frame.has_signal("minijuego_completado_global"):
+		minigame_frame.minijuego_completado_global.connect(_on_minigame_completed)
+
 	# Creación de Personaje
 	if new_game_component.has_signal("character_created"):
 		new_game_component.character_created.connect(_on_character_creation_complete)
 	if new_game_component.has_signal("canceled"):
 		new_game_component.canceled.connect(_on_character_creation_canceled)
 	
-	# Eventos de Minijuegos
+	# Eventos de Selector de Minijuegos
 	if minigame_menu.has_signal("exit_requested"):
 		minigame_menu.exit_requested.connect(_on_minigame_menu_exit)
-		
-	if minigame_frame.has_signal("solicitar_camara_3d"):
-		minigame_frame.solicitar_camara_3d.connect(_on_solicitar_camara_3d)
-		
-	if minigame_frame.has_signal("minijuego_completado_global"):
-		minigame_frame.minijuego_completado_global.connect(_on_minigame_completed)
 
 	# EventBus
 	EventBus.user_exit.connect(_on_minigame_menu_exit)
@@ -80,17 +83,37 @@ func _on_menu_changed_requested(view_name: String) -> void:
 		_switch_to_view(views[view_name])
 
 # --- FLUJO DE MINIJUEGOS Y NAVEGACIÓN ---
-# res://scenes/ui/main_ui.gd
-func _on_minigame_selected(minigame_id: String, es_3d_custom: bool = false) -> void:
+# En res://scenes/ui/main_ui.gd
+
+# --- FLUJO DE MINIJUEGOS Y NAVEGACIÓN ---
+func _on_minigame_selected(minigame_id: String, es_3d_custom: bool = false, requiere_camara: bool = false) -> void:
 	print("Desplegando marco para el minijuego: ", minigame_id)
-	
 	_switch_to_view(minigame_frame)
 	
-	# Evalúa si viene marcado desde la Card o si está registrado en la constante
-	var es_en_mundo_3d: bool = es_3d_custom or (minigame_id in MINIJUEGOS_EN_MAPA_3D)
+	# Le pasamos a minigame_frame los datos directamente
+	minigame_frame.abrir_minijuego(minigame_id, es_3d_custom, requiere_camara)
 	
-	minigame_frame.abrir_minijuego(minigame_id, es_en_mundo_3d)
-	
+func _on_solicitar_montar_pc_3d(id_minijuego: String, escena_ui: PackedScene, config_data: Resource) -> void:
+	var mapa_3d = _obtener_mapa_3d_activo()
+	if not mapa_3d:
+		push_error("No se encontró el mapa 3D activo.")
+		return
+
+	# OP CION A: Si el mapa 3D maneja un método centralizado
+	if mapa_3d.has_method("inicializar_minijuego_en_mapa"):
+		mapa_3d.inicializar_minijuego_en_mapa(id_minijuego, escena_ui, config_data)
+	# OPCION B: Si las estaciones están registradas en el diccionario del mapa 3D
+	elif "estaciones_mapa" in mapa_3d and mapa_3d.estaciones_mapa.has(id_minijuego):
+		var estacion = mapa_3d.estaciones_mapa[id_minijuego]
+		if estacion.has_method("cargar_minijuego"):
+			estacion.cargar_minijuego(escena_ui, config_data)
+		elif estacion.has_method("montar_minijuego"):
+			estacion.montar_minijuego(escena_ui, config_data)
+
+	# Enfocamos la cámara hacia la mesa/interacción
+	if mapa_3d.has_method("enfocar_interaccion_3d"):
+		mapa_3d.enfocar_interaccion_3d(id_minijuego, true)
+
 func _on_solicitar_camara_3d(id_minijuego: String, activar: bool) -> void:
 	var mapa_3d = _obtener_mapa_3d_activo()
 	if mapa_3d and mapa_3d.has_method("enfocar_interaccion_3d"):
@@ -204,13 +227,3 @@ func _set_camera_active(parent_node: Node, active: bool) -> void:
 		return
 	for child in parent_node.get_children():
 		_set_camera_active(child, active)
-		
-func _on_solicitar_montar_pc_3d(id_minijuego: String, _escena_ui: PackedScene, _config_data: Resource) -> void:
-	var mapa_3d = _obtener_mapa_3d_activo()
-	if not mapa_3d:
-		push_error("No se encontró el mapa 3D activo.")
-		return
-
-	# Ahora solo enfocamos la cámara hacia el Marker3D del escritorio/monitor
-	if mapa_3d.has_method("enfocar_interaccion_3d"):
-		mapa_3d.enfocar_interaccion_3d(id_minijuego, true)

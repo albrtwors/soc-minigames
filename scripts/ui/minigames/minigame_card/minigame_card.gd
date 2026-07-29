@@ -1,9 +1,10 @@
 # MinigameCard.gd
-@tool # Permite ver los cambios en tiempo real dentro del editor de Godot
+@tool
 extends PanelContainer
 
 @export var minigame_id: String = "configuracion"
-@export var es_en_mundo_3d: bool = false
+@export var es_en_mundo_3d: bool = false # Si el juego en sí es un Node3D (ej: Memorama 3D)
+@export var requiere_enfoque_camara_3d: bool = false # Si queremos que la cámara se acerque a la mesa/monitor
 
 @export_group("Personalización Card")
 @export var titulo: String = "Título del Minijuego":
@@ -21,7 +22,6 @@ extends PanelContainer
 		icono_imagen = val
 		_actualizar_ui()
 
-# Referencias a Nodos UI (Asegúrate de ajustar las rutas según tu escena)
 @onready var lbl_titulo: Label = $MarginContainer2/Label
 @onready var lbl_descripcion: Label = $MarginContainer3/Label
 @onready var img_icono: TextureRect = $MarginContainer/PanelContainer/TextureRect
@@ -47,12 +47,9 @@ func _ready() -> void:
 	_actualizar_ui()
 
 func _actualizar_ui() -> void:
-	if lbl_titulo:
-		lbl_titulo.text = titulo
-	if lbl_descripcion:
-		lbl_descripcion.text = descripcion
-	if img_icono:
-		img_icono.texture = icono_imagen
+	if lbl_titulo: lbl_titulo.text = titulo
+	if lbl_descripcion: lbl_descripcion.text = descripcion
+	if img_icono: img_icono.texture = icono_imagen
 
 func _on_mouse_entered() -> void:
 	if tween: tween.kill()
@@ -68,5 +65,6 @@ func _on_mouse_exited() -> void:
 
 func _on_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
-		print("Minijuego seleccionado: ", minigame_id, " | Es 3D: ", es_en_mundo_3d)
-		EventBus.minigame_selected.emit(minigame_id, es_en_mundo_3d)
+		print("Minijuego: ", minigame_id, " | Render 3D: ", es_en_mundo_3d, " | Enfoque Cámara: ", requiere_enfoque_camara_3d)
+		# Enviamos ambas configuraciones a través del EventBus
+		EventBus.minigame_selected.emit(minigame_id, es_en_mundo_3d, requiere_enfoque_camara_3d)

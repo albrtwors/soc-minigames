@@ -4,7 +4,7 @@ extends Control
 # Señal propia para avisarle a MainUI que el usuario quiere cerrar/salir de este menú
 signal exit_requested
 
-@onready var back_button: Button = $PanelContainer/VBoxContainer/HBoxContainer4/BackButton
+@onready var back_button: Button = $PanelContainer/VBoxContainer/HBoxContainer5/BackButton
 
 func _ready() -> void:
 	# Conexión correcta usando .connect

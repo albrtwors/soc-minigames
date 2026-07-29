@@ -5,6 +5,9 @@
 [ext_resource type="FontFile" uid="uid://bqvys55l4eplu" path="res://assets/fonts/Orbitron-Black.ttf" id="1_olc83"]
 [ext_resource type="Texture2D" uid="uid://ca30fsev4jopt" path="res://assets/images/minigame_cards/phishing_card.png" id="4_5cw81"]
 [ext_resource type="FontFile" uid="uid://dwslao7f08kcp" path="res://assets/fonts/RobotoMono-Bold.ttf" id="4_h1ya4"]
+[ext_resource type="Texture2D" uid="uid://csem7nwg5y01a" path="res://assets/images/minigame_cards/config_card.png" id="5_pwxqj"]
+[ext_resource type="Texture2D" uid="uid://c2n0nfgovc0g3" path="res://assets/backgrounds/main.png" id="5_w1y3d"]
+[ext_resource type="Texture2D" uid="uid://crtm1mp11e06p" path="res://assets/images/minigame_cards/interface_card.png" id="6_f7ch6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_olc83"]
 bg_color = Color(0.015409293, 0.027542468, 0.099538825, 0.54901963)
@@ -74,10 +77,20 @@ horizontal_alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=191914833]
 layout_mode = 2
+theme_override_constants/separation = 18
 alignment = 1
 
 [node name="MinigameCard" parent="PanelContainer/VBoxContainer/HBoxContainer" unique_id=940555103 instance=ExtResource("1_34juq")]
 layout_mode = 2
+
+[node name="MinigameCard2" parent="PanelContainer/VBoxContainer/HBoxContainer" unique_id=940555104 instance=ExtResource("1_34juq")]
+layout_mode = 2
+minigame_id = "access_control"
+es_en_mundo_3d = true
+requiere_enfoque_camara_3d = true
+titulo = "Control de Interfaces"
+descripcion = "Verifica credenciales y decide quién accede al sistema"
+icono_imagen = ExtResource("5_pwxqj")
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=258673920]
 layout_mode = 2
@@ -86,7 +99,7 @@ theme_override_constants/separation = 22
 [node name="MinigameCard" parent="PanelContainer/VBoxContainer/HBoxContainer2" unique_id=481520060 instance=ExtResource("1_34juq")]
 layout_mode = 2
 minigame_id = "phishing"
-es_en_mundo_3d = true
+requiere_enfoque_camara_3d = true
 titulo = "Tienda de Transacciones"
 descripcion = "Evita estafas de phishing verificando certificados"
 icono_imagen = ExtResource("4_5cw81")
@@ -100,15 +113,32 @@ theme_override_constants/separation = 22
 
 [node name="MinigameCard" parent="PanelContainer/VBoxContainer/HBoxContainer3" unique_id=2095169876 instance=ExtResource("1_34juq")]
 layout_mode = 2
+minigame_id = "bullet_dodge"
+es_en_mundo_3d = true
+requiere_enfoque_camara_3d = true
+titulo = "Dodge bullets"
+descripcion = "Juego de prueba 3d"
+icono_imagen = ExtResource("5_w1y3d")
 
 [node name="MinigameCard2" parent="PanelContainer/VBoxContainer/HBoxContainer3" unique_id=1309704075 instance=ExtResource("1_34juq")]
 layout_mode = 2
+minigame_id = "cyber_tools"
+es_en_mundo_3d = true
+requiere_enfoque_camara_3d = true
+titulo = "CyberTools"
+descripcion = "Empareja herramientas de ciberseguridad
+con su descripción"
+icono_imagen = ExtResource("6_f7ch6")
 
-[node name="HBoxContainer4" type="HBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=1707418505]
+[node name="HBoxContainer4" type="HBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=1707418504]
 layout_mode = 2
 alignment = 1
 
-[node name="BackButton" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer4" unique_id=576873313]
+[node name="HBoxContainer5" type="HBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=1707418505]
+layout_mode = 2
+alignment = 1
+
+[node name="BackButton" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer5" unique_id=576873313]
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4

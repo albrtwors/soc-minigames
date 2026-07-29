@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://dvwmfpl6wsehh"]
+
+[ext_resource type="Script" uid="uid://dbfm26i8vkivi" path="res://scripts/minigames/cyber_tools/cyber_tools_memory_3d.gd" id="1_rmfe6"]
+[ext_resource type="PackedScene" uid="uid://xs2bmxnafg4y" path="res://scenes/minigames/cyber_tools/Card3D.tscn" id="2_edxpn"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_edxpn"]
+sky_top_color = Color(0.19848984, 0.35720637, 1, 1)
+sky_horizon_color = Color(1.1222237, 1.1740434, 1.3870451, 1)
+ground_bottom_color = Color(0.6646262, 0.7131887, 0.92240185, 1)
+ground_horizon_color = Color(1.1222237, 1.1740434, 1.3870451, 1)
+
+[sub_resource type="Sky" id="Sky_cupxl"]
+sky_material = SubResource("ProceduralSkyMaterial_edxpn")
+
+[sub_resource type="Environment" id="Environment_ovhf5"]
+background_mode = 2
+sky = SubResource("Sky_cupxl")
+glow_enabled = true
+
+[node name="CyberToolsMemory3d" type="Node3D" unique_id=1211396342]
+script = ExtResource("1_rmfe6")
+card_scene = ExtResource("2_edxpn")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=573315145]
+environment = SubResource("Environment_ovhf5")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=615542176]
+transform = Transform3D(1, 0, 0, 0, 0.95440793, 0.29850546, 0, -0.29850546, 0.95440793, 0, 0.018609166, 0.16288292)
+current = true
+far = 10.0
+
+[node name="GridSlots" type="Node3D" parent="." unique_id=1040662309]

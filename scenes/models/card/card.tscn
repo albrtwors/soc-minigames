@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://2tywn7hnpibq"]
+
+[ext_resource type="PackedScene" uid="uid://bjletmahn0wo1" path="res://assets/models/card_3d/access_card.glb" id="1_gmsvo"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gmsvo"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lbbfm"]
+
+[node name="card" unique_id=1904164327 instance=ExtResource("1_gmsvo")]
+transform = Transform3D(0.014, 0, 0, 0, 0.014, 0, 0, 0, 0.014, 0, 0, 0)
+
+[node name="Object_2" parent="Sketchfab_model/Access Card_obj_cleaner_materialmerger_gles" parent_id_path=PackedInt32Array(912450006) index="0" unique_id=485478235]
+material_override = SubResource("StandardMaterial3D_gmsvo")
+
+[node name="Object_3" parent="Sketchfab_model/Access Card_obj_cleaner_materialmerger_gles" parent_id_path=PackedInt32Array(912450006) index="1" unique_id=1160129662]
+material_override = SubResource("StandardMaterial3D_lbbfm")

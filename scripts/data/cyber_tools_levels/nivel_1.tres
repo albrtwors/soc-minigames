@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="NivelCyberToolsData" format=3 uid="uid://58jesrhiuvsh"]
+
+[ext_resource type="Script" uid="uid://b1qceqmb1aobb" path="res://scripts/data/CyberToolsArcadeData.gd" id="1_0f6s5"]
+
+[resource]
+script = ExtResource("1_0f6s5")
+banco_herramientas = Array[Dictionary]([{
+"descripcion": "Analizador de tráfico para inspeccionar paquetes de red.",
+"id": 0,
+"nombre": "Wireshark"
+}, {
+"descripcion": "Escáner para descubrir puertos abiertos y servicios activos.",
+"id": 1,
+"nombre": "Nmap"
+}, {
+"descripcion": "Framework para desarrollar y ejecutar pruebas de exploits.",
+"id": 2,
+"nombre": "Metasploit"
+}, {
+"descripcion": "Plataforma de pruebas para auditar seguridad en sitios web.",
+"id": 3,
+"nombre": "Burp Suite"
+}, {
+"descripcion": "Sistema IDS/IPS basado en reglas de tráfico de red.",
+"id": 4,
+"nombre": "Snort"
+}, {
+"descripcion": "Herramienta de auditoría para descifrado de hashes.",
+"id": 5,
+"nombre": "Hashcat"
+}])
+tiempo_limite = 60.0
+metadata/_custom_type_script = "uid://b1qceqmb1aobb"

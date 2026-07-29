@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://d2q68qp7xhuxn"]
+
+[ext_resource type="Script" uid="uid://bp8c7dh07syl" path="res://scenes/minigames/bullet_dodge/bullet_dodge_3d.gd" id="1_vvoix"]
+
+[node name="BulletDodge3D" type="Node3D" unique_id=550635930]
+script = ExtResource("1_vvoix")

@@ -41,7 +41,10 @@ transform = Transform3D(0.015675567, 0.39706433, -0.91765696, 0, 0.9177697, 0.39
 
 [node name="AttackStationMarker" type="Marker3D" parent="CameraPositions" unique_id=796248847]
 
+[node name="CyberToolsMarker" type="Marker3D" parent="CameraPositions" unique_id=1314340023]
+transform = Transform3D(-0.99999666, 0.002563989, -0.00033963585, 0, 0.13131678, 0.99134046, 0.0025863857, 0.9913372, -0.13131635, 5.649927, 0.18509102, -1.7144825)
+
 [node name="Estaciones" type="Node3D" parent="." unique_id=266061568]
 
 [node name="EstacionTrabajo3D" parent="Estaciones" unique_id=917441692 instance=ExtResource("3_10wsu")]
-transform = Transform3D(-0.775, 0, -1.1702174e-07, 0, 0.775, 0, 1.1702174e-07, 0, -0.775, 2.6749115, 0.15922707, -2.586592)
+transform = Transform3D(-0.775, 0, 6.775265e-08, 0, 0.77500004, 0, -6.775265e-08, 0, -0.77500004, 5.649927, 0.09574826, -1.6927116)

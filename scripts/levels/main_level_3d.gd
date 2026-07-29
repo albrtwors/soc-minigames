@@ -8,7 +8,9 @@ extends Node3D
 	"overview": $CameraPositions/MapOverviewMarker,
 	"configuracion_cables": $CameraPositions/ConfigStationMarker,
 	"mitigacion": $CameraPositions/AttackStationMarker,
-	"phishing": $CameraPositions/PhishingStationMarker
+	"phishing": $CameraPositions/PhishingStationMarker,
+	"cyber_tools": $CameraPositions/CyberToolsMarker,
+	"bullet_dodge": $CameraPositions/PhishingStationMarker,
 }
 
 # Diccionario para almacenar la referencia a cada EstacionTrabajo3D por su ID
@@ -42,13 +44,13 @@ func conectar_minigame_frame(frame_node: Node) -> void:
 		if not frame_node.solicitar_montar_pc_3d.is_connected(enfocar_y_montar_pc):
 			frame_node.solicitar_montar_pc_3d.connect(enfocar_y_montar_pc)
 
-## Monta el minijuego en la pantalla 3D y desplaza la cámara
-func enfocar_y_montar_pc(id_minijuego: String, escena_ui: PackedScene, config_data: Resource) -> void:
+## Monta el minijuego en la estación 3D y desplaza la cámara
+func enfocar_y_montar_pc(id_minijuego: String, escena_3d: PackedScene, config_data: Resource) -> void:
 	if markers.has(id_minijuego):
 		_move_camera_to(markers[id_minijuego])
 		
 	if estaciones_mapa.has(id_minijuego):
-		var minijuego_instancia = estaciones_mapa[id_minijuego].montar_minijuego(escena_ui, config_data)
+		var minijuego_instancia = estaciones_mapa[id_minijuego].montar_minijuego(escena_3d, config_data)
 	else:
 		push_warning("No se encontró la EstacionTrabajo3D registrada con ID: " + id_minijuego)
 

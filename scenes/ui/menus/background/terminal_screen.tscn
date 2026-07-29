@@ -28,10 +28,17 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="RichTextLabel" type="RichTextLabel" parent="MeshInstance3D/SubViewport/ColorRect" unique_id=1816362406]
+[node name="MarginContainer" type="MarginContainer" parent="MeshInstance3D/SubViewport/ColorRect" unique_id=1957386848]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MeshInstance3D/SubViewport/ColorRect/MarginContainer" unique_id=1816362406]
+layout_mode = 2
 theme_override_colors/default_color = Color(1.732707e-06, 0.77136827, 0.18467063, 1)
 text = "sdasdasdasdasd"
 fit_content = true

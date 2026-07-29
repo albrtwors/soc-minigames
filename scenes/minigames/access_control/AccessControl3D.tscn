@@ -1,0 +1,366 @@
+[gd_scene format=3 uid="uid://drsgiol4c57yo"]
+
+[ext_resource type="Script" uid="uid://c38pgqld0b4t2" path="res://scripts/minigames/access_control/access_control_3d.gd" id="1_script"]
+[ext_resource type="FontFile" uid="uid://dwslao7f08kcp" path="res://assets/fonts/RobotoMono-Bold.ttf" id="2_font_bold"]
+[ext_resource type="FontFile" uid="uid://cpggr766j0hry" path="res://assets/fonts/RobotoMono-Regular.ttf" id="3_font_reg"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7b6u6"]
+sky_top_color = Color(0.28325552, 0.40037882, 0.85945517, 1)
+sky_horizon_color = Color(0.45784423, 0.48586184, 0.65550256, 1)
+ground_bottom_color = Color(0.033838402, 0.028785437, 0.24827182, 1)
+ground_horizon_color = Color(0.45784423, 0.48586184, 0.65550256, 1)
+
+[sub_resource type="Sky" id="Sky_civi3"]
+sky_material = SubResource("ProceduralSkyMaterial_7b6u6")
+
+[sub_resource type="Environment" id="Environment_ntb55"]
+background_mode = 1
+background_color = Color(0.58236045, 0.5830938, 0.99969465, 1)
+sky = SubResource("Sky_civi3")
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_energy = 0.6
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="mat_floor"]
+albedo_color = Color(0.8052126, 0.81627226, 0.85808796, 1)
+
+[sub_resource type="BoxMesh" id="mesh_floor"]
+material = SubResource("mat_floor")
+size = Vector3(3.2, 0.1, 12.477539)
+
+[sub_resource type="StandardMaterial3D" id="mat_wall"]
+albedo_color = Color(0.1669938, 0.2025288, 0.45103908, 1)
+
+[sub_resource type="BoxMesh" id="mesh_wall_side"]
+material = SubResource("mat_wall")
+size = Vector3(0.1, 2.8, 12.6258545)
+
+[sub_resource type="BoxMesh" id="mesh_wall_back"]
+material = SubResource("mat_wall")
+size = Vector3(3.2, 2.8, 0.1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_b84x7"]
+size = Vector3(1, 2.2781982, 1)
+
+[sub_resource type="StandardMaterial3D" id="mat_npc"]
+albedo_color = Color(0.15, 0.35, 0.75, 1)
+
+[sub_resource type="CapsuleMesh" id="mesh_npc_bod"]
+material = SubResource("mat_npc")
+radius = 0.15
+height = 0.7
+
+[sub_resource type="SphereMesh" id="mesh_npc_head"]
+material = SubResource("mat_npc")
+radius = 0.1
+height = 0.2
+
+[sub_resource type="StyleBoxFlat" id="sb_banner"]
+content_margin_left = 16.0
+content_margin_top = 8.0
+content_margin_right = 16.0
+content_margin_bottom = 8.0
+bg_color = Color(0.075, 0.09, 0.114, 0.95)
+border_width_left = 3
+border_width_bottom = 1
+border_color = Color(0.8, 0.6, 0.1, 1)
+corner_radius_top_left = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="sb_card"]
+content_margin_left = 14.0
+content_margin_top = 10.0
+content_margin_right = 14.0
+content_margin_bottom = 10.0
+bg_color = Color(0.082, 0.098, 0.122, 0.95)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.188, 0.212, 0.239, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="sb_separator"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.188, 0.212, 0.239, 0.5)
+
+[sub_resource type="StyleBoxFlat" id="sb_btn"]
+bg_color = Color(0.1, 0.12, 0.16, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.3, 0.35, 0.4, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="sb_btn_hover"]
+bg_color = Color(0.18, 0.22, 0.28, 1)
+border_color = Color(0.4, 0.5, 0.6, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="sb_feedback"]
+content_margin_left = 20.0
+content_margin_top = 16.0
+content_margin_right = 20.0
+content_margin_bottom = 16.0
+bg_color = Color(0.082, 0.098, 0.122, 0.95)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.2, 0.2, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[node name="AccessControl3D" type="Node3D" unique_id=495758525]
+script = ExtResource("1_script")
+separacion_fila_z = 0.5
+velocidad_avance_fila = 0.8
+velocidad_salida_npc = 0.8
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1083245109]
+environment = SubResource("Environment_ntb55")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1586208743]
+transform = Transform3D(0.9999361, -0.0069156205, 0.008946353, 0, 0.79117674, 0.6115876, -0.011307654, -0.6115485, 0.79112613, 0.15490946, 2.6836405, -1.568121)
+current = true
+far = 20.0
+
+[node name="Entorno3D" type="Node3D" parent="." unique_id=1893259083]
+
+[node name="Floor" type="MeshInstance3D" parent="Entorno3D" unique_id=1841546066]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0.73876953)
+mesh = SubResource("mesh_floor")
+
+[node name="WallLeft" type="MeshInstance3D" parent="Entorno3D" unique_id=1179768536]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6, 1.4, 0.81292725)
+mesh = SubResource("mesh_wall_side")
+
+[node name="WallRight" type="MeshInstance3D" parent="Entorno3D" unique_id=1243945726]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6, 1.4, 0.72012925)
+mesh = SubResource("mesh_wall_side")
+
+[node name="WallBack" type="MeshInstance3D" parent="Entorno3D" unique_id=880475535]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4, -5.5)
+mesh = SubResource("mesh_wall_back")
+
+[node name="Cabin" type="MeshInstance3D" parent="Entorno3D" unique_id=1160077934]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7954993, 0.6390991, -5.1227555)
+mesh = SubResource("BoxMesh_b84x7")
+
+[node name="Label3D" type="Label3D" parent="Entorno3D/Cabin" unique_id=233184840]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.066602826, 1.1923208, 0.88150454)
+text = "ENTRADA A LA APP"
+
+[node name="NPCSpawnPoint" type="Marker3D" parent="." unique_id=691675770]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5)
+
+[node name="NPCTargetPoint" type="Marker3D" parent="." unique_id=1326688294]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0.5)
+
+[node name="Player" type="Node3D" parent="." unique_id=1690245515]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.599344)
+
+[node name="Bod" type="MeshInstance3D" parent="Player" unique_id=501798132]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35, 0)
+mesh = SubResource("mesh_npc_bod")
+
+[node name="Head" type="MeshInstance3D" parent="Player" unique_id=1609181339]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.78, 0)
+mesh = SubResource("mesh_npc_head")
+
+[node name="NPCRow" type="Node3D" parent="." unique_id=951047112]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8412005, 0, -3.1467652)
+
+[node name="NPC" type="Node3D" parent="NPCRow" unique_id=1412098719]
+
+[node name="Bod" type="MeshInstance3D" parent="NPCRow/NPC" unique_id=210727175]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35, 0)
+mesh = SubResource("mesh_npc_bod")
+
+[node name="Head" type="MeshInstance3D" parent="NPCRow/NPC" unique_id=2131236230]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.78, 0)
+mesh = SubResource("mesh_npc_head")
+
+[node name="UI_Overlay" type="Control" parent="." unique_id=1722481789]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="FlashOverlay" type="ColorRect" parent="UI_Overlay" unique_id=1000000010]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 1, 1, 0)
+
+[node name="BannerRegla" type="PanelContainer" parent="UI_Overlay" unique_id=528209555]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -422.0
+offset_top = 19.0
+offset_right = 422.5
+offset_bottom = 55.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("sb_banner")
+
+[node name="LblRegla" type="Label" parent="UI_Overlay/BannerRegla" unique_id=2070071095]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_fonts/font = ExtResource("2_font_bold")
+theme_override_font_sizes/font_size = 13
+text = "REGLAS DE SEGURIDAD"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="CredentialCard" type="PanelContainer" parent="UI_Overlay" unique_id=315270454]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -391.0
+offset_top = -84.0
+offset_bottom = 84.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("sb_card")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI_Overlay/CredentialCard" unique_id=456119714]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="LblSeccion" type="Label" parent="UI_Overlay/CredentialCard/VBoxContainer" unique_id=1000000002]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.75, 0.85, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_fonts/font = ExtResource("2_font_bold")
+theme_override_font_sizes/font_size = 15
+text = "► CREDENCIALES DEL USUARIO"
+autowrap_mode = 3
+
+[node name="HSeparator" type="HSeparator" parent="UI_Overlay/CredentialCard/VBoxContainer" unique_id=1000000003]
+custom_minimum_size = Vector2(0, 1)
+layout_mode = 2
+theme_override_styles/separator = SubResource("sb_separator")
+
+[node name="LblNombre" type="Label" parent="UI_Overlay/CredentialCard/VBoxContainer" unique_id=525107315]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.85, 0.95, 1)
+theme_override_fonts/font = ExtResource("3_font_reg")
+theme_override_font_sizes/font_size = 15
+text = "Nombre: ---"
+autowrap_mode = 3
+
+[node name="LblEmail" type="Label" parent="UI_Overlay/CredentialCard/VBoxContainer" unique_id=1131287273]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.75, 0.85, 1)
+theme_override_fonts/font = ExtResource("3_font_reg")
+theme_override_font_sizes/font_size = 15
+text = "Email: ---"
+autowrap_mode = 3
+
+[node name="LblPassword" type="Label" parent="UI_Overlay/CredentialCard/VBoxContainer" unique_id=318468769]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.75, 0.85, 1)
+theme_override_fonts/font = ExtResource("3_font_reg")
+theme_override_font_sizes/font_size = 15
+text = "Password: ---"
+autowrap_mode = 3
+
+[node name="DecisionButtons" type="HBoxContainer" parent="UI_Overlay" unique_id=939888414]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -170.0
+offset_top = 161.0
+offset_right = 170.0
+offset_bottom = 209.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="BtnPermitir" type="Button" parent="UI_Overlay/DecisionButtons" unique_id=1047280834]
+custom_minimum_size = Vector2(160, 38)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.2, 0.8, 0.3, 1)
+theme_override_colors/font_hover_color = Color(0.4, 1, 0.5, 1)
+theme_override_colors/font_disabled_color = Color(0.3, 0.3, 0.3, 1)
+theme_override_fonts/font = ExtResource("2_font_bold")
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("sb_btn")
+theme_override_styles/pressed = SubResource("sb_btn_hover")
+theme_override_styles/hover = SubResource("sb_btn_hover")
+theme_override_styles/disabled = SubResource("sb_btn")
+text = "PERMITIR ACCESO"
+
+[node name="BtnDenegar" type="Button" parent="UI_Overlay/DecisionButtons" unique_id=1475092085]
+custom_minimum_size = Vector2(160, 38)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.8, 0.2, 0.2, 1)
+theme_override_colors/font_hover_color = Color(1, 0.4, 0.4, 1)
+theme_override_colors/font_disabled_color = Color(0.3, 0.3, 0.3, 1)
+theme_override_fonts/font = ExtResource("2_font_bold")
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("sb_btn")
+theme_override_styles/pressed = SubResource("sb_btn_hover")
+theme_override_styles/hover = SubResource("sb_btn_hover")
+theme_override_styles/disabled = SubResource("sb_btn")
+text = "DENEGAR ACCESO"
+
+[node name="FeedbackOverlay" type="PanelContainer" parent="UI_Overlay" unique_id=1904179162]
+visible = false
+layout_mode = 1
+offset_top = 113.0
+offset_right = 282.0
+offset_bottom = 168.0
+theme_override_styles/panel = SubResource("sb_feedback")
+
+[node name="LblFeedback" type="Label" parent="UI_Overlay/FeedbackOverlay" unique_id=1144891552]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_fonts/font = ExtResource("2_font_bold")
+theme_override_font_sizes/font_size = 12
+text = "FEEDBACK"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3

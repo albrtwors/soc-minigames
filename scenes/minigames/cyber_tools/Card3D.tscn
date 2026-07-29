@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://xs2bmxnafg4y"]
+
+[ext_resource type="Script" uid="uid://bldm5pve0o011" path="res://scenes/minigames/cyber_tools/card3d_setup.gd" id="1_hwcj7"]
+[ext_resource type="PackedScene" uid="uid://2tywn7hnpibq" path="res://scenes/models/card/card.tscn" id="2_ccrkx"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_m7jq1"]
+size = Vector3(0.02825702, 0.0045, 0.050756104)
+
+[node name="Card3d" type="Node3D" unique_id=212615537]
+script = ExtResource("1_hwcj7")
+
+[node name="card" parent="." unique_id=1904164327 instance=ExtResource("2_ccrkx")]
+
+[node name="Area3D" type="Area3D" parent="." unique_id=972904461]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1483496250]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0063747857, -0.00225, 0.017253296)
+shape = SubResource("BoxShape3D_m7jq1")
+
+[node name="ToolLabel" type="Label3D" parent="." unique_id=200443819]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -0.007995043, -0.003, 0.014667317)
+pixel_size = 0.0005
+modulate = Color(0, 0, 0, 1)
+text = "BurpSUite"
+font_size = 10
+outline_size = 0
+autowrap_mode = 3
+width = 40.0
+
+[node name="Description" type="Label3D" parent="." unique_id=1809331966]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -0.0080192685, -0.003, 0.018400777)
+pixel_size = 0.0005
+modulate = Color(0, 0, 0, 1)
+text = "23asdasdasdasdasdasdsadasdasdasdasd"
+font_size = 8
+outline_size = 0
+autowrap_mode = 3
+width = 40.0
