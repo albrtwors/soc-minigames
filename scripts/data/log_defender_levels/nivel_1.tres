@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="NivelLogArcadeData" format=3 uid="uid://b3l0gl0d3fnd"]
+
+[ext_resource type="Script" uid="uid://so0qa2djjrcq" path="res://scripts/data/LogArcadeData.gd" id="1_log"]
+
+[resource]
+script = ExtResource("1_log")
+id_nivel = "log_defender_1"
+titulo_ui = "NIVEL 1 - STREAM DE LOGS"
+tiempo_limite = 45.0
+puntos_por_acierto = 100
+penalizacion_error = 25
+cantidad_carriles = 3
+velocidad_caida = 0.5
+lista_logs = Array[Dictionary]([{
+"texto": "GET /index.html 200 OK",
+"respuesta": 0
+}, {
+"texto": "POST /login 401 [50 req/s]",
+"respuesta": 1
+}, {
+"texto": "HOST_03 -> 185.220.x:4444 [RAT]",
+"respuesta": 2
+}, {
+"texto": "GET /css/main.css 200 OK",
+"respuesta": 0
+}, {
+"texto": "SSH root@10.0.0.5 [19 intentos]",
+"respuesta": 1
+}, {
+"texto": "PID 4412 -> 45.155.204.x:53 [C2]",
+"respuesta": 2
+}])
