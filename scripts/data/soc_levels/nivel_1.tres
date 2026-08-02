@@ -1,0 +1,38 @@
+[gd_resource type="Resource" script_class="NivelSOCDefenderData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/NivelSocDefenderData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+tiempo_limite = 30.0
+puntos_por_acierto = 100
+penalizacion_error = 25
+nodos_disponibles = Array[Dictionary]([])
+conexiones_requeridas = Array[Dictionary]([])
+velocidad_amenazas_base = 1.5
+tiempo_entre_amenazas = 2.5
+lista_amenazas = Array[Dictionary]([{
+"etiqueta": "CVE-2026-3142 [Port 80]",
+"tipo": 0,
+"rack_target": 0,
+"puerto": 80,
+"velocidad": 1.2
+}, {
+"etiqueta": "SYN FLOOD [Port 443]",
+"tipo": 1,
+"rack_target": 1,
+"puerto": 443,
+"velocidad": 2.0
+}, {
+"etiqueta": "WORM_RANSOMWARE",
+"tipo": 2,
+"rack_target": 2,
+"puerto": 22,
+"velocidad": 1.0
+}, {
+"etiqueta": "RDP EXPLOIT [Port 3389]",
+"tipo": 0,
+"rack_target": 3,
+"puerto": 3389,
+"velocidad": 1.5
+}])

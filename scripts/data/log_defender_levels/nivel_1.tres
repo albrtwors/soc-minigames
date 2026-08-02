@@ -10,7 +10,7 @@ tiempo_limite = 45.0
 puntos_por_acierto = 100
 penalizacion_error = 25
 cantidad_carriles = 3
-velocidad_caida = 0.5
+velocidad_caida = 0.12
 lista_logs = Array[Dictionary]([{
 "texto": "GET /index.html 200 OK",
 "respuesta": 0

@@ -16,7 +16,8 @@ signal minijuego_completado_global(id_minijuego: String, score_final: int)
 	"phishing": "res://scenes/minigames/phishing/minijuego_anti_phishing_updated.tscn",
 	"cyber_tools": "res://scenes/minigames/cyber_tools/CyberToolsMemory3D.tscn",
 	"bullet_dodge": "res://scenes/minigames/bullet_dodge/BulletDodge3D.tscn",
-	"access_control": "res://scenes/minigames/access_control/AccessControl3D.tscn"
+	"access_control": "res://scenes/minigames/access_control/AccessControl3D.tscn",
+	"log_stream": "res://scenes/minigames/log_stream_defender/LogStreamDefender2D.tscn"
 }
 
 @export var level_data_resources: Dictionary = {
@@ -38,6 +39,9 @@ signal minijuego_completado_global(id_minijuego: String, score_final: int)
 	],
 	"access_control": [
 		"res://scripts/data/cyber_tools_levels/nivel_1.tres"
+	],
+	"log_stream": [
+		"res://scripts/data/log_defender_levels/nivel_1.tres"
 	]
 }
 
@@ -66,6 +70,7 @@ var minijuego_id_actual: String = ""
 var indice_nivel_actual: int = 0
 var score_actual: int = 0
 var en_partida_activa: bool = false
+var puzzle_actual: Node = null
 var es_minijuego_en_mundo_3d: bool = false
 var requiere_camara_3d: bool = false
 
@@ -258,6 +263,8 @@ func _iniciar_partida_arcade(data: NivelArcadeData) -> void:
 		puzzle = escena_recurso.instantiate()
 		container_2d.add_child(puzzle)
 
+	puzzle_actual = puzzle
+
 	# CONEXIÓN DE SEÑALES Y MÉTODOS ESTÁNDAR
 	if puzzle.has_signal("minijuego_completado"):
 		puzzle.minijuego_completado.connect(func(puntos_finales: int):
@@ -310,7 +317,7 @@ func _on_tiempo_agotado() -> void:
 	_detener_partida()
 	minijuego_completado_global.emit(minijuego_id_actual, score_actual)
 	if EventBus.has_signal("minigame_completed"):
-		EventBus.minigame_completed.emit(minijuego_id_actual, score_actual)
+		EventBus.minigame_completed.emit(minijuego_id_actual, indice_nivel_actual, score_actual, true)
 		
 	_mostrar_popup_resultado()
 
@@ -380,6 +387,12 @@ func _animar_fade_fondo(mostrar: bool) -> void:
 func _detener_partida() -> void:
 	en_partida_activa = false
 	timer_arcade.stop()
+
+	# Detiene el minijuego en curso (si tiene detener_partida) para que
+	# sus logs/spawners dejen de correr y dejen de quitar puntos tras terminar.
+	if is_instance_valid(puzzle_actual) and puzzle_actual.has_method("detener_partida"):
+		puzzle_actual.detener_partida()
+	puzzle_actual = null
 
 func _limpiar_pantalla() -> void:
 	hud.hide()

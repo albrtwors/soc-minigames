@@ -80,8 +80,12 @@ layout_mode = 2
 theme_override_constants/separation = 18
 alignment = 1
 
-[node name="MinigameCard" parent="PanelContainer/VBoxContainer/HBoxContainer" unique_id=940555103 instance=ExtResource("1_34juq")]
+[node name="MinigameCard" parent="PanelContainer/VBoxContainer/HBoxContainer" unique_id=1707418510 instance=ExtResource("1_34juq")]
 layout_mode = 2
+minigame_id = "log_stream"
+titulo = "Log Stream Defender"
+descripcion = "Clasifica el tráfico en vivo: ignora, bloquea o aísla"
+icono_imagen = ExtResource("6_f7ch6")
 
 [node name="MinigameCard2" parent="PanelContainer/VBoxContainer/HBoxContainer" unique_id=940555104 instance=ExtResource("1_34juq")]
 layout_mode = 2

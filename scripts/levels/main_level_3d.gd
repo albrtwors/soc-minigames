@@ -62,7 +62,7 @@ func _on_solicitar_camara_3d(id_minijuego: String, activar: bool) -> void:
 	if activar and markers.has(id_minijuego):
 		_move_camera_to(markers[id_minijuego])
 
-func _on_minigame_selected(minigame_id: String, es_en_mundo_3d: bool = false) -> void:
+func _on_minigame_selected(minigame_id: String, es_en_mundo_3d: bool = false, _requiere_camara: bool = false) -> void:
 	if es_en_mundo_3d and markers.has(minigame_id):
 		_move_camera_to(markers[minigame_id])
 

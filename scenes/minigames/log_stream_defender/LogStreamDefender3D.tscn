@@ -1,0 +1,294 @@
+[gd_scene format=3 uid="uid://bmiedfijs1iy"]
+
+[ext_resource type="Script" path="res://scripts/minigames/log_stream_defender/log_stream_defender_3d.gd" id="1_main"]
+[ext_resource type="PackedScene" path="res://scenes/minigames/log_stream_defender/LogItem.tscn" id="2_item"]
+[ext_resource type="FontFile" uid="uid://dwslao7f08kcp" path="res://assets/fonts/RobotoMono-Bold.ttf" id="3_font_bold"]
+
+[sub_resource type="Environment" id="Environment_bg"]
+background_mode = 1
+background_color = Color(0.008, 0.012, 0.025, 1)
+
+[sub_resource type="StandardMaterial3D" id="mat_floor"]
+albedo_color = Color(0.03, 0.045, 0.065, 1)
+
+[sub_resource type="PlaneMesh" id="mesh_floor"]
+material = SubResource("mat_floor")
+size = Vector2(1, 1)
+
+[sub_resource type="StandardMaterial3D" id="mat_divider"]
+transparency = 1
+albedo_color = Color(0.15, 0.45, 0.5, 0.5)
+
+[sub_resource type="BoxMesh" id="mesh_divider"]
+material = SubResource("mat_divider")
+size = Vector3(0.004, 0.001, 0.4)
+
+[sub_resource type="StandardMaterial3D" id="mat_mira"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0.1, 0.95, 0.4, 0.9)
+
+[sub_resource type="BoxMesh" id="mesh_mira_bar"]
+material = SubResource("mat_mira")
+size = Vector3(0.066, 0.002, 0.006)
+
+[sub_resource type="StandardMaterial3D" id="mat_mira_core"]
+shading_mode = 0
+albedo_color = Color(0.6, 1, 0.75, 1)
+
+[sub_resource type="BoxMesh" id="mesh_mira_core"]
+material = SubResource("mat_mira_core")
+size = Vector3(0.012, 0.0025, 0.012)
+
+[sub_resource type="StyleBoxFlat" id="sb_panel"]
+content_margin_left = 10.0
+content_margin_top = 6.0
+content_margin_right = 10.0
+content_margin_bottom = 6.0
+bg_color = Color(0.05, 0.065, 0.09, 0.92)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.25, 0.35, 0.45, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="sb_feedback"]
+content_margin_left = 18.0
+content_margin_top = 12.0
+content_margin_right = 18.0
+content_margin_bottom = 12.0
+bg_color = Color(0.05, 0.065, 0.09, 0.95)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.5, 0.6, 0.7, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="sb_btn"]
+bg_color = Color(0.09, 0.11, 0.15, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.3, 0.35, 0.4, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="sb_btn_hover"]
+bg_color = Color(0.17, 0.21, 0.27, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.45, 0.55, 0.65, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="LogStreamDefender3D" type="Node3D" unique_id=639708622]
+script = ExtResource("1_main")
+log_item_scene = ExtResource("2_item")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=86877644]
+environment = SubResource("Environment_bg")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=6509438]
+transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0.4, 0)
+projection = 1
+current = true
+size = 0.25
+near = 0.2
+far = 10.0
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1042308292]
+transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 5, 0)
+light_energy = 1.2
+
+[node name="Entorno" type="Node3D" parent="." unique_id=833935112]
+
+[node name="Floor" type="MeshInstance3D" parent="Entorno" unique_id=1967210347]
+mesh = SubResource("mesh_floor")
+
+[node name="DividerLeft" type="MeshInstance3D" parent="Entorno" unique_id=63089423]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.04, 0.0005, 0)
+mesh = SubResource("mesh_divider")
+
+[node name="DividerRight" type="MeshInstance3D" parent="Entorno" unique_id=2096941568]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.04, 0.0005, 0)
+mesh = SubResource("mesh_divider")
+
+[node name="TargetSelector" type="Node3D" parent="." unique_id=882765103]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.012, 0.1)
+
+[node name="Barra" type="MeshInstance3D" parent="TargetSelector" unique_id=1651898149]
+mesh = SubResource("mesh_mira_bar")
+
+[node name="Nucleo" type="MeshInstance3D" parent="TargetSelector" unique_id=1037129756]
+mesh = SubResource("mesh_mira_core")
+
+[node name="SpawnPoints" type="Node3D" parent="." unique_id=1857016516]
+
+[node name="0" type="Marker3D" parent="SpawnPoints" unique_id=64470075]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.08, 0, -0.17)
+
+[node name="1" type="Marker3D" parent="SpawnPoints" unique_id=1378325574]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.17)
+
+[node name="2" type="Marker3D" parent="SpawnPoints" unique_id=253256552]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.08, 0, -0.17)
+
+[node name="LogsContainer" type="Node3D" parent="." unique_id=1001871029]
+
+[node name="UI_Overlay" type="Control" parent="." unique_id=958899533]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ScorePanel" type="PanelContainer" parent="UI_Overlay" unique_id=655531231]
+layout_mode = 1
+offset_left = 12.0
+offset_top = 12.0
+offset_right = 190.0
+offset_bottom = 46.0
+theme_override_styles/panel = SubResource("sb_panel")
+
+[node name="LblScore" type="Label" parent="UI_Overlay/ScorePanel" unique_id=593997148]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.2, 0.9, 0.4, 1)
+theme_override_fonts/font = ExtResource("3_font_bold")
+theme_override_font_sizes/font_size = 14
+text = "PTS: 0"
+
+[node name="LanePanel" type="PanelContainer" parent="UI_Overlay" unique_id=538631912]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -80.0
+offset_top = 12.0
+offset_right = 80.0
+offset_bottom = 46.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("sb_panel")
+
+[node name="LblLane" type="Label" parent="UI_Overlay/LanePanel" unique_id=90414076]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3, 0.85, 0.9, 1)
+theme_override_fonts/font = ExtResource("3_font_bold")
+theme_override_font_sizes/font_size = 14
+text = "CARRIL 1/3"
+horizontal_alignment = 1
+
+[node name="FeedbackOverlay" type="PanelContainer" parent="UI_Overlay" unique_id=1179077847]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -160.0
+offset_top = -52.0
+offset_right = 160.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("sb_feedback")
+
+[node name="LblFeedback" type="Label" parent="UI_Overlay/FeedbackOverlay" unique_id=244080492]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_font_bold")
+theme_override_font_sizes/font_size = 16
+text = "FEEDBACK"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BottomControls" type="HBoxContainer" parent="UI_Overlay" unique_id=677356438]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -318.0
+offset_top = -86.0
+offset_right = 318.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="BtnIzquierda" type="Button" parent="UI_Overlay/BottomControls" unique_id=1488422468]
+custom_minimum_size = Vector2(48, 40)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.9, 1, 1)
+theme_override_fonts/font = ExtResource("3_font_bold")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("sb_btn")
+theme_override_styles/pressed = SubResource("sb_btn_hover")
+theme_override_styles/hover = SubResource("sb_btn_hover")
+text = "◀"
+
+[node name="BtnIgnorar" type="Button" parent="UI_Overlay/BottomControls" unique_id=1744833283]
+custom_minimum_size = Vector2(150, 40)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3, 0.85, 0.4, 1)
+theme_override_colors/font_hover_color = Color(0.55, 1, 0.6, 1)
+theme_override_fonts/font = ExtResource("3_font_bold")
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("sb_btn")
+theme_override_styles/pressed = SubResource("sb_btn_hover")
+theme_override_styles/hover = SubResource("sb_btn_hover")
+text = "IGNORAR [1]"
+
+[node name="BtnBloquear" type="Button" parent="UI_Overlay/BottomControls" unique_id=1686510586]
+custom_minimum_size = Vector2(175, 40)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.95, 0.7, 0.2, 1)
+theme_override_colors/font_hover_color = Color(1, 0.85, 0.4, 1)
+theme_override_fonts/font = ExtResource("3_font_bold")
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("sb_btn")
+theme_override_styles/pressed = SubResource("sb_btn_hover")
+theme_override_styles/hover = SubResource("sb_btn_hover")
+text = "BLOQUEAR IP [2]"
+
+[node name="BtnAislar" type="Button" parent="UI_Overlay/BottomControls" unique_id=704714813]
+custom_minimum_size = Vector2(175, 40)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.25, 0.25, 1)
+theme_override_colors/font_hover_color = Color(1, 0.5, 0.5, 1)
+theme_override_fonts/font = ExtResource("3_font_bold")
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("sb_btn")
+theme_override_styles/pressed = SubResource("sb_btn_hover")
+theme_override_styles/hover = SubResource("sb_btn_hover")
+text = "AISLAR HOST [3]"
+
+[node name="BtnDerecha" type="Button" parent="UI_Overlay/BottomControls" unique_id=1972298429]
+custom_minimum_size = Vector2(48, 40)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.9, 1, 1)
+theme_override_fonts/font = ExtResource("3_font_bold")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("sb_btn")
+theme_override_styles/pressed = SubResource("sb_btn_hover")
+theme_override_styles/hover = SubResource("sb_btn_hover")
+text = "▶"

@@ -1,0 +1,109 @@
+[gd_scene format=3 uid="uid://ir7anko15d8s"]
+
+[ext_resource type="Script" uid="uid://denv6m2ckrdpb" path="res://scripts/minigames/soc_defender_3d/soc_defender_3d.gd" id="1_ndted"]
+[ext_resource type="PackedScene" uid="uid://du5ivbjw2h5py" path="res://scenes/minigames/soc_defender_3d/ThreatProjectile.tscn" id="2_m2toa"]
+[ext_resource type="PackedScene" uid="uid://e4nuxbp1nkfd" path="res://scenes/minigames/soc_defender_3d/RackServer.tscn" id="3_6xe1r"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ndted"]
+sky_top_color = Color(0.41213533, 0.3377797, 0.89633363, 1)
+sky_horizon_color = Color(1.3218248, 1.2787111, 1.4395998, 1)
+ground_bottom_color = Color(0.8768152, 0.77871615, 0.8637168, 1)
+ground_horizon_color = Color(1.3218248, 1.2787111, 1.4395998, 1)
+
+[sub_resource type="Sky" id="Sky_m2toa"]
+sky_material = SubResource("ProceduralSkyMaterial_ndted")
+
+[sub_resource type="Environment" id="Environment_6xe1r"]
+background_mode = 2
+sky = SubResource("Sky_m2toa")
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6xe1r"]
+albedo_color = Color(0.09, 0.11, 0.14, 1)
+roughness = 0.8
+
+[sub_resource type="BoxMesh" id="BoxMesh_b84x7"]
+size = Vector3(23.129929, 0.001, 11.142868)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ci5e4"]
+albedo_color = Color(0.09, 0.11, 0.14, 1)
+roughness = 0.8
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jb4rm"]
+albedo_color = Color(0.09, 0.11, 0.14, 1)
+roughness = 0.8
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y1q6i"]
+albedo_color = Color(0.09, 0.11, 0.14, 1)
+roughness = 0.8
+
+[node name="SOCDefender3D" type="Node3D" unique_id=1870060772]
+script = ExtResource("1_ndted")
+amenaza_scene = ExtResource("2_m2toa")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=48888434]
+environment = SubResource("Environment_6xe1r")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=2129251179]
+transform = Transform3D(0.9999759, -0.0065027676, 0.002437187, 0, 0.3509529, 0.93639314, -0.006944485, -0.93637055, 0.35094443, 0.16922152, 7.192238, 4.38286)
+current = true
+fov = 60.0
+
+[node name="SpawnPoints" type="Node3D" parent="." unique_id=1362416137]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.44763)
+
+[node name="Spawn0" type="Marker3D" parent="SpawnPoints" unique_id=1475954248]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.9097736, 1.6, 1.7924364)
+
+[node name="Spawn1" type="Marker3D" parent="SpawnPoints" unique_id=1776804717]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1201161, 1.6, 1.7924364)
+
+[node name="Spawn2" type="Marker3D" parent="SpawnPoints" unique_id=1688121062]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2900543, 1.6, 1.7924364)
+
+[node name="Spawn3" type="Marker3D" parent="SpawnPoints" unique_id=208574958]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.943768, 1.6, 1.7924364)
+
+[node name="RacksContainer" type="Node3D" parent="." unique_id=192093177]
+
+[node name="Rack0" parent="RacksContainer" unique_id=2042996254 instance=ExtResource("3_6xe1r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 1.1, 0)
+
+[node name="Rack1" parent="RacksContainer" unique_id=758977483 instance=ExtResource("3_6xe1r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 1.1, 0)
+rack_index = 1
+
+[node name="Rack2" parent="RacksContainer" unique_id=1827982237 instance=ExtResource("3_6xe1r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 1.1, 0)
+rack_index = 2
+
+[node name="Rack3" parent="RacksContainer" unique_id=1410923881 instance=ExtResource("3_6xe1r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 1.1, 0)
+rack_index = 3
+
+[node name="ThreatsContainer" type="Node3D" parent="." unique_id=403434881]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1663294623]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.087677, -0.25339627, -0.120666504)
+material_override = SubResource("StandardMaterial3D_6xe1r")
+mesh = SubResource("BoxMesh_b84x7")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D" unique_id=1062543984]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0.0032992363, 1.7769787, -2.949711)
+material_override = SubResource("StandardMaterial3D_ci5e4")
+mesh = SubResource("BoxMesh_b84x7")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="MeshInstance3D" unique_id=86518607]
+transform = Transform3D(-4.371139e-08, -1, 4.371139e-08, 0, -4.371139e-08, -1, 1, -4.371139e-08, 1.9106855e-15, 5.286544, 1.7613499, 4.3510017)
+material_override = SubResource("StandardMaterial3D_jb4rm")
+mesh = SubResource("BoxMesh_b84x7")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="MeshInstance3D" unique_id=1063081390]
+transform = Transform3D(4.371139e-08, 3.821371e-15, 1, 8.742278e-08, -1, 0, 1, 8.742278e-08, -4.371139e-08, -0.30064845, -0.023535252, 10.37628)
+material_override = SubResource("StandardMaterial3D_jb4rm")
+mesh = SubResource("BoxMesh_b84x7")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="MeshInstance3D" unique_id=835170946]
+transform = Transform3D(-4.371139e-08, -1, 4.371139e-08, 0, -4.371139e-08, -1, 1, -4.371139e-08, 1.9106855e-15, -5.1908627, 1.7613499, -1.9741709)
+material_override = SubResource("StandardMaterial3D_y1q6i")
+mesh = SubResource("BoxMesh_b84x7")

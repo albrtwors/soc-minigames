@@ -1,0 +1,346 @@
+[gd_scene format=3 uid="uid://cu0clplbocjk8"]
+
+[ext_resource type="Script" uid="uid://dmffm37nnjfi" path="res://scripts/minigames/log_stream_defender/log_stream_defender_2d.gd" id="1_main"]
+[ext_resource type="PackedScene" path="res://scenes/minigames/log_stream_defender/LogItem2D.tscn" id="2_item"]
+[ext_resource type="FontFile" uid="uid://dwslao7f08kcp" path="res://assets/fonts/RobotoMono-Bold.ttf" id="3_font_bold"]
+[ext_resource type="FontFile" uid="uid://cpggr766j0hry" path="res://assets/fonts/RobotoMono-Regular.ttf" id="4_font_regular"]
+[ext_resource type="FontFile" uid="uid://bbayt7i2hwcen" path="res://assets/fonts/VT323-Regular.ttf" id="5_font_term"]
+[ext_resource type="Texture2D" uid="uid://bcscf3gigtrbx" path="res://assets/icons/Arch-linux-logo.png" id="6_arch"]
+
+[sub_resource type="StyleBoxFlat" id="sb_title"]
+bg_color = Color(0.058, 0.073, 0.098, 1)
+border_width_bottom = 1
+border_color = Color(0.188, 0.212, 0.239, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+
+[sub_resource type="StyleBoxFlat" id="sb_btn"]
+bg_color = Color(0.09, 0.11, 0.15, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.3, 0.35, 0.4, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="sb_btn_hover"]
+bg_color = Color(0.17, 0.21, 0.27, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.45, 0.55, 0.65, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="sb_score"]
+content_margin_left = 12.0
+content_margin_top = 6.0
+content_margin_right = 12.0
+content_margin_bottom = 6.0
+bg_color = Color(0.05, 0.065, 0.09, 0.92)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.25, 0.35, 0.45, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="sb_taskbar"]
+bg_color = Color(0.05, 0.062, 0.085, 1)
+border_width_top = 1
+border_color = Color(0.188, 0.212, 0.239, 1)
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="sb_feedback"]
+content_margin_left = 18.0
+content_margin_top = 12.0
+content_margin_right = 18.0
+content_margin_bottom = 12.0
+bg_color = Color(0.05, 0.065, 0.09, 0.95)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.5, 0.6, 0.7, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[node name="LogStreamDefender2D" type="Control" unique_id=432950371]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_main")
+log_item_scene = ExtResource("2_item")
+
+[node name="Fondo" type="ColorRect" parent="." unique_id=993303799]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.051, 0.067, 0.09, 1)
+
+[node name="TitleBar" type="PanelContainer" parent="." unique_id=497829512]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 30.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("sb_title")
+
+[node name="HBox" type="HBoxContainer" parent="TitleBar" unique_id=1638963688]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="LblTituloApp" type="Label" parent="TitleBar/HBox" unique_id=728633266]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.75, 0.85, 1, 1)
+theme_override_fonts/font = ExtResource("4_font_regular")
+theme_override_font_sizes/font_size = 14
+text = "SOC StreamGuard v1.0 - Log Stream Inspector"
+vertical_alignment = 1
+
+[node name="Spacer" type="Control" parent="TitleBar/HBox" unique_id=993588140]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="BtnMinimizar" type="Button" parent="TitleBar/HBox" unique_id=256067666]
+custom_minimum_size = Vector2(28, 24)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.85, 0.95, 1)
+theme_override_fonts/font = ExtResource("3_font_bold")
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("sb_btn")
+theme_override_styles/pressed = SubResource("sb_btn_hover")
+theme_override_styles/hover = SubResource("sb_btn_hover")
+text = "—"
+
+[node name="BtnCerrar" type="Button" parent="TitleBar/HBox" unique_id=1427391842]
+custom_minimum_size = Vector2(28, 24)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.45, 0.45, 1)
+theme_override_fonts/font = ExtResource("3_font_bold")
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("sb_btn")
+theme_override_styles/pressed = SubResource("sb_btn_hover")
+theme_override_styles/hover = SubResource("sb_btn_hover")
+text = "X"
+
+[node name="Layout" type="MarginContainer" parent="." unique_id=1253693041]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 30.0
+offset_bottom = -28.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 8
+
+[node name="VBox" type="VBoxContainer" parent="Layout" unique_id=1236908627]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="TopBar" type="HBoxContainer" parent="Layout/VBox" unique_id=1068832347]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="ScorePanel" type="PanelContainer" parent="Layout/VBox/TopBar" unique_id=1121920183]
+layout_mode = 2
+theme_override_styles/panel = SubResource("sb_score")
+
+[node name="LblScore" type="Label" parent="Layout/VBox/TopBar/ScorePanel" unique_id=737216393]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.2, 0.9, 0.4, 1)
+theme_override_fonts/font = ExtResource("5_font_term")
+theme_override_font_sizes/font_size = 22
+text = "PTS: 0"
+
+[node name="Spacer" type="Control" parent="Layout/VBox/TopBar" unique_id=1198158867]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="LanePanel" type="PanelContainer" parent="Layout/VBox/TopBar" unique_id=1239536219]
+layout_mode = 2
+theme_override_styles/panel = SubResource("sb_score")
+
+[node name="LblLane" type="Label" parent="Layout/VBox/TopBar/LanePanel" unique_id=730889174]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3, 0.85, 0.9, 1)
+theme_override_fonts/font = ExtResource("5_font_term")
+theme_override_font_sizes/font_size = 22
+text = "CARRIL 1/3"
+horizontal_alignment = 1
+
+[node name="ZonaJuego" type="Control" parent="Layout/VBox" unique_id=137241191]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="LogsContainer" type="Control" parent="Layout/VBox/ZonaJuego" unique_id=816561909]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="BottomControls" type="HBoxContainer" parent="Layout/VBox" unique_id=1938577212]
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="BtnIzquierda" type="Button" parent="Layout/VBox/BottomControls" unique_id=2028835194]
+custom_minimum_size = Vector2(48, 40)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.9, 1, 1)
+theme_override_fonts/font = ExtResource("3_font_bold")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("sb_btn")
+theme_override_styles/pressed = SubResource("sb_btn_hover")
+theme_override_styles/hover = SubResource("sb_btn_hover")
+text = "◀"
+
+[node name="BtnIgnorar" type="Button" parent="Layout/VBox/BottomControls" unique_id=2139921246]
+custom_minimum_size = Vector2(150, 40)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3, 0.85, 0.4, 1)
+theme_override_colors/font_hover_color = Color(0.55, 1, 0.6, 1)
+theme_override_fonts/font = ExtResource("3_font_bold")
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("sb_btn")
+theme_override_styles/pressed = SubResource("sb_btn_hover")
+theme_override_styles/hover = SubResource("sb_btn_hover")
+text = "IGNORAR [1]"
+
+[node name="BtnBloquear" type="Button" parent="Layout/VBox/BottomControls" unique_id=1196639052]
+custom_minimum_size = Vector2(175, 40)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.95, 0.7, 0.2, 1)
+theme_override_colors/font_hover_color = Color(1, 0.85, 0.4, 1)
+theme_override_fonts/font = ExtResource("3_font_bold")
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("sb_btn")
+theme_override_styles/pressed = SubResource("sb_btn_hover")
+theme_override_styles/hover = SubResource("sb_btn_hover")
+text = "BLOQUEAR IP [2]"
+
+[node name="BtnAislar" type="Button" parent="Layout/VBox/BottomControls" unique_id=1062256174]
+custom_minimum_size = Vector2(175, 40)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.25, 0.25, 1)
+theme_override_colors/font_hover_color = Color(1, 0.5, 0.5, 1)
+theme_override_fonts/font = ExtResource("3_font_bold")
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("sb_btn")
+theme_override_styles/pressed = SubResource("sb_btn_hover")
+theme_override_styles/hover = SubResource("sb_btn_hover")
+text = "AISLAR HOST [3]"
+
+[node name="BtnDerecha" type="Button" parent="Layout/VBox/BottomControls" unique_id=982393820]
+custom_minimum_size = Vector2(48, 40)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.9, 1, 1)
+theme_override_fonts/font = ExtResource("3_font_bold")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("sb_btn")
+theme_override_styles/pressed = SubResource("sb_btn_hover")
+theme_override_styles/hover = SubResource("sb_btn_hover")
+text = "▶"
+
+[node name="TaskBar" type="PanelContainer" parent="." unique_id=998296103]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -28.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("sb_taskbar")
+
+[node name="HBox" type="HBoxContainer" parent="TaskBar" unique_id=41423908]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="LogoOS" type="TextureRect" parent="TaskBar/HBox" unique_id=1289597659]
+custom_minimum_size = Vector2(22, 22)
+layout_mode = 2
+texture = ExtResource("6_arch")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="SeparatorLeft" type="VSeparator" parent="TaskBar/HBox" unique_id=74867135]
+custom_minimum_size = Vector2(2, 20)
+layout_mode = 2
+
+[node name="LblActiveApp" type="Label" parent="TaskBar/HBox" unique_id=1597160822]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.9, 1, 1)
+theme_override_fonts/font = ExtResource("3_font_bold")
+theme_override_font_sizes/font_size = 13
+text = "StreamGuard - Activo"
+vertical_alignment = 1
+
+[node name="Spacer" type="Control" parent="TaskBar/HBox" unique_id=1530728653]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SeparatorRight" type="VSeparator" parent="TaskBar/HBox" unique_id=985850261]
+custom_minimum_size = Vector2(2, 20)
+layout_mode = 2
+
+[node name="LblNetwork" type="Label" parent="TaskBar/HBox" unique_id=156943384]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.35, 0.9, 0.5, 1)
+theme_override_fonts/font = ExtResource("3_font_bold")
+theme_override_font_sizes/font_size = 13
+text = "Red: Segura"
+vertical_alignment = 1
+
+[node name="FeedbackOverlay" type="PanelContainer" parent="." unique_id=1703703456]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -160.0
+offset_top = -52.0
+offset_right = 160.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("sb_feedback")
+
+[node name="LblFeedback" type="Label" parent="FeedbackOverlay" unique_id=353669640]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_font_bold")
+theme_override_font_sizes/font_size = 16
+text = "FEEDBACK"
+horizontal_alignment = 1
+vertical_alignment = 1

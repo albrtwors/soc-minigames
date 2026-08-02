@@ -1,15 +1,22 @@
-# res://scripts/minigames/log_stream_defender/log_stream_defender_3d.gd
-extends Node3D
+# res://scripts/minigames/log_stream_defender/log_stream_defender_2d.gd
+extends Control
 
 signal minijuego_completado(puntos: int)
 
 enum TipoAccion { IGNORAR = 0, BLOQUEAR = 1, AISLAR = 2 }
 
-const ESPACIO_ENTRE_CARRILES: float = 0.08
+## Mapeo de coordenadas del mundo 3D original (Z) a la caída vertical 2D.
+## Se conservan las constantes para mantener el ritmo temporal del nivel.
 const Z_SPAWN: float = -0.17
 const Z_LINEA_MIRA: float = 0.10
+const Z_LIMITE: float = 0.19
+const RANGO_CAIDA: float = Z_LIMITE - Z_SPAWN
+
 const INTERVALO_SPAWN: float = 0.9
 const TIEMPO_STANDALONE: float = 30.0
+const MARGEN_VERTICAL: float = 24.0
+const ANCHO_PANEL: float = 200.0
+const ALTO_PANEL: float = 54.0
 
 @export var log_item_scene: PackedScene
 
@@ -25,7 +32,13 @@ var banco_logs: Array[Dictionary] = []
 var carril_seleccionado: int = 1
 var puntos_actuales: int = 0
 var posiciones_x_carriles: Array[float] = []
-var logs_activos: Array[Node3D] = []
+var logs_activos: Array[Control] = []
+
+# Geometría calculada en _calcular_layout (píxeles)
+var _vel_px: float = 0.0
+var _y_spawn: float = 0.0
+var _y_limite: float = 0.0
+var _y_mira: float = 0.0
 
 var _spawn_timer: Timer
 var _controlado_por_frame: bool = false
@@ -33,17 +46,23 @@ var _partida_activa: bool = false
 var _tiempo_restante: float = 0.0
 var _indice_banco: int = 0
 
-@onready var ui_overlay: Control = $UI_Overlay
-@onready var lbl_score: Label = $UI_Overlay/ScorePanel/LblScore
-@onready var lbl_carril: Label = $UI_Overlay/LanePanel/LblLane
-@onready var feedback_overlay: PanelContainer = $UI_Overlay/FeedbackOverlay
-@onready var lbl_feedback: Label = $UI_Overlay/FeedbackOverlay/LblFeedback
+var _divider_nodes: Array[ColorRect] = []
+var _mira_node: ColorRect
+
+@onready var zona_juego: Control = $Layout/VBox/ZonaJuego
+@onready var logs_container: Control = $Layout/VBox/ZonaJuego/LogsContainer
+@onready var lbl_score: Label = $Layout/VBox/TopBar/ScorePanel/LblScore
+@onready var lbl_carril: Label = $Layout/VBox/TopBar/LanePanel/LblLane
+@onready var feedback_overlay: PanelContainer = $FeedbackOverlay
+@onready var lbl_feedback: Label = $FeedbackOverlay/LblFeedback
+@onready var btn_izq: Button = $Layout/VBox/BottomControls/BtnIzquierda
+@onready var btn_der: Button = $Layout/VBox/BottomControls/BtnDerecha
+@onready var btn_ignorar: Button = $Layout/VBox/BottomControls/BtnIgnorar
+@onready var btn_bloquear: Button = $Layout/VBox/BottomControls/BtnBloquear
+@onready var btn_aislar: Button = $Layout/VBox/BottomControls/BtnAislar
 
 func _ready() -> void:
-	_setup_camara_y_luz()
 	_cargar_banco_predeterminado()
-	_calcular_posiciones_carriles()
-	_actualizar_posicion_mira()
 	_conectar_ui()
 
 	_spawn_timer = Timer.new()
@@ -52,11 +71,18 @@ func _ready() -> void:
 	_spawn_timer.timeout.connect(_spawn_log)
 	add_child(_spawn_timer)
 
+	resized.connect(_calcular_layout)
+	call_deferred("_esperar_layout")
+
 	# Fallback: si nadie llama a inicializar_minijuego(), arrancamos solos (prueba F6)
 	get_tree().create_timer(0.1).timeout.connect(func():
 		if not _controlado_por_frame:
 			_iniciar_partida_standalone()
 	)
+
+func _esperar_layout() -> void:
+	await get_tree().process_frame
+	_calcular_layout()
 
 func _process(delta: float) -> void:
 	if not _partida_activa:
@@ -70,8 +96,8 @@ func _process(delta: float) -> void:
 
 	_procesar_input_teclado()
 
-## Entrada por teclado. Funciona dentro del SubViewport porque se lee el
-## estado global del Input singleton (mismo patrón que bullet_dodge).
+## Entrada por teclado. Se lee el estado global del Input singleton,
+## así que funciona tanto standalone (F6) como dentro del frame.
 func _procesar_input_teclado() -> void:
 	if Input.is_action_just_pressed("ui_left"):
 		_cambiar_carril(-1)
@@ -102,8 +128,7 @@ func inicializar_minijuego(data_nivel: NivelArcadeData) -> void:
 	else:
 		_cargar_banco_predeterminado()
 
-	_calcular_posiciones_carriles()
-	_actualizar_posicion_mira()
+	_calcular_layout()
 	_spawn_timer.start()
 	_actualizar_score_ui()
 	_mostrar_feedback("PROTEGE EL STREAM", Color(0.3, 0.9, 1, 1))
@@ -116,47 +141,58 @@ func _iniciar_partida_standalone() -> void:
 	_actualizar_posicion_mira()
 	_mostrar_feedback("MODO PRUEBA - %ds" % int(_tiempo_restante), Color(0.3, 0.9, 1, 1))
 
-func _setup_camara_y_luz() -> void:
-	var cam = $Camera3D if has_node("Camera3D") else null
-	if cam:
-		cam.position = Vector3(0, 0.4, 0)
-		cam.rotation_degrees = Vector3(-90, 0, 0)
-		cam.projection = Camera3D.PROJECTION_ORTHOGONAL
-		cam.size = 0.25
-		cam.near = 0.2
-		cam.far = 10.0
-		cam.current = true
-
-	var luz = $DirectionalLight3D if has_node("DirectionalLight3D") else null
-	if luz:
-		luz.position = Vector3(0, 5, 0)
-		luz.rotation_degrees = Vector3(-90, 0, 0)
-
-func _calcular_posiciones_carriles() -> void:
-	posiciones_x_carriles.clear()
-	var centro_offset = (cantidad_carriles - 1) * ESPACIO_ENTRE_CARRILES * 0.5
-	for i in range(cantidad_carriles):
-		var pos_x = (i * ESPACIO_ENTRE_CARRILES) - centro_offset
-		posiciones_x_carriles.append(pos_x)
-		_actualizar_marcador_spawn(i, pos_x)
-
-func _actualizar_marcador_spawn(indice: int, pos_x: float) -> void:
-	var spawn_points = $SpawnPoints if has_node("SpawnPoints") else null
-	if not spawn_points:
+## Geometría: convierte el rango Z del mundo 3D en píxeles del área de juego.
+func _calcular_layout() -> void:
+	if not zona_juego or zona_juego.size.x <= 0.0 or zona_juego.size.y <= 0.0:
 		return
-	var marker = spawn_points.get_node_or_null(str(indice))
-	if marker:
-		marker.position.x = pos_x
-		marker.position.z = Z_SPAWN
+
+	var zona: Rect2 = Rect2(Vector2.ZERO, zona_juego.size)
+	_y_spawn = MARGEN_VERTICAL
+	_y_limite = maxf(_y_spawn + 40.0, zona.size.y - MARGEN_VERTICAL)
+	_y_mira = lerpf(_y_spawn, _y_limite, (Z_LINEA_MIRA - Z_SPAWN) / RANGO_CAIDA)
+	_vel_px = velocidad_caida * (_y_limite - _y_spawn) / RANGO_CAIDA
+
+	var n: int = max(1, cantidad_carriles)
+	var ancho_carril: float = minf(zona.size.x / float(n + 1), ANCHO_PANEL + 20.0)
+	posiciones_x_carriles.clear()
+	for i in range(n):
+		var centro_x: float = zona.size.x * 0.5 + (i - (n - 1) * 0.5) * ancho_carril
+		posiciones_x_carriles.append(centro_x)
+
+	_redibujar_carriles(zona, n, ancho_carril)
+	_actualizar_posicion_mira()
+
+func _redibujar_carriles(zona: Rect2, n: int, ancho: float) -> void:
+	while _divider_nodes.size() > n + 1:
+		var old: ColorRect = _divider_nodes.pop_back()
+		old.queue_free()
+	while _divider_nodes.size() < n + 1:
+		var div := ColorRect.new()
+		div.color = Color(0.15, 0.45, 0.5, 0.25)
+		zona_juego.add_child(div)
+		zona_juego.move_child(div, 0)
+		_divider_nodes.append(div)
+
+	for i in range(n + 1):
+		var x: float = zona.size.x * 0.5 + (i - n * 0.5) * ancho
+		_divider_nodes[i].position = Vector2(x, _y_spawn)
+		_divider_nodes[i].size = Vector2(2.0, _y_limite - _y_spawn)
+
+	if not is_instance_valid(_mira_node):
+		_mira_node = ColorRect.new()
+		_mira_node.color = Color(0.1, 0.95, 0.4, 0.3)
+		zona_juego.add_child(_mira_node)
+		zona_juego.move_child(_mira_node, 0)
 
 func _cambiar_carril(direccion: int) -> void:
 	carril_seleccionado = clampi(carril_seleccionado + direccion, 0, cantidad_carriles - 1)
 	_actualizar_posicion_mira()
 
 func _actualizar_posicion_mira() -> void:
-	var mira = $TargetSelector if has_node("TargetSelector") else null
-	if mira and not posiciones_x_carriles.is_empty():
-		mira.position.x = posiciones_x_carriles[carril_seleccionado]
+	if is_instance_valid(_mira_node) and not posiciones_x_carriles.is_empty():
+		var cx: float = posiciones_x_carriles[carril_seleccionado]
+		_mira_node.position = Vector2(cx - 90.0, _y_mira)
+		_mira_node.size = Vector2(180.0, 6.0)
 	if lbl_carril:
 		lbl_carril.text = "CARRIL %d/%d" % [carril_seleccionado + 1, cantidad_carriles]
 
@@ -172,28 +208,32 @@ func _spawn_log() -> void:
 	var carril: int = randi_range(0, cantidad_carriles - 1)
 	var pos_x: float = posiciones_x_carriles[carril]
 
-	var log_item: Node3D = log_item_scene.instantiate()
+	var log_item: Control = log_item_scene.instantiate()
 	log_item.name = "LogItem"
-	$LogsContainer.add_child(log_item)
-	log_item.position = Vector3(pos_x, 0.0, Z_SPAWN)
+	logs_container.add_child(log_item)
+	log_item.position = Vector2(pos_x - ANCHO_PANEL * 0.5, _y_spawn)
+	log_item.size = Vector2(ANCHO_PANEL, ALTO_PANEL)
 
 	if log_item.has_method("setup"):
-		log_item.setup(log_data.get("texto", ""), int(log_data.get("respuesta", 0)), velocidad_caida)
+		log_item.setup(log_data.get("texto", ""), int(log_data.get("respuesta", 0)), _vel_px, _y_limite)
 	if log_item.has_signal("log_perdido"):
 		log_item.log_perdido.connect(_on_log_perdido)
 
 	logs_activos.append(log_item)
 
-func _on_log_perdido(log_item: Node3D) -> void:
+func _on_log_perdido(log_item: Control) -> void:
 	if not is_instance_valid(log_item) or not logs_activos.has(log_item):
 		return
 	logs_activos.erase(log_item)
+	log_item.queue_free()
+
+	if not _partida_activa:
+		return
 
 	puntos_actuales = max(0, puntos_actuales - penalizacion_error)
 	_mostrar_feedback("LOG PERDIDO -%d PTS" % penalizacion_error, Color(1.0, 0.6, 0.1, 1))
 	_emitir_puntos()
 	_actualizar_score_ui()
-	log_item.queue_free()
 
 ## Evaluación: el log activo más cercano del carril seleccionado contra la acción.
 ## 0 = IGNORAR, 1 = BLOQUEAR IP, 2 = AISLAR HOST
@@ -201,7 +241,7 @@ func procesar_accion(tipo_accion: int) -> void:
 	if not _partida_activa:
 		return
 
-	var log_objetivo: Node3D = _obtener_log_mas_cercano_en_carril(carril_seleccionado)
+	var log_objetivo: Control = _obtener_log_mas_cercano_en_carril(carril_seleccionado)
 	if not log_objetivo:
 		_mostrar_feedback("SIN LOG EN EL CARRIL", Color(0.55, 0.6, 0.65, 1))
 		return
@@ -223,22 +263,23 @@ func procesar_accion(tipo_accion: int) -> void:
 	_emitir_puntos()
 	_actualizar_score_ui()
 
-func _obtener_log_mas_cercano_en_carril(carril: int) -> Node3D:
+func _obtener_log_mas_cercano_en_carril(carril: int) -> Control:
 	if carril < 0 or carril >= posiciones_x_carriles.size():
 		return null
 
 	var target_x: float = posiciones_x_carriles[carril]
-	var candidato: Node3D = null
-	var mayor_z: float = -999.0
+	var candidato: Control = null
+	var mayor_y: float = -9999.0
 
 	for log_node in logs_activos:
 		if not is_instance_valid(log_node):
 			continue
 		if "esta_procesado" in log_node and log_node.esta_procesado:
 			continue
-		if abs(log_node.position.x - target_x) < 0.01:
-			if log_node.position.z > mayor_z:
-				mayor_z = log_node.position.z
+		var centro_x: float = log_node.position.x + log_node.size.x * 0.5
+		if absf(centro_x - target_x) < ANCHO_PANEL * 0.5:
+			if log_node.position.y > mayor_y:
+				mayor_y = log_node.position.y
 				candidato = log_node
 
 	return candidato
@@ -250,6 +291,7 @@ func _mostrar_feedback(texto: String, color: Color) -> void:
 	lbl_feedback.text = texto
 	lbl_feedback.modulate = color
 
+	feedback_overlay.pivot_offset = feedback_overlay.size / 2.0
 	feedback_overlay.modulate = Color(1, 1, 1, 0)
 	feedback_overlay.scale = Vector2(0.7, 0.7)
 	feedback_overlay.show()
@@ -283,10 +325,26 @@ func _emitir_puntos() -> void:
 			bus.puntos_actualizados.emit(puntos_actuales)
 
 func _finalizar() -> void:
+	detener_partida()
+	minijuego_completado.emit(puntos_actuales)
+
+## Detiene la partida: congela todos los logs, corta el spawn y marca la
+## partida como inactiva para que los logs que ya están en pantalla dejen
+## de quitar puntos. Lo llama MinigameFrame al terminar el nivel. Idempotente.
+func detener_partida() -> void:
 	_partida_activa = false
 	if _spawn_timer:
 		_spawn_timer.stop()
-	minijuego_completado.emit(puntos_actuales)
+	_detener_logs_en_movimiento()
+
+func _detener_logs_en_movimiento() -> void:
+	for log_node in logs_activos:
+		if not is_instance_valid(log_node):
+			continue
+		if log_node.has_method("detener"):
+			log_node.detener()
+		elif "esta_procesado" in log_node:
+			log_node.esta_procesado = true
 
 func _cargar_banco_predeterminado() -> void:
 	var nivel_data = load("res://scripts/data/log_defender_levels/nivel_1.tres") as NivelLogArcadeData
@@ -298,7 +356,7 @@ func _cargar_banco_predeterminado() -> void:
 		tiempo_limite = nivel_data.tiempo_limite
 		banco_logs = nivel_data.lista_logs.duplicate(true)
 	else:
-		velocidad_caida = 0.5
+		velocidad_caida = 0.12
 		tiempo_limite = 30.0
 		banco_logs = [
 			{"texto": "GET /index.html 200 OK", "respuesta": 0},
@@ -310,18 +368,13 @@ func _cargar_banco_predeterminado() -> void:
 		]
 
 func _limpiar_logs() -> void:
-	var contenedor = $LogsContainer if has_node("LogsContainer") else self
-	for child in contenedor.get_children():
+	if not is_instance_valid(logs_container):
+		return
+	for child in logs_container.get_children():
 		child.queue_free()
 	logs_activos.clear()
 
 func _conectar_ui() -> void:
-	var btn_izq = ui_overlay.get_node_or_null("BottomControls/BtnIzquierda") as Button
-	var btn_der = ui_overlay.get_node_or_null("BottomControls/BtnDerecha") as Button
-	var btn_ignorar = ui_overlay.get_node_or_null("BottomControls/BtnIgnorar") as Button
-	var btn_bloquear = ui_overlay.get_node_or_null("BottomControls/BtnBloquear") as Button
-	var btn_aislar = ui_overlay.get_node_or_null("BottomControls/BtnAislar") as Button
-
 	if btn_izq:
 		btn_izq.pressed.connect(func(): _cambiar_carril(-1))
 	if btn_der:

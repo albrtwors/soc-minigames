@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://du5ivbjw2h5py"]
+
+[ext_resource type="Script" uid="uid://dsy8ugke6t066" path="res://scripts/minigames/soc_defender_3d/threat_projectile.gd" id="1_s14gk"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k8wfb"]
+albedo_color = Color(1, 0.23137255, 0.1882353, 1)
+emission_enabled = true
+emission = Color(1, 0.23137255, 0.1882353, 1)
+emission_energy_multiplier = 1.4
+
+[sub_resource type="SphereMesh" id="SphereMesh_qyksi"]
+radius = 0.25
+height = 0.5
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ft5cl"]
+radius = 0.25
+
+[node name="ThreatProjectile" type="Area3D" unique_id=695079102]
+script = ExtResource("1_s14gk")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1260005404]
+material_override = SubResource("StandardMaterial3D_k8wfb")
+mesh = SubResource("SphereMesh_qyksi")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1508986919]
+shape = SubResource("SphereShape3D_ft5cl")
+
+[node name="Label3D" type="Label3D" parent="." unique_id=255268383]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.42, 0)
+billboard = 1
+modulate = Color(1, 0.8, 0.4, 1)
+text = "CVE-2026-UNKNOWN"
+font_size = 40
+outline_size = 8

@@ -1,0 +1,93 @@
+[gd_scene format=3 uid="uid://e4nuxbp1nkfd"]
+
+[ext_resource type="Script" uid="uid://b6prlep17pw0p" path="res://scripts/minigames/soc_defender_3d/rack_server.gd" id="1_ewxl7"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ewxl7"]
+albedo_color = Color(0.16, 0.18, 0.22, 1)
+metallic = 0.4
+roughness = 0.6
+
+[sub_resource type="BoxMesh" id="BoxMesh_y77o1"]
+size = Vector3(1.2, 2.2, 0.6)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kmof4"]
+size = Vector3(1.2, 2.2, 0.6)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y77o1"]
+albedo_color = Color(0.2, 0.8, 0.2, 1)
+emission_enabled = true
+emission = Color(0.2, 0.8, 0.2, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_rjsql"]
+radius = 0.06
+height = 0.12
+
+[node name="RackServer" type="Node3D" unique_id=2042996254]
+script = ExtResource("1_ewxl7")
+
+[node name="Model" type="MeshInstance3D" parent="." unique_id=1289369555]
+material_override = SubResource("StandardMaterial3D_ewxl7")
+mesh = SubResource("BoxMesh_y77o1")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=1996632074]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=714341817]
+shape = SubResource("BoxShape3D_kmof4")
+
+[node name="StatusLed" type="MeshInstance3D" parent="." unique_id=1912399465]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8, 0.32)
+material_override = SubResource("StandardMaterial3D_y77o1")
+mesh = SubResource("SphereMesh_rjsql")
+
+[node name="CameraFocus" type="Marker3D" parent="." unique_id=47214198]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 2.4)
+
+[node name="RackUI" type="CanvasLayer" parent="." unique_id=462881184]
+
+[node name="RackPanel" type="PanelContainer" parent="RackUI" unique_id=1993139280]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -93.5
+offset_top = -237.0
+offset_right = 93.5
+offset_bottom = -30.0
+
+[node name="MarginContainer" type="MarginContainer" parent="RackUI/RackPanel" unique_id=1951472184]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="RackUI/RackPanel/MarginContainer" unique_id=1171164111]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="PortHttp" type="Button" parent="RackUI/RackPanel/MarginContainer/VBoxContainer" unique_id=225959642]
+custom_minimum_size = Vector2(160, 34)
+layout_mode = 2
+text = "80/HTTP [Abierto]"
+
+[node name="PortSsh" type="Button" parent="RackUI/RackPanel/MarginContainer/VBoxContainer" unique_id=1041027111]
+custom_minimum_size = Vector2(160, 34)
+layout_mode = 2
+text = "22/SSH [Abierto]"
+
+[node name="PortHttps" type="Button" parent="RackUI/RackPanel/MarginContainer/VBoxContainer" unique_id=1892524261]
+custom_minimum_size = Vector2(160, 34)
+layout_mode = 2
+text = "443/HTTPS [Abierto]"
+
+[node name="BtnIsolate" type="Button" parent="RackUI/RackPanel/MarginContainer/VBoxContainer" unique_id=1703348021]
+custom_minimum_size = Vector2(160, 34)
+layout_mode = 2
+text = "Aislar VLAN"
+
+[node name="PatchProgressBar" type="ProgressBar" parent="RackUI/RackPanel/MarginContainer/VBoxContainer" unique_id=1848592470]
+custom_minimum_size = Vector2(160, 20)
+layout_mode = 2
+value = 100.0
