@@ -11,28 +11,34 @@ nodos_disponibles = Array[Dictionary]([])
 conexiones_requeridas = Array[Dictionary]([])
 velocidad_amenazas_base = 1.5
 tiempo_entre_amenazas = 2.5
-lista_amenazas = Array[Dictionary]([{
+pool_amenazas = Array[Dictionary]([{
 "etiqueta": "CVE-2026-3142 [Port 80]",
 "tipo": 0,
-"rack_target": 0,
 "puerto": 80,
 "velocidad": 1.2
 }, {
 "etiqueta": "SYN FLOOD [Port 443]",
 "tipo": 1,
-"rack_target": 1,
 "puerto": 443,
 "velocidad": 2.0
 }, {
 "etiqueta": "WORM_RANSOMWARE",
 "tipo": 2,
-"rack_target": 2,
 "puerto": 22,
 "velocidad": 1.0
 }, {
 "etiqueta": "RDP EXPLOIT [Port 3389]",
 "tipo": 0,
-"rack_target": 3,
 "puerto": 3389,
 "velocidad": 1.5
+}, {
+"etiqueta": "HTTP FLOOD [Port 80]",
+"tipo": 1,
+"puerto": 80,
+"velocidad": 1.7
+}, {
+"etiqueta": "CVE-2025-10086 [Port 22]",
+"tipo": 0,
+"puerto": 22,
+"velocidad": 1.3
 }])

@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://cksf60rpx3aov"]
+
+[ext_resource type="Script" uid="uid://c3nugy5ec72pq" path="res://scripts/minigames/soc_td_3d/defenses/base_defense_3d.gd" id="1"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1"]
+size = Vector3(0.7, 0.7, 0.7)
+
+[sub_resource type="BoxMesh" id="BoxMesh_1"]
+size = Vector3(0.7, 1, 0.7)
+
+[node name="BaseDefense3D" type="StaticBody3D" unique_id=2082465066]
+collision_mask = 0
+script = ExtResource("1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1563900845]
+shape = SubResource("BoxShape3D_1")
+
+[node name="MeshServer" type="MeshInstance3D" parent="." unique_id=308659378]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+mesh = SubResource("BoxMesh_1")
+
+[node name="SpawnPointShoot" type="Node3D" parent="." unique_id=1879396174]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)

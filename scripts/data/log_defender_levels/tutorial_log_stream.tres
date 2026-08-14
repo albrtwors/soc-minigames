@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="NivelTutorialData" format=3]
+
+[ext_resource type="Script" uid="uid://geoqhb1uar6d" path="res://scripts/data/NivelTutorialData.gd" id="1_script"]
+
+[resource]
+script = ExtResource("1_script")
+paginas_teoria = Array[Dictionary]([{
+"imagen": null,
+"texto": "Un torrente de logs cae por los carriles del SOC. Tu trabajo: clasificar cada log con la acción correcta antes de que se pierda."
+}, {
+"imagen": null,
+"texto": "Cambia de carril con las [b]FLECHAS ◀ ▶[/b] del teclado."
+}, {
+"imagen": null,
+"texto": "Usa las teclas: [b][1] IGNORAR[/b] para tráfico legítimo, [b][2] BLOQUEAR IP[/b] para ataques o fuerza bruta y [b][3] AISLAR HOST[/b] para un host comprometido."
+}, {
+"imagen": null,
+"texto": "La acción se aplica al log más cercano a tu línea de mira en el carril activo."
+}, {
+"imagen": null,
+"texto": "[b]+100 PTS[/b] por log clasificado correctamente, [b]-25 PTS[/b] si te equivocas o si un log escapa del stream."
+}])
+tiene_demo_jugable = false
+titulo_ui = "TUTORIAL LOG STREAM"
+tipo_nivel = 0

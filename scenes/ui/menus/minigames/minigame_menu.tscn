@@ -5,8 +5,8 @@
 [ext_resource type="FontFile" uid="uid://bqvys55l4eplu" path="res://assets/fonts/Orbitron-Black.ttf" id="1_olc83"]
 [ext_resource type="Texture2D" uid="uid://ca30fsev4jopt" path="res://assets/images/minigame_cards/phishing_card.png" id="4_5cw81"]
 [ext_resource type="FontFile" uid="uid://dwslao7f08kcp" path="res://assets/fonts/RobotoMono-Bold.ttf" id="4_h1ya4"]
-[ext_resource type="Texture2D" uid="uid://csem7nwg5y01a" path="res://assets/images/minigame_cards/config_card.png" id="5_pwxqj"]
-[ext_resource type="Texture2D" uid="uid://c2n0nfgovc0g3" path="res://assets/backgrounds/main.png" id="5_w1y3d"]
+[ext_resource type="Texture2D" uid="uid://355m3nxnbjnk" path="res://assets/images/minigame_cards/tech_infraestructure.png" id="4_w1y3d"]
+[ext_resource type="Texture2D" uid="uid://bc4dv8y0yaik" path="res://assets/images/minigame_cards/Control de Interfaces.png" id="5_f7ch6"]
 [ext_resource type="Texture2D" uid="uid://crtm1mp11e06p" path="res://assets/images/minigame_cards/interface_card.png" id="6_f7ch6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_olc83"]
@@ -80,12 +80,14 @@ layout_mode = 2
 theme_override_constants/separation = 18
 alignment = 1
 
-[node name="MinigameCard" parent="PanelContainer/VBoxContainer/HBoxContainer" unique_id=1707418510 instance=ExtResource("1_34juq")]
+[node name="MinigameCard3" parent="PanelContainer/VBoxContainer/HBoxContainer" unique_id=1661023643 instance=ExtResource("1_34juq")]
 layout_mode = 2
-minigame_id = "log_stream"
-titulo = "Log Stream Defender"
-descripcion = "Clasifica el tráfico en vivo: ignora, bloquea o aísla"
-icono_imagen = ExtResource("6_f7ch6")
+minigame_id = "infrastructure_rush"
+es_en_mundo_3d = true
+requiere_enfoque_camara_3d = true
+titulo = "Infraestructura Tecnológica"
+descripcion = "Cablea la red y bastiona los nodos antes de la auditoría"
+icono_imagen = ExtResource("4_w1y3d")
 
 [node name="MinigameCard2" parent="PanelContainer/VBoxContainer/HBoxContainer" unique_id=940555104 instance=ExtResource("1_34juq")]
 layout_mode = 2
@@ -94,7 +96,7 @@ es_en_mundo_3d = true
 requiere_enfoque_camara_3d = true
 titulo = "Control de Interfaces"
 descripcion = "Verifica credenciales y decide quién accede al sistema"
-icono_imagen = ExtResource("5_pwxqj")
+icono_imagen = ExtResource("5_f7ch6")
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=258673920]
 layout_mode = 2
@@ -108,21 +110,16 @@ titulo = "Tienda de Transacciones"
 descripcion = "Evita estafas de phishing verificando certificados"
 icono_imagen = ExtResource("4_5cw81")
 
-[node name="MinigameCard2" parent="PanelContainer/VBoxContainer/HBoxContainer2" unique_id=1661023643 instance=ExtResource("1_34juq")]
+[node name="MinigameCard2" parent="PanelContainer/VBoxContainer/HBoxContainer2" unique_id=1707418510 instance=ExtResource("1_34juq")]
 layout_mode = 2
+minigame_id = "log_stream"
+titulo = "Log Stream Defender"
+descripcion = "Clasifica el tráfico en vivo: ignora, bloquea o aísla"
+icono_imagen = ExtResource("6_f7ch6")
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=770386599]
 layout_mode = 2
 theme_override_constants/separation = 22
-
-[node name="MinigameCard" parent="PanelContainer/VBoxContainer/HBoxContainer3" unique_id=2095169876 instance=ExtResource("1_34juq")]
-layout_mode = 2
-minigame_id = "bullet_dodge"
-es_en_mundo_3d = true
-requiere_enfoque_camara_3d = true
-titulo = "Dodge bullets"
-descripcion = "Juego de prueba 3d"
-icono_imagen = ExtResource("5_w1y3d")
 
 [node name="MinigameCard2" parent="PanelContainer/VBoxContainer/HBoxContainer3" unique_id=1309704075 instance=ExtResource("1_34juq")]
 layout_mode = 2
@@ -133,6 +130,13 @@ titulo = "CyberTools"
 descripcion = "Empareja herramientas de ciberseguridad
 con su descripción"
 icono_imagen = ExtResource("6_f7ch6")
+
+[node name="MinigameCard3" parent="PanelContainer/VBoxContainer/HBoxContainer3" unique_id=1309704076 instance=ExtResource("1_34juq")]
+layout_mode = 2
+minigame_id = "soc_td_3d"
+es_en_mundo_3d = true
+titulo = "SOC Defender TD"
+descripcion = "Defiende la red por carriles: coloca defensas y frena a las amenazas"
 
 [node name="HBoxContainer4" type="HBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=1707418504]
 layout_mode = 2

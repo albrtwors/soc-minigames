@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="NivelTutorialData" format=3]
+
+[ext_resource type="Script" uid="uid://geoqhb1uar6d" path="res://scripts/data/NivelTutorialData.gd" id="1_script"]
+
+[resource]
+script = ExtResource("1_script")
+paginas_teoria = Array[Dictionary]([{
+"imagen": null,
+"texto": "En esta estación decides quién entra a la aplicación. Una fila de usuarios se acerca a la entrada y tú evalúas sus credenciales."
+}, {
+"imagen": null,
+"texto": "Cada turno muestra las [b]REGLAS ACTIVAS[/b]: longitud mínima de contraseña, presencia de caracteres especiales o un dominio corporativo obligatorio."
+}, {
+"imagen": null,
+"texto": "La tarjeta de credenciales muestra solo los datos relevantes: usuario, email y contraseña. Compáralos con las reglas del turno."
+}, {
+"imagen": null,
+"texto": "Si el usuario cumple [b]TODAS[/b] las reglas activas → [b]PERMITIR ACCESO[/b]. Si algo no cuadra → [b]DENEGAR ACCESO[/b]."
+}, {
+"imagen": null,
+"texto": "[b]+100 PTS[/b] por decisión correcta y [b]-50 PTS[/b] por error. Procesa a todos los usuarios antes de que se agote el tiempo."
+}])
+tiene_demo_jugable = false
+titulo_ui = "TUTORIAL ACCESO"
+tipo_nivel = 0

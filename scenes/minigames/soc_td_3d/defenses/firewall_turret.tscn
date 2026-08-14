@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://dhxx5xkux5k1r"]
+
+[ext_resource type="PackedScene" path="res://scenes/minigames/soc_td_3d/defenses/base_defense_3d.tscn" id="1"]
+[ext_resource type="Script" uid="uid://cihqucnx7lwft" path="res://scripts/minigames/soc_td_3d/defenses/firewall_turret.gd" id="2"]
+
+[node name="FirewallTurret" unique_id=2094695083 instance=ExtResource("1")]
+script = ExtResource("2")
+dano = 25.0
+intervalo_disparo = 1.4
+alcance_ray = 14.0
+
+[node name="MeshServer" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="SpawnPointShoot" parent="." index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)

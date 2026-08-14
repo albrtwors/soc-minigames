@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://dbrqcckstiovd"]
+
+[ext_resource type="Script" uid="uid://ddb8v1uows51m" path="res://scripts/minigames/soc_td_3d/threats/base_threat_3d.gd" id="1"]
+[ext_resource type="PackedScene" uid="uid://24l65tqjtn4i" path="res://scenes/models/robots/robot_with_attack.tscn" id="2_g6r0i"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1"]
+radius = 0.3
+height = 1.1
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_1"]
+radius = 0.28
+height = 1.1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i87fr"]
+albedo_color = Color(0, 0, 1, 1)
+
+[node name="BaseThreat3D" type="Area3D" unique_id=1705323200]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1")
+
+[node name="base_robot" parent="." unique_id=562416924 instance=ExtResource("2_g6r0i")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=123308241]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55, 0)
+shape = SubResource("CapsuleShape3D_1")
+
+[node name="MeshHumanoid" type="MeshInstance3D" parent="." unique_id=1453853849]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55, 0)
+visible = false
+mesh = SubResource("CapsuleMesh_1")
+surface_material_override/0 = SubResource("StandardMaterial3D_i87fr")
+
+[node name="AttackRayCast" type="RayCast3D" parent="." unique_id=1826896749]
+target_position = Vector3(-1.5, 0, 0)
+collide_with_areas = true
+
+[node name="AttackTimer" type="Timer" parent="." unique_id=1833328069]

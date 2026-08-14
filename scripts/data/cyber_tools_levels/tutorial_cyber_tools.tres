@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="NivelTutorialData" format=3]
+
+[ext_resource type="Script" uid="uid://geoqhb1uar6d" path="res://scripts/data/NivelTutorialData.gd" id="1_script"]
+
+[resource]
+script = ExtResource("1_script")
+paginas_teoria = Array[Dictionary]([{
+"imagen": null,
+"texto": "¡Bienvenido, Agente! En esta estación entrenarás tu memoria con el arsenal de ciberseguridad. Localiza cada herramienta y asóciala con su descripción."
+}, {
+"imagen": null,
+"texto": "En el tablero hay 6 parejas ocultas. La fila de adelante contiene los [b]NOMBRES[/b] de las herramientas y la de atrás sus [b]DESCRIPCIONES[/b]."
+}, {
+"imagen": null,
+"texto": "[b]Click IZQUIERDO[/b] sobre una carta la levanta. [b]Click DERECHO[/b] baja una carta ya levantada sin perder turno."
+}, {
+"imagen": null,
+"texto": "Levanta un nombre y su descripción: si pertenecen a la misma herramienta, la pareja desaparece y ganas [b]+100 PTS[/b]. Si no coinciden, pierdes [b]-25 PTS[/b] y las cartas se voltean solas."
+}, {
+"imagen": null,
+"texto": "Empareja las 6 herramientas antes de que se acabe el tiempo. ¡Suerte, Agente!"
+}])
+tiene_demo_jugable = false
+titulo_ui = "TUTORIAL MEMORIA CYBER"
+tipo_nivel = 0

@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://c2qnh5qexgptp"]
+
+[ext_resource type="PackedScene" uid="uid://dbrqcckstiovd" path="res://scenes/minigames/soc_td_3d/threats/base_threat_3d.tscn" id="1"]
+[ext_resource type="Script" uid="uid://bsx50dj40yoxy" path="res://scripts/minigames/soc_td_3d/threats/script_kdd_threat.gd" id="2"]
+[ext_resource type="Script" uid="uid://d3tfvgapyb0r1" path="res://scripts/minigames/soc_td_3d/threats/robot_model.gd" id="3_50sb3"]
+
+[node name="ScriptKiddie" unique_id=1641950502 instance=ExtResource("1")]
+script = ExtResource("2")
+
+[node name="base_robot" parent="." index="0" unique_id=562416924]
+script = ExtResource("3_50sb3")

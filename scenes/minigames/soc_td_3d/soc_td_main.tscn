@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://bpmkq8fvwkl8e"]
+
+[ext_resource type="Script" uid="uid://mh5t2jvvisrm" path="res://scripts/minigames/soc_td_3d/soc_td_main.gd" id="1"]
+[ext_resource type="PackedScene" uid="uid://d1j6i4bfxtpqh" path="res://scenes/minigames/soc_td_3d/grid_board_3d.tscn" id="2"]
+[ext_resource type="PackedScene" path="res://scenes/minigames/soc_td_3d/hud_soc_td.tscn" id="3"]
+[ext_resource type="Script" uid="uid://ctjoq4bx5nf6u" path="res://scripts/minigames/soc_td_3d/threat_spawner.gd" id="4"]
+[ext_resource type="PackedScene" uid="uid://bsomudkgxf0en" path="res://scenes/minigames/soc_td_3d/defenses/server_pdu.tscn" id="5"]
+[ext_resource type="PackedScene" uid="uid://dhxx5xkux5k1r" path="res://scenes/minigames/soc_td_3d/defenses/firewall_turret.tscn" id="6"]
+[ext_resource type="PackedScene" path="res://scenes/minigames/soc_td_3d/defenses/wall_ids.tscn" id="7"]
+[ext_resource type="PackedScene" path="res://scenes/minigames/soc_td_3d/defenses/antivirus_defense.tscn" id="8"]
+[ext_resource type="PackedScene" path="res://scenes/minigames/soc_td_3d/defenses/honeypot.tscn" id="9"]
+[ext_resource type="PackedScene" path="res://scenes/minigames/soc_td_3d/defenses/ips_defense.tscn" id="10"]
+[ext_resource type="PackedScene" uid="uid://c2qnh5qexgptp" path="res://scenes/minigames/soc_td_3d/threats/script_kdd_threat.tscn" id="11"]
+[ext_resource type="PackedScene" uid="uid://tbj5i0ho8v6s" path="res://scenes/minigames/soc_td_3d/threats/ddos_swarm_threat.tscn" id="12"]
+[ext_resource type="PackedScene" uid="uid://ddlw4rl6jd7fc" path="res://scenes/minigames/soc_td_3d/threats/ransomware_threat.tscn" id="13"]
+[ext_resource type="PackedScene" uid="uid://yrxed20ibt4m" path="res://scenes/minigames/soc_td_3d/threats/apt_threat.tscn" id="14"]
+[ext_resource type="PackedScene" path="res://scenes/minigames/soc_td_3d/projectile.tscn" id="15"]
+[ext_resource type="PackedScene" path="res://scenes/minigames/soc_td_3d/uptime_token.tscn" id="16"]
+
+[sub_resource type="Environment" id="Environment_1"]
+background_mode = 1
+background_color = Color(0.63687533, 0.6794802, 0.7762226, 1)
+ambient_light_source = 3
+ambient_light_color = Color(0.25, 0.3, 0.4, 1)
+ambient_light_energy = 1.2
+
+[node name="SocTdMain" type="Node3D" unique_id=1689142441]
+script = ExtResource("1")
+defensa_scenes = {
+"antivirus": ExtResource("8"),
+"firewall": ExtResource("6"),
+"honeypot": ExtResource("9"),
+"ips": ExtResource("10"),
+"server_pdu": ExtResource("5"),
+"wall_ids": ExtResource("7")
+}
+amenaza_scenes = {
+"apt": ExtResource("14"),
+"ddos_swarm": ExtResource("12"),
+"ransomware": ExtResource("13"),
+"script_kdd": ExtResource("11")
+}
+projectile_scene = ExtResource("15")
+token_scene = ExtResource("16")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=161749024]
+environment = SubResource("Environment_1")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=947950344]
+transform = Transform3D(0.9999761, -0.0069108023, 0.0001261366, 0, 0.01824905, 0.99983346, -0.0069119534, -0.99980956, 0.018248614, -0.07131144, 4.4104166, -0.33011138)
+shadow_enabled = true
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=838056995]
+transform = Transform3D(0.9996879, 0.005542884, -0.002649243, 0, 0.4311229, 0.9020177, 0.006143729, -0.90200067, 0.4311147, 0.033753306, 4.935705, 2.6525483)
+current = true
+
+[node name="GridBoard3D" parent="." unique_id=744909612 instance=ExtResource("2")]
+
+[node name="DefenseContainer" type="Node3D" parent="." unique_id=1441883532]
+
+[node name="ThreatContainer" type="Node3D" parent="." unique_id=642783004]
+
+[node name="ProjectileContainer" type="Node3D" parent="." unique_id=1193176813]
+
+[node name="SpawnerManager" type="Node3D" parent="." unique_id=45246066]
+script = ExtResource("4")
+
+[node name="CanvasHUD" parent="." unique_id=1550074647 instance=ExtResource("3")]

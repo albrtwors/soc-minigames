@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="NivelTutorialData" format=3]
+
+[ext_resource type="Script" uid="uid://geoqhb1uar6d" path="res://scripts/data/NivelTutorialData.gd" id="1_script"]
+
+[resource]
+script = ExtResource("1_script")
+paginas_teoria = Array[Dictionary]([{
+"imagen": null,
+"texto": "¡Bienvenido, Operador SOC! En Cyber Lane Defense las amenazas avanzan por los carriles hacia tu perímetro. Coloca defensas y detén el ataque."
+}, {
+"imagen": null,
+"texto": "Arriba tienes tu [b]PRESUPUESTO[/b]. Pulsa una carta para seleccionar la defensa: Servidor PDU ($50, genera tokens), Wall IDS ($75), Firewall ($100), Honeypot ($100), Antivirus ($125) e IPS ($150)."
+}, {
+"imagen": null,
+"texto": "Con la defensa seleccionada, mueve el mouse sobre el tablero para ver el preview y haz [b]click IZQUIERDO[/b] para colocarla. [b]Click DERECHO[/b] cancela la selección."
+}, {
+"imagen": null,
+"texto": "Las defensas disparan a las amenazas de su carril. El Servidor PDU genera [b]tokens[/b] de uptime: haz click sobre ellos para recogerlos y ganar dinero."
+}, {
+"imagen": null,
+"texto": "Usa el botón de [b]VELOCIDAD[/b] para alternar 1x/2x. Sobrevive hasta que acabe el tiempo: si una amenaza cruza el Firewall de Respaldo, pierdes puntos."
+}])
+tiene_demo_jugable = false
+titulo_ui = "TUTORIAL SOC DEFENDER"
+tipo_nivel = 0

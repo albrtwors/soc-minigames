@@ -1,0 +1,323 @@
+[gd_scene format=3 uid="uid://buceyhqw86ikl"]
+
+[ext_resource type="Script" uid="uid://xxqrx6xtdltm" path="res://scripts/minigames/infrastructure_rush/minigame_controller.gd" id="1_controller"]
+[ext_resource type="Script" uid="uid://cma6op2gqv3ta" path="res://scripts/minigames/infrastructure_rush/camera_controller.gd" id="2_camera"]
+[ext_resource type="Script" uid="uid://cslvlmivodpcw" path="res://scripts/minigames/infrastructure_rush/topology_manager.gd" id="3_topology"]
+[ext_resource type="Script" uid="uid://e8f7rfrny7pq" path="res://scripts/minigames/infrastructure_rush/traffic_simulator.gd" id="4_traffic"]
+[ext_resource type="FontFile" uid="uid://bqvys55l4eplu" path="res://assets/fonts/Orbitron-Black.ttf" id="5_font"]
+
+[sub_resource type="Environment" id="Environment_ent"]
+background_mode = 1
+background_color = Color(0.02, 0.03, 0.07, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.45, 0.55, 0.7, 1)
+ambient_light_energy = 1.4
+tonemap_mode = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mesa"]
+albedo_color = Color(0.09, 0.1, 0.13, 1)
+metallic = 0.1
+roughness = 0.8
+
+[sub_resource type="BoxMesh" id="BoxMesh_mesa"]
+size = Vector3(12, 1, 8)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_suelo"]
+albedo_color = Color(0.02, 0.025, 0.05, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_suelo"]
+size = Vector3(16, 0.1, 12)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
+bg_color = Color(0.03, 0.05, 0.12, 0.95)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_modal"]
+bg_color = Color(0.05, 0.07, 0.14, 0.98)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+
+[node name="InfrastructureMinigame3D" type="Node3D" unique_id=206420619]
+script = ExtResource("1_controller")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1389624670]
+environment = SubResource("Environment_ent")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1210403646]
+transform = Transform3D(0.882948, -0.348857, 0.314142, 0, 0.669131, 0.743145, -0.469472, -0.656322, 0.590811, 0, 0, 0)
+light_energy = 1.6
+shadow_enabled = true
+
+[node name="MesaLaboratorio" type="MeshInstance3D" parent="." unique_id=1058089752]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+material_override = SubResource("StandardMaterial3D_mesa")
+mesh = SubResource("BoxMesh_mesa")
+
+[node name="Suelo" type="MeshInstance3D" parent="." unique_id=2125622031]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.15, 0)
+material_override = SubResource("StandardMaterial3D_suelo")
+mesh = SubResource("BoxMesh_suelo")
+
+[node name="CameraSystem" type="Node3D" parent="." unique_id=1602684349]
+script = ExtResource("2_camera")
+
+[node name="MainCamera3D" type="Camera3D" parent="CameraSystem" unique_id=1941146959]
+transform = Transform3D(0.9142702, -0.37533885, 0.1524256, 0, 0.37626174, 0.9265218, -0.4051113, -0.84709096, 0.34400472, 1.3163012, 8.001111, 2.9706988)
+current = true
+fov = 60.0
+far = 200.0
+
+[node name="MarkerMacro" type="Marker3D" parent="CameraSystem" unique_id=2096553069]
+transform = Transform3D(0.99997854, -0.0069442256, 5.52951e-06, 0, 0.00079628045, 1.0000074, -0.006944262, -0.9999831, 0.00079626107, 0.09182753, 15.553292, -0.21792193)
+
+[node name="MarkerMicro" type="Marker3D" parent="CameraSystem" unique_id=1911223295]
+transform = Transform3D(1, 0, 0, 0, 0.9805807, -0.1961161, 0, 0.1961161, 0.9805807, 0, 1.1, 3)
+
+[node name="TopologyManager" type="Node3D" parent="." unique_id=923815480]
+script = ExtResource("3_topology")
+
+[node name="DevicesContainer" type="Node3D" parent="TopologyManager" unique_id=2098850967]
+
+[node name="CablesContainer" type="Node3D" parent="TopologyManager" unique_id=807465527]
+
+[node name="TrafficSimulator" type="Node3D" parent="." unique_id=408985733]
+script = ExtResource("4_traffic")
+
+[node name="PacketSpawner" type="Node3D" parent="TrafficSimulator" unique_id=800244942]
+
+[node name="GameTimer" type="Timer" parent="." unique_id=1768668046]
+one_shot = true
+
+[node name="CanvasHUD" type="CanvasLayer" parent="." unique_id=1123122398]
+
+[node name="HUDMain" type="Control" parent="CanvasHUD" unique_id=1070596275]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="LblFase" type="Label" parent="CanvasHUD/HUDMain" unique_id=1918498900]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 12.0
+theme_override_colors/font_color = Color(0.41, 0.85, 0.87, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.8)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_fonts/font = ExtResource("5_font")
+theme_override_font_sizes/font_size = 20
+
+[node name="LblTiempo" type="Label" parent="CanvasHUD/HUDMain" unique_id=56435038]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -160.0
+offset_top = 8.0
+offset_right = 160.0
+offset_bottom = 46.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.95, 0.95, 0.9, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.8)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_fonts/font = ExtResource("5_font")
+theme_override_font_sizes/font_size = 26
+horizontal_alignment = 1
+
+[node name="LblPuntos" type="Label" parent="CanvasHUD/HUDMain" unique_id=1175165449]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -320.0
+offset_top = 8.0
+offset_right = -16.0
+offset_bottom = 46.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(1, 0.85, 0.3, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.8)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_fonts/font = ExtResource("5_font")
+theme_override_font_sizes/font_size = 26
+horizontal_alignment = 2
+
+[node name="LblIntentos" type="Label" parent="CanvasHUD/HUDMain" unique_id=609014497]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -160.0
+offset_top = 48.0
+offset_right = 160.0
+offset_bottom = 72.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 0.5, 0.5, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.8)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_fonts/font = ExtResource("5_font")
+theme_override_font_sizes/font_size = 18
+horizontal_alignment = 1
+
+[node name="LblEstado" type="Label" parent="CanvasHUD/HUDMain" unique_id=1122358804]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 48.0
+theme_override_colors/font_color = Color(0.8, 0.9, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.8)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_fonts/font = ExtResource("5_font")
+theme_override_font_sizes/font_size = 16
+
+[node name="LblFeedback" type="Label" parent="CanvasHUD/HUDMain" unique_id=760313335]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -450.0
+offset_top = 96.0
+offset_right = 450.0
+offset_bottom = 130.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.8)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_fonts/font = ExtResource("5_font")
+theme_override_font_sizes/font_size = 22
+horizontal_alignment = 1
+
+[node name="BtnLanzarTest" type="Button" parent="CanvasHUD/HUDMain" unique_id=1268237694]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -200.0
+offset_top = -68.0
+offset_right = 200.0
+offset_bottom = -22.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("5_font")
+theme_override_font_sizes/font_size = 15
+text = "▶ LANZAR TEST DE AUDITORÍA (ENTER)"
+
+[node name="PanelHardening" type="PanelContainer" parent="CanvasHUD/HUDMain" unique_id=1102566778]
+visible = false
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -340.0
+offset_top = -280.0
+offset_right = -16.0
+offset_bottom = 280.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="VBox" type="VBoxContainer" parent="CanvasHUD/HUDMain/PanelHardening" unique_id=1615471723]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="LblDeviceName" type="Label" parent="CanvasHUD/HUDMain/PanelHardening/VBox" unique_id=665808734]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.41, 0.85, 0.87, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.8)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_fonts/font = ExtResource("5_font")
+theme_override_font_sizes/font_size = 20
+
+[node name="LblDeviceHint" type="Label" parent="CanvasHUD/HUDMain/PanelHardening/VBox" unique_id=1881497006]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.8)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_fonts/font = ExtResource("5_font")
+theme_override_font_sizes/font_size = 15
+
+[node name="VBoxDirectivas" type="VBoxContainer" parent="CanvasHUD/HUDMain/PanelHardening/VBox" unique_id=759047426]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="BtnVolver" type="Button" parent="CanvasHUD/HUDMain/PanelHardening/VBox" unique_id=458003070]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_font")
+theme_override_font_sizes/font_size = 13
+text = "◀ VOLVER A MACRO (CLIC DER / ESC)"
+
+[node name="ModalResultado" type="Control" parent="CanvasHUD/HUDMain" unique_id=1694427896]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Dim" type="ColorRect" parent="CanvasHUD/HUDMain/ModalResultado" unique_id=1163491324]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.7)
+
+[node name="Center" type="PanelContainer" parent="CanvasHUD/HUDMain/ModalResultado" unique_id=140057993]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -280.0
+offset_top = -120.0
+offset_right = 280.0
+offset_bottom = 120.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_modal")
+
+[node name="VBox" type="VBoxContainer" parent="CanvasHUD/HUDMain/ModalResultado/Center" unique_id=801488002]
+layout_mode = 2
+theme_override_constants/separation = 18
+
+[node name="LblResultado" type="Label" parent="CanvasHUD/HUDMain/ModalResultado/Center/VBox" unique_id=578748182]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.8)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_fonts/font = ExtResource("5_font")
+theme_override_font_sizes/font_size = 28
+horizontal_alignment = 1
+
+[node name="BtnResultado" type="Button" parent="CanvasHUD/HUDMain/ModalResultado/Center/VBox" unique_id=668775402]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_font")
+theme_override_font_sizes/font_size = 16
+text = "REINTENTAR"
+
+[connection signal="paquete_resuelto" from="TrafficSimulator" to="." method="_on_paquete_resuelto"]
+[connection signal="timeout" from="GameTimer" to="." method="_on_tiempo_agotado"]
+[connection signal="pressed" from="CanvasHUD/HUDMain/BtnLanzarTest" to="." method="_lanzar_test"]
+[connection signal="pressed" from="CanvasHUD/HUDMain/PanelHardening/VBox/BtnVolver" to="." method="_volver_macro"]
+[connection signal="pressed" from="CanvasHUD/HUDMain/ModalResultado/Center/VBox/BtnResultado" to="." method="_on_reintentar_pressed"]

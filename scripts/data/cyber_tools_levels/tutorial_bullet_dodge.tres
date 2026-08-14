@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="NivelTutorialData" format=3]
+
+[ext_resource type="Script" uid="uid://geoqhb1uar6d" path="res://scripts/data/NivelTutorialData.gd" id="1_script"]
+
+[resource]
+script = ExtResource("1_script")
+paginas_teoria = Array[Dictionary]([{
+"imagen": null,
+"texto": "Bienvenido a la arena de entrenamiento táctico. El objetivo es simple: [b]sobrevive[/b] esquivando las balas rojas que cruzan la arena."
+}, {
+"imagen": null,
+"texto": "Mueve tu cápsula con las [b]FLECHAS del teclado[/b] o con [b]WASD[/b]."
+}, {
+"imagen": null,
+"texto": "Las balas llegan desde los [b]4 bordes[/b] de la arena y una nueva aparece cada medio segundo a gran velocidad. Mantente en movimiento."
+}, {
+"imagen": null,
+"texto": "No hay puntos que ganar: aguanta con vida el mayor tiempo posible hasta que se agote el cronómetro. Un solo impacto acaba la ronda."
+}])
+tiene_demo_jugable = false
+titulo_ui = "TUTORIAL ESQUIVA"
+tipo_nivel = 0

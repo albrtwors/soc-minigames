@@ -17,7 +17,9 @@ signal minijuego_completado_global(id_minijuego: String, score_final: int)
 	"cyber_tools": "res://scenes/minigames/cyber_tools/CyberToolsMemory3D.tscn",
 	"bullet_dodge": "res://scenes/minigames/bullet_dodge/BulletDodge3D.tscn",
 	"access_control": "res://scenes/minigames/access_control/AccessControl3D.tscn",
-	"log_stream": "res://scenes/minigames/log_stream_defender/LogStreamDefender2D.tscn"
+	"log_stream": "res://scenes/minigames/log_stream_defender/LogStreamDefender2D.tscn",
+	"infrastructure_rush": "res://scenes/minigames/infrastructure_rush/InfrastructureMinigame3D.tscn",
+	"soc_td_3d": "res://scenes/minigames/soc_td_3d/soc_td_main.tscn"
 }
 
 @export var level_data_resources: Dictionary = {
@@ -31,17 +33,33 @@ signal minijuego_completado_global(id_minijuego: String, score_final: int)
 		"res://scripts/data/phishing_levels/phising_arc1.tres"
 	],
 	"cyber_tools": [
+		"res://scripts/data/cyber_tools_levels/tutorial_cyber_tools.tres",
 		"res://scripts/data/cyber_tools_levels/nivel_1.tres"
-		
 	],
 	"bullet_dodge": [
+		"res://scripts/data/cyber_tools_levels/tutorial_bullet_dodge.tres",
 		"res://scripts/data/cyber_tools_levels/nivel_1.tres"
 	],
 	"access_control": [
+		"res://scripts/data/cyber_tools_levels/tutorial_access_control.tres",
 		"res://scripts/data/cyber_tools_levels/nivel_1.tres"
 	],
 	"log_stream": [
+		"res://scripts/data/log_defender_levels/tutorial_log_stream.tres",
 		"res://scripts/data/log_defender_levels/nivel_1.tres"
+	],
+	"infrastructure_rush": [
+		"res://scripts/data/topologia_levels/tutorial_infrastructure_rush.tres",
+		"res://scripts/data/topologia_levels/nivel_1_fase_topologia.tres",
+		"res://scripts/data/topologia_levels/nivel_2_fase_bastionado.tres",
+		"res://scripts/data/topologia_levels/nivel_3_integrado.tres",
+		"res://scripts/data/topologia_levels/nivel_4_fase_topologia.tres",
+		"res://scripts/data/topologia_levels/nivel_5_fase_bastionado.tres",
+		"res://scripts/data/topologia_levels/nivel_6_fase_integrado.tres"
+	],
+	"soc_td_3d": [
+		"res://scripts/data/soc_td_levels/tutorial_soc_td.tres",
+		"res://scripts/data/soc_td_levels/nivel_1.tres"
 	]
 }
 
@@ -245,9 +263,11 @@ func _iniciar_partida_arcade(data: NivelArcadeData) -> void:
 			push_error("No se encontró el SubViewport en la ruta 'VBox/MarginContainer/SubViewportContainer/SubViewport'")
 			return
 
-		# Aislamiento del mundo 3D y configuración de picking de físicas
+		# Aislamiento del mundo 3D y configuración de picking de físicas.
+		# El SubViewport de MarcoContenedor3D ya viene con own_world_3d = true,
+		# así que no reasignamos world_3d (recrearlo aquí produce un error de
+		# "scenario is null" en el servidor de renderizado).
 		sub_viewport.own_world_3d = true
-		sub_viewport.world_3d = World3D.new()
 		sub_viewport.physics_object_picking = true
 		sub_viewport.render_target_update_mode = SubViewport.UPDATE_ALWAYS
 

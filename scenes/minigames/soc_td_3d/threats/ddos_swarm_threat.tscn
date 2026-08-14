@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://tbj5i0ho8v6s"]
+
+[ext_resource type="PackedScene" uid="uid://dbrqcckstiovd" path="res://scenes/minigames/soc_td_3d/threats/base_threat_3d.tscn" id="1"]
+[ext_resource type="Script" uid="uid://dcn3ypi42oqxt" path="res://scripts/minigames/soc_td_3d/threats/ddos_swarm_threat.gd" id="2"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pt6jb"]
+albedo_color = Color(0.3487975, 0.72957003, 7.70092e-07, 1)
+
+[node name="DdosSwarm" unique_id=819081016 instance=ExtResource("1")]
+script = ExtResource("2")
+color_cuerpo = Color(0.3487975, 0.72957003, 7.70092e-07, 1)
+velocidad_rafaga_mult = 1.8
+velocidad_crucero_mult = 0.55
+
+[node name="MeshHumanoid" parent="." index="1" unique_id=1453853849]
+surface_material_override/0 = SubResource("StandardMaterial3D_pt6jb")

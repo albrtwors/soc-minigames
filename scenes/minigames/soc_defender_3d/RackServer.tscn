@@ -70,24 +70,61 @@ theme_override_constants/separation = 6
 [node name="PortHttp" type="Button" parent="RackUI/RackPanel/MarginContainer/VBoxContainer" unique_id=225959642]
 custom_minimum_size = Vector2(160, 34)
 layout_mode = 2
+focus_mode = 0
 text = "80/HTTP [Abierto]"
 
 [node name="PortSsh" type="Button" parent="RackUI/RackPanel/MarginContainer/VBoxContainer" unique_id=1041027111]
 custom_minimum_size = Vector2(160, 34)
 layout_mode = 2
+focus_mode = 0
 text = "22/SSH [Abierto]"
 
 [node name="PortHttps" type="Button" parent="RackUI/RackPanel/MarginContainer/VBoxContainer" unique_id=1892524261]
 custom_minimum_size = Vector2(160, 34)
 layout_mode = 2
+focus_mode = 0
 text = "443/HTTPS [Abierto]"
 
-[node name="BtnIsolate" type="Button" parent="RackUI/RackPanel/MarginContainer/VBoxContainer" unique_id=1703348021]
+[node name="PortRdp" type="Button" parent="RackUI/RackPanel/MarginContainer/VBoxContainer" unique_id=1892524262]
 custom_minimum_size = Vector2(160, 34)
 layout_mode = 2
-text = "Aislar VLAN"
+focus_mode = 0
+text = "3389/RDP [Abierto]"
+
+[node name="BtnScrub" type="Button" parent="RackUI/RackPanel/MarginContainer/VBoxContainer" unique_id=1703348022]
+custom_minimum_size = Vector2(160, 34)
+layout_mode = 2
+focus_mode = 0
+text = "SCRUBBING CENTER"
+
+[node name="BtnPatch" type="Button" parent="RackUI/RackPanel/MarginContainer/VBoxContainer" unique_id=1703348023]
+custom_minimum_size = Vector2(160, 34)
+layout_mode = 2
+focus_mode = 0
+text = "Aplicar Parche +25%"
 
 [node name="PatchProgressBar" type="ProgressBar" parent="RackUI/RackPanel/MarginContainer/VBoxContainer" unique_id=1848592470]
 custom_minimum_size = Vector2(160, 20)
 layout_mode = 2
-value = 100.0
+value = 0.0
+
+[node name="BtnIsolate" type="Button" parent="RackUI/RackPanel/MarginContainer/VBoxContainer" unique_id=1703348021]
+visible = false
+custom_minimum_size = Vector2(160, 34)
+layout_mode = 2
+focus_mode = 0
+text = "Aislar VLAN"
+
+[node name="BtnRollback" type="Button" parent="RackUI/RackPanel/MarginContainer/VBoxContainer" unique_id=1703348024]
+visible = false
+custom_minimum_size = Vector2(160, 34)
+layout_mode = 2
+focus_mode = 0
+text = "Restaurar Backup"
+
+[node name="BtnReconnect" type="Button" parent="RackUI/RackPanel/MarginContainer/VBoxContainer" unique_id=1703348025]
+visible = false
+custom_minimum_size = Vector2(160, 34)
+layout_mode = 2
+focus_mode = 0
+text = "Reconectar a Red"

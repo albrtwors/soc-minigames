@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="NivelTutorialData" format=3]
+
+[ext_resource type="Script" uid="uid://geoqhb1uar6d" path="res://scripts/data/NivelTutorialData.gd" id="1_script"]
+
+[resource]
+script = ExtResource("1_script")
+paginas_teoria = Array[Dictionary]([{
+"imagen": null,
+"texto": "Construye la infraestructura de red de la organización sobre la mesa antes de que el tiempo se agote."
+}, {
+"imagen": null,
+"texto": "[b]Click IZQUIERDO[/b] sobre un dispositivo lo selecciona. Click IZQUIERDO sobre otro dispositivo tiende el cable entre ambos."
+}, {
+"imagen": null,
+"texto": "Conecta únicamente los cables que pide el nivel (por ejemplo ROUTER EDGE → FIREWALL → SERVIDORES). Cable correcto [b]+200 PTS[/b]; un cable no requerido es un error de segmentación [b]-100 PTS[/b]."
+}, {
+"imagen": null,
+"texto": "Con la red lista, pulsa [b]ENTER[/b] o el botón [b]LANZAR TEST[/b] para auditar. Si los cables y el bastionado están en orden, los paquetes verdes superan la auditoría."
+}, {
+"imagen": null,
+"texto": "[b]Doble click[/b] sobre un dispositivo abre su bastionado: activa las directivas correctas. Un TEST fallido cuesta [b]-150 PTS[/b] y una auditoría. ¡Corrige y reintenta!"
+}])
+tiene_demo_jugable = false
+titulo_ui = "TUTORIAL INFRAESTRUCTURA"
+tipo_nivel = 0

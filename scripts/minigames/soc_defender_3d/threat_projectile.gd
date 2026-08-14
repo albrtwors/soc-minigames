@@ -12,6 +12,10 @@ var puerto_objetivo: int = 80
 var rack_objetivo_index: int = 0
 var velocidad: float = 1.5
 
+# Ráfagas DDoS: un grupo de proyectiles comparte rafaga_id y no se destruye con clic.
+var es_parte_de_rafaga: bool = false
+var rafaga_id: String = ""
+
 var destino_pos: Vector3
 var alcanzado: bool = false
 
@@ -71,4 +75,23 @@ func destruir_con_animacion() -> void:
 	monitorable = false
 	var tween = create_tween().set_parallel(true)
 	tween.tween_property(self, "scale", Vector3(0.01, 0.01, 0.01), 0.2)
+	tween.finished.connect(queue_free)
+
+## Rechazado por regla de firewall: destello blanco/cian expansivo antes de desvanecerse.
+func destruir_bloqueado() -> void:
+	alcanzado = true
+	monitoring = false
+	monitorable = false
+	if mesh_instance:
+		var mat = StandardMaterial3D.new()
+		mat.albedo_color = Color(0.2, 0.9, 1.0)
+		mat.emission_enabled = true
+		mat.emission = Color(1.0, 1.0, 1.0)
+		mat.emission_energy_multiplier = 3.0
+		mesh_instance.material_override = mat
+	if label_etiqueta:
+		label_etiqueta.text = "BLOQUEADO"
+	var tween = create_tween()
+	tween.tween_property(self, "scale", Vector3(2.0, 2.0, 2.0), 0.12)
+	tween.tween_property(self, "scale", Vector3(0.01, 0.01, 0.01), 0.18)
 	tween.finished.connect(queue_free)

@@ -7,8 +7,8 @@ var sub_viewport: SubViewport
 var sub_viewport_container: SubViewportContainer
 
 func _ready() -> void:
-	sub_viewport_container = $MarginContainer/SubViewportContainer
-	sub_viewport = $MarginContainer/SubViewportContainer/SubViewport
+	sub_viewport_container = $VBox/MarginContainer/SubViewportContainer
+	sub_viewport = $VBox/MarginContainer/SubViewportContainer/SubViewport
 	$VBox/Titulo/BtnCerrar.pressed.connect(_on_cerrar)
 	if animar_entrada:
 		_hacer_animacion_entrada()

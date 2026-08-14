@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://yrxed20ibt4m"]
+
+[ext_resource type="PackedScene" uid="uid://dbrqcckstiovd" path="res://scenes/minigames/soc_td_3d/threats/base_threat_3d.tscn" id="1"]
+[ext_resource type="Script" uid="uid://cx64aoj8eupbb" path="res://scripts/minigames/soc_td_3d/threats/apt_threat.gd" id="2"]
+
+[node name="AptThreat" unique_id=1202997454 instance=ExtResource("1")]
+script = ExtResource("2")
+color_cuerpo = Color(0.99, 0.55, 0.1, 1)

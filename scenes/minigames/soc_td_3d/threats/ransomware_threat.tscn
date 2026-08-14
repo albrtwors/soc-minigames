@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://ddlw4rl6jd7fc"]
+
+[ext_resource type="PackedScene" uid="uid://dbrqcckstiovd" path="res://scenes/minigames/soc_td_3d/threats/base_threat_3d.tscn" id="1"]
+[ext_resource type="Script" uid="uid://carvhr7h5ftjx" path="res://scripts/minigames/soc_td_3d/threats/ransomware_threat.gd" id="2"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2oih4"]
+albedo_color = Color(0.74968874, 3.3691526e-07, 0.4093882, 1)
+
+[node name="Ransomware" unique_id=1062245887 instance=ExtResource("1")]
+script = ExtResource("2")
+color_cuerpo = Color(0.74968874, 3.3691526e-07, 0.4093882, 1)
+
+[node name="MeshHumanoid" parent="." index="1" unique_id=1453853849]
+surface_material_override/0 = SubResource("StandardMaterial3D_2oih4")

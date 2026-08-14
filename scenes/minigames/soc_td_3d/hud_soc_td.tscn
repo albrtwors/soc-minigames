@@ -1,0 +1,139 @@
+[gd_scene load_steps=8 format=3]
+
+[ext_resource type="Script" path="res://scripts/minigames/soc_td_3d/hud_soc_td.gd" id="1"]
+[ext_resource type="FontFile" uid="uid://dwslao7f08kcp" path="res://assets/fonts/RobotoMono-Bold.ttf" id="2_font_bold"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sb_btn"]
+content_margin_left = 8.0
+content_margin_top = 5.0
+content_margin_right = 8.0
+content_margin_bottom = 5.0
+bg_color = Color(0.1, 0.13, 0.2, 0.95)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.3, 0.55, 0.9, 0.45)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sb_btn_hover"]
+content_margin_left = 8.0
+content_margin_top = 5.0
+content_margin_right = 8.0
+content_margin_bottom = 5.0
+bg_color = Color(0.15, 0.21, 0.31, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.41, 0.85, 0.87, 0.9)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sb_btn_pressed"]
+content_margin_left = 8.0
+content_margin_top = 5.0
+content_margin_right = 8.0
+content_margin_bottom = 5.0
+bg_color = Color(0.05, 0.1, 0.18, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.2, 0.9, 1, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sb_focus"]
+
+[sub_resource type="Theme" id="Theme_toolbar"]
+Button/colors/font_color = Color(0.62, 0.75, 0.9, 1)
+Button/colors/font_hover_color = Color(0.9, 1, 1, 1)
+Button/colors/font_pressed_color = Color(0.41, 0.85, 0.87, 1)
+Button/colors/font_focus_color = Color(0.62, 0.75, 0.9, 1)
+Button/fonts/font = ExtResource("2_font_bold")
+Button/font_sizes/font_size = 13
+Button/styles/normal = SubResource("StyleBoxFlat_sb_btn")
+Button/styles/hover = SubResource("StyleBoxFlat_sb_btn_hover")
+Button/styles/pressed = SubResource("StyleBoxFlat_sb_btn_pressed")
+Button/styles/focus = SubResource("StyleBoxEmpty_sb_focus")
+
+[node name="CanvasHUD" type="CanvasLayer"]
+script = ExtResource("1")
+
+[node name="PanelToolbar" type="HBoxContainer" parent="."]
+anchors_preset = 12
+anchor_right = 1.0
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -60.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = SubResource("Theme_toolbar")
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="LblPresupuesto" type="Label" parent="."]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = -58.0
+offset_right = 200.0
+offset_bottom = -18.0
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.41, 0.85, 0.87, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.8)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_fonts/font = ExtResource("2_font_bold")
+theme_override_font_sizes/font_size = 24
+text = "$ 150"
+
+[node name="LblTiempo" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -110.0
+offset_right = 110.0
+offset_top = 14.0
+offset_bottom = 54.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.95, 0.95, 0.9, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.8)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_fonts/font = ExtResource("2_font_bold")
+theme_override_font_sizes/font_size = 28
+text = "01:30"
+horizontal_alignment = 1
+
+[node name="BtnVelocidad" type="Button" parent="."]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -84.0
+offset_top = -60.0
+offset_right = -16.0
+offset_bottom = -16.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.41, 0.85, 0.87, 1)
+theme_override_colors/font_hover_color = Color(0.9, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0.9, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_font_bold")
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleBoxFlat_sb_btn")
+theme_override_styles/hover = SubResource("StyleBoxFlat_sb_btn_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_sb_btn_pressed")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_sb_focus")
+text = "1x"

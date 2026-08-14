@@ -1,14 +1,112 @@
-[gd_scene format=3 uid="uid://0cctd2ubu3uj"]
+[gd_scene load_steps=9 format=3 uid="uid://0cctd2ubu3uj"]
 
 [ext_resource type="Script" uid="uid://bcu6x53jt28h4" path="res://scripts/ui/minigames/modal_tutorial/modal_tutorial.gd" id="1_8egm7"]
 [ext_resource type="Texture2D" uid="uid://c2n0nfgovc0g3" path="res://assets/backgrounds/main.png" id="1_805om"]
+[ext_resource type="FontFile" uid="uid://dwslao7f08kcp" path="res://assets/fonts/RobotoMono-Bold.ttf" id="2_font_bold"]
+[ext_resource type="FontFile" uid="uid://cpggr766j0hry" path="res://assets/fonts/RobotoMono-Regular.ttf" id="3_font_reg"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b84x7"]
-bg_color = Color(0.11858138, 0.11858139, 0.11858132, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
+content_margin_left = 26.0
+content_margin_top = 22.0
+content_margin_right = 26.0
+content_margin_bottom = 22.0
+bg_color = Color(0.027, 0.082, 0.208, 0.98)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.0, 0.902, 0.984, 0.9)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
+shadow_color = Color(0.0, 0.9, 1.0, 0.12)
+shadow_size = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_normal"]
+content_margin_left = 18.0
+content_margin_top = 6.0
+content_margin_right = 18.0
+content_margin_bottom = 6.0
+bg_color = Color(0.1, 0.13, 0.2, 0.95)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.3, 0.55, 0.9, 0.45)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_hover"]
+content_margin_left = 18.0
+content_margin_top = 6.0
+content_margin_right = 18.0
+content_margin_bottom = 6.0
+bg_color = Color(0.15, 0.21, 0.31, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.41, 0.85, 0.87, 0.9)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_pressed"]
+content_margin_left = 18.0
+content_margin_top = 6.0
+content_margin_right = 18.0
+content_margin_bottom = 6.0
+bg_color = Color(0.05, 0.1, 0.18, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.2, 0.9, 1, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_texto"]
+content_margin_left = 14.0
+content_margin_top = 12.0
+content_margin_right = 14.0
+content_margin_bottom = 12.0
+bg_color = Color(0.05, 0.08, 0.15, 0.85)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.25, 0.5, 0.8, 0.35)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="Theme" id="Theme_modal"]
+default_font = ExtResource("3_font_reg")
+default_font_size = 15
+Button/colors/font_color = Color(0.62, 0.75, 0.9, 1)
+Button/colors/font_hover_color = Color(0.9, 1, 1, 1)
+Button/colors/font_pressed_color = Color(0.41, 0.85, 0.87, 1)
+Button/colors/font_focus_color = Color(0.62, 0.75, 0.9, 1)
+Button/fonts/font = ExtResource("2_font_bold")
+Button/font_sizes/font_size = 13
+Button/styles/normal = SubResource("StyleBoxFlat_btn_normal")
+Button/styles/hover = SubResource("StyleBoxFlat_btn_hover")
+Button/styles/pressed = SubResource("StyleBoxFlat_btn_pressed")
+Button/styles/focus = SubResource("StyleBoxFlat_btn_normal")
+Label/colors/font_color = Color(0.85, 0.9, 0.95, 1)
+Label/fonts/font = ExtResource("3_font_reg")
+Label/font_sizes/font_size = 14
+RichTextLabel/colors/default_color = Color(0.87, 0.93, 0.98, 1)
+RichTextLabel/colors/font_shadow_color = Color(0, 0, 0, 0.6)
+RichTextLabel/fonts/font = ExtResource("3_font_reg")
+RichTextLabel/font_sizes/font_size = 16
 
 [node name="ModalTutorial" type="Control" unique_id=1968603354]
 layout_mode = 3
@@ -17,10 +115,11 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = SubResource("Theme_modal")
 script = ExtResource("1_8egm7")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1808151261]
-modulate = Color(0.015686275, 0, 0.19607843, 0.3137255)
+modulate = Color(0.015686275, 0, 0.19607843, 0.62)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -35,62 +134,87 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -185.5
-offset_top = -124.5
-offset_right = 185.5
-offset_bottom = 124.5
+offset_left = -390.0
+offset_top = -235.0
+offset_right = 390.0
+offset_bottom = 235.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_b84x7")
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=1110854807]
 layout_mode = 2
-theme_override_constants/margin_left = 20
+theme_override_constants/margin_left = 24
 theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
+theme_override_constants/margin_right = 24
 theme_override_constants/margin_bottom = 20
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer" unique_id=1446704583]
 layout_mode = 2
+theme_override_constants/separation = 14
 alignment = 1
 
 [node name="Header" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1418722040]
 layout_mode = 2
+theme_override_constants/separation = 10
 
 [node name="LblTitulo" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/Header" unique_id=776741371]
 layout_mode = 2
-text = "TItulo del tutorial "
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.41, 0.85, 0.87, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.8)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_fonts/font = ExtResource("2_font_bold")
+theme_override_font_sizes/font_size = 22
+text = "TItulo del tutorial"
 
 [node name="LblPagina" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/Header" unique_id=647980025]
 layout_mode = 2
+size_flags_vertical = 8
+theme_override_colors/font_color = Color(0.55, 0.65, 0.8, 1)
+theme_override_fonts/font = ExtResource("2_font_bold")
+theme_override_font_sizes/font_size = 12
 text = "Pag 3"
 
 [node name="Content" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=667948878]
 layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 14
 alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/Content" unique_id=1574898318]
-custom_minimum_size = Vector2(0.625, 201.365)
+custom_minimum_size = Vector2(200, 160)
 layout_mode = 2
 texture = ExtResource("1_805om")
 expand_mode = 2
 stretch_mode = 5
 
 [node name="LblTextoTeoria" type="RichTextLabel" parent="PanelContainer/MarginContainer/VBoxContainer/Content" unique_id=917243249]
+custom_minimum_size = Vector2(360, 150)
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_texto")
 bbcode_enabled = true
+fit_content = true
+scroll_active = false
 text = "el tutorial constaraasd"
 
 [node name="Footer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1470674265]
 layout_mode = 2
+theme_override_constants/separation = 10
 
 [node name="BtnAnterior" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/Footer" unique_id=1112808080]
+custom_minimum_size = Vector2(130, 0)
 layout_mode = 2
-text = "Prev"
+text = "◀ Anterior"
 
 [node name="Control" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer/Footer" unique_id=1577197666]
 layout_mode = 2
+size_flags_horizontal = 3
 
 [node name="BtnSiguiente" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/Footer" unique_id=1622255077]
+custom_minimum_size = Vector2(130, 0)
 layout_mode = 2
-text = "Next"
+text = "Siguiente ▶"

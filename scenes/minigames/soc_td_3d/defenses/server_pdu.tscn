@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://bsomudkgxf0en"]
+
+[ext_resource type="PackedScene" uid="uid://cksf60rpx3aov" path="res://scenes/minigames/soc_td_3d/defenses/base_defense_3d.tscn" id="1"]
+[ext_resource type="Script" uid="uid://c6xc4o7jdp5q7" path="res://scripts/minigames/soc_td_3d/defenses/server_pdu.gd" id="2"]
+
+[node name="ServerPDU" unique_id=1828759921 instance=ExtResource("1")]
+script = ExtResource("2")
+intervalo_generacion = 7.0
+valor_token = 25

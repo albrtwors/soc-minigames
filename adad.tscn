@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://bpg8b6e8yytn6"]
+
+[ext_resource type="PackedScene" uid="uid://dbrqcckstiovd" path="res://scenes/minigames/soc_td_3d/threats/base_threat_3d.tscn" id="1_gmcbi"]
+
+[node name="BaseThreat3D" unique_id=1705323200 instance=ExtResource("1_gmcbi")]
+
+[node name="base_robot" parent="." index="4" unique_id=107045051]
+script = null
