@@ -15,6 +15,7 @@ func _on_save_requested(save_data: SaveData) -> void:
 	var error = ResourceSaver.save(save_data, SAVE_PATH)
 	if error == OK:
 		EventBus.game_saved.emit(true)
+		EventBus.game_loaded.emit(save_data)
 	else:
 		push_error("Error al guardar el recurso de partida: ", error)
 		EventBus.game_saved.emit(false)

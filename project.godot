@@ -18,6 +18,8 @@ config/icon="res://icon.svg"
 [autoload]
 
 EventBus="*uid://drvy0v24s6l5t"
+GameManager="*res://globals/GameManager.gd"
+Toast="*res://globals/Toast.gd"
 TransitionManager="*uid://kqfpxo1rnkd1"
 _mcp_game_helper="*res://addons/godot_ai/runtime/game_helper.gd"
 

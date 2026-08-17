@@ -98,11 +98,29 @@ func _on_crear_pressed() -> void:
 	var nombre: String = name_edit.text.strip_edges()
 	var apellido: String = surname_edit.text.strip_edges()
 
-	if nombre == "" or apellido == "":
-		push_warning("Por favor, rellene el nombre y apellido.")
+	if nombre == "":
+		Toast.wrong("Nombre requerido", "Ingresa tu nombre para continuar")
+		name_edit.grab_focus()
+		return
+
+	if apellido == "":
+		Toast.wrong("Apellido requerido", "Ingresa tu apellido para continuar")
+		surname_edit.grab_focus()
+		return
+
+	if nombre.length() < 2:
+		Toast.warning("Nombre muy corto", "El nombre debe tener al menos 2 caracteres")
+		name_edit.grab_focus()
+		return
+
+	if apellido.length() < 2:
+		Toast.warning("Apellido muy corto", "El apellido debe tener al menos 2 caracteres")
+		surname_edit.grab_focus()
 		return
 
 	var avatar_path: String = avatar_panel.imagen_cargada_ruta
+	if avatar_path == "":
+		Toast.warning("Sin foto de perfil", "Puedes continuar pero se usará un avatar por defecto")
 
 	var data = {
 		"nombre": nombre,
@@ -112,6 +130,7 @@ func _on_crear_pressed() -> void:
 		"avatar_path": avatar_path
 	}
 
+	Toast.success("Operador creado", nombre + " " + apellido)
 	character_created.emit(data)
 
 func _on_volver_pressed() -> void:

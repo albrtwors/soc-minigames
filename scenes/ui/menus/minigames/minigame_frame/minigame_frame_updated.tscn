@@ -6,9 +6,21 @@
 [ext_resource type="PackedScene" uid="uid://capihxvfl2u04" path="res://scenes/ui/menus/minigames/modal_puntuacion/modal_puntuacion.tscn" id="3_wqr4x"]
 [ext_resource type="PackedScene" uid="uid://b4dql0w7i1h6j" path="res://scenes/ui/components/MarcoContenedor3D/MarcoContenedor3D.tscn" id="5_wqr4x"]
 [ext_resource type="FontFile" uid="uid://cpggr766j0hry" path="res://assets/fonts/RobotoMono-Regular.ttf" id="6_juka4"]
+[ext_resource type="FontFile" uid="uid://bqvys55l4eplu" path="res://assets/fonts/Orbitron-Black.ttf" id="7_orb83"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fondo_play"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_topbar"]
+content_margin_left = 14.0
+content_margin_top = 6.0
+content_margin_right = 14.0
+content_margin_bottom = 6.0
+bg_color = Color(0.02, 0.05, 0.12, 0.92)
+border_width_bottom = 1
+border_color = Color(0, 0.75, 0.78, 0.6)
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bottombar"]
 content_margin_left = 10.0
@@ -131,6 +143,30 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+
+[node name="TopBar" type="PanelContainer" parent="HUD" unique_id=774951371]
+visible = false
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 38.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_topbar")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/TopBar" unique_id=1649993416]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="LblMinijuego" type="Label" parent="HUD/TopBar/HBoxContainer" unique_id=1468184924]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0, 0.75, 0.78, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.5)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_fonts/font = ExtResource("7_orb83")
+theme_override_font_sizes/font_size = 16
+text = "MODULO"
 
 [node name="BottomBar" type="PanelContainer" parent="HUD" unique_id=304156324]
 layout_mode = 1

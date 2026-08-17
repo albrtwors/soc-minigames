@@ -72,6 +72,8 @@ signal minijuego_completado_global(id_minijuego: String, score_final: int)
 
 # Nodos HUD & BottomBar
 @onready var hud: Control = $HUD
+@onready var top_bar: PanelContainer = $HUD/TopBar
+@onready var lbl_minijuego: Label = $HUD/TopBar/HBoxContainer/LblMinijuego
 @onready var lbl_timer: Label = $HUD/BottomBar/MarginContainer/HBoxContainer/StatsWidget/HBoxContainer/LblTimer
 @onready var lbl_score: Label = $HUD/BottomBar/MarginContainer/HBoxContainer/StatsWidget/HBoxContainer/LblScore
 
@@ -226,6 +228,7 @@ func _iniciar_partida_arcade(data: NivelArcadeData) -> void:
 	score_actual = 0
 	_actualizar_score_ui(false)
 	hud.show()
+	_mostrar_top_bar(data)
 
 	if not minigame_scenes_2d.has(minijuego_id_actual):
 		push_error("No hay escena asignada para: " + minijuego_id_actual)
@@ -333,6 +336,11 @@ func _actualizar_score_ui(animar: bool = true) -> void:
 			tween.tween_property(lbl_score, "scale", Vector2(1.2, 1.2), 0.1)
 			tween.tween_property(lbl_score, "scale", Vector2.ONE, 0.12)
 
+func _mostrar_top_bar(data: NivelArcadeData) -> void:
+	if top_bar and lbl_minijuego:
+		lbl_minijuego.text = data.titulo_ui if data.titulo_ui != "" else minijuego_id_actual.replace("_", " ").to_upper()
+		top_bar.show()
+
 func _on_tiempo_agotado() -> void:
 	_detener_partida()
 	minijuego_completado_global.emit(minijuego_id_actual, score_actual)
@@ -416,6 +424,7 @@ func _detener_partida() -> void:
 
 func _limpiar_pantalla() -> void:
 	hud.hide()
+	top_bar.hide()
 	menu_niveles.hide()
 	
 	for child in container_2d.get_children():

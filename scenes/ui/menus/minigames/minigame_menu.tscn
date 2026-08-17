@@ -9,24 +9,110 @@
 [ext_resource type="Texture2D" uid="uid://bc4dv8y0yaik" path="res://assets/images/minigame_cards/Control de Interfaces.png" id="5_f7ch6"]
 [ext_resource type="Texture2D" uid="uid://crtm1mp11e06p" path="res://assets/images/minigame_cards/interface_card.png" id="6_f7ch6"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_olc83"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_header_panel"]
+content_margin_left = 14.0
+content_margin_top = 10.0
+content_margin_right = 14.0
+content_margin_bottom = 10.0
+bg_color = Color(0.02, 0.05, 0.12, 0.85)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0.75, 0.78, 0.6)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(0, 0.75, 0.78, 0.15)
+shadow_size = 4
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_score_panel"]
+content_margin_left = 14.0
+content_margin_top = 10.0
+content_margin_right = 14.0
+content_margin_bottom = 10.0
+bg_color = Color(0.02, 0.05, 0.12, 0.85)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 0.75, 0, 0.6)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(1, 0.75, 0, 0.15)
+shadow_size = 4
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_score_button"]
+content_margin_left = 12.0
+content_margin_top = 4.0
+content_margin_right = 12.0
+content_margin_bottom = 4.0
+bg_color = Color(1, 0.75, 0, 0.15)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 0.75, 0, 0.8)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_score_button_hover"]
+content_margin_left = 12.0
+content_margin_top = 4.0
+content_margin_right = 12.0
+content_margin_bottom = 4.0
+bg_color = Color(1, 0.75, 0, 0.3)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 0.75, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_main"]
 bg_color = Color(0.015409293, 0.027542468, 0.099538825, 0.54901963)
 corner_radius_top_left = 20
 corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
-expand_margin_left = 30.0
-expand_margin_top = 30.0
-expand_margin_right = 30.0
-expand_margin_bottom = 30.0
+expand_margin_left = 20.0
+expand_margin_top = 20.0
+expand_margin_right = 20.0
+expand_margin_bottom = 20.0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5cw81"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_exit"]
 bg_color = Color(0.6862745, 0, 0.03529412, 0.30980393)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
 border_color = Color(1, 0, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_exit_hover"]
+bg_color = Color(0.6862745, 0, 0.03529412, 0.5)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.2, 0.2, 1)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
@@ -46,63 +132,170 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_j7ftu")
 
-[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1734048943]
+[node name="HeaderBar" type="HBoxContainer" parent="." unique_id=1904414054]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = 80.0
+grow_horizontal = 2
+
+[node name="PlayerInfoPanel" type="PanelContainer" parent="HeaderBar" unique_id=363227214]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_header_panel")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HeaderBar/PlayerInfoPanel" unique_id=1961204703]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="AvatarPlaceholder" type="PanelContainer" parent="HeaderBar/PlayerInfoPanel/HBoxContainer" unique_id=912731637]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="AvatarTexture" type="TextureRect" parent="HeaderBar/PlayerInfoPanel/HBoxContainer/AvatarPlaceholder" unique_id=2019883001]
+visible = false
+layout_mode = 2
+expand_mode = 3
+stretch_mode = 5
+
+[node name="AvatarLabel" type="Label" parent="HeaderBar/PlayerInfoPanel/HBoxContainer/AvatarPlaceholder" unique_id=1787801177]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.75, 0.78, 0.6)
+theme_override_fonts/font = ExtResource("4_h1ya4")
+theme_override_font_sizes/font_size = 20
+text = "AGT"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InfoVBox" type="VBoxContainer" parent="HeaderBar/PlayerInfoPanel/HBoxContainer" unique_id=1230496218]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="LblNombre" type="Label" parent="HeaderBar/PlayerInfoPanel/HBoxContainer/InfoVBox" unique_id=1355943560]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.75, 0.78, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.5)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_fonts/font = ExtResource("1_olc83")
+theme_override_font_sizes/font_size = 18
+text = "AGENTE DESCONOCIDO"
+
+[node name="LblPNF" type="Label" parent="HeaderBar/PlayerInfoPanel/HBoxContainer/InfoVBox" unique_id=1169546807]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.6, 0.7, 0.72, 0.8)
+theme_override_fonts/font = ExtResource("4_h1ya4")
+theme_override_font_sizes/font_size = 12
+text = "PNF: N/A"
+
+[node name="LblRol" type="Label" parent="HeaderBar/PlayerInfoPanel/HBoxContainer/InfoVBox" unique_id=577803855]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.6, 0.7, 0.72, 0.6)
+theme_override_fonts/font = ExtResource("4_h1ya4")
+theme_override_font_sizes/font_size = 11
+text = "ROL: AGENTE NOVEL"
+
+[node name="Spacer" type="Control" parent="HeaderBar" unique_id=995817193]
+custom_minimum_size = Vector2(12, 0)
+layout_mode = 2
+
+[node name="ScoreButtonPanel" type="PanelContainer" parent="HeaderBar" unique_id=993841575]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_score_panel")
+
+[node name="VBox" type="VBoxContainer" parent="HeaderBar/ScoreButtonPanel" unique_id=1212308372]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="LblScoreTitle" type="Label" parent="HeaderBar/ScoreButtonPanel/VBox" unique_id=144714108]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.75, 0, 0.6)
+theme_override_fonts/font = ExtResource("4_h1ya4")
+theme_override_font_sizes/font_size = 10
+text = "PUNTUACION TOTAL"
+horizontal_alignment = 1
+
+[node name="LblScoreValue" type="Label" parent="HeaderBar/ScoreButtonPanel/VBox" unique_id=1348020487]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.75, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.6)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_fonts/font = ExtResource("1_olc83")
+theme_override_font_sizes/font_size = 22
+text = "0"
+horizontal_alignment = 1
+
+[node name="ScoreButton" type="Button" parent="HeaderBar/ScoreButtonPanel/VBox" unique_id=805845066]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_h1ya4")
+theme_override_font_sizes/font_size = 13
+theme_override_styles/normal = SubResource("StyleBoxFlat_score_button")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_score_button")
+theme_override_styles/hover = SubResource("StyleBoxFlat_score_button_hover")
+text = "Ver Puntuaciones"
+
+[node name="MainPanel" type="PanelContainer" parent="." unique_id=795959707]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -521.0
-offset_top = -213.5
-offset_right = 521.0
-offset_bottom = 213.5
+offset_left = -520.75
+offset_top = -176.0
+offset_right = 521.25
+offset_bottom = 287.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_olc83")
+theme_override_styles/panel = SubResource("StyleBoxFlat_main")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=1683879160]
+[node name="VBoxContainer" type="VBoxContainer" parent="MainPanel" unique_id=1205080398]
 layout_mode = 2
-theme_override_constants/separation = 22
+theme_override_constants/separation = 14
 
-[node name="Label" type="Label" parent="PanelContainer/VBoxContainer" unique_id=1714138960]
+[node name="Label" type="Label" parent="MainPanel/VBoxContainer" unique_id=1418458022]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.41275156, 0.85660833, 0.87169224, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = -6
 theme_override_fonts/font = ExtResource("1_olc83")
-theme_override_font_sizes/font_size = 38
-text = "SELECCIONA UN MÓDULO"
+theme_override_font_sizes/font_size = 34
+text = "SELECCIONA UN MODULO"
 horizontal_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=191914833]
+[node name="HBoxContainer" type="HBoxContainer" parent="MainPanel/VBoxContainer" unique_id=992945932]
 layout_mode = 2
 theme_override_constants/separation = 18
 alignment = 1
 
-[node name="MinigameCard3" parent="PanelContainer/VBoxContainer/HBoxContainer" unique_id=1661023643 instance=ExtResource("1_34juq")]
+[node name="MinigameCard3" parent="MainPanel/VBoxContainer/HBoxContainer" unique_id=1661023643 instance=ExtResource("1_34juq")]
 layout_mode = 2
 minigame_id = "infrastructure_rush"
 es_en_mundo_3d = true
 requiere_enfoque_camara_3d = true
-titulo = "Infraestructura Tecnológica"
-descripcion = "Cablea la red y bastiona los nodos antes de la auditoría"
+titulo = "Infraestructura Tecnologica"
+descripcion = "Cablea la red y bastiona los nodos antes de la auditoria"
 icono_imagen = ExtResource("4_w1y3d")
 
-[node name="MinigameCard2" parent="PanelContainer/VBoxContainer/HBoxContainer" unique_id=940555104 instance=ExtResource("1_34juq")]
+[node name="MinigameCard2" parent="MainPanel/VBoxContainer/HBoxContainer" unique_id=94055510 instance=ExtResource("1_34juq")]
 layout_mode = 2
 minigame_id = "access_control"
 es_en_mundo_3d = true
 requiere_enfoque_camara_3d = true
 titulo = "Control de Interfaces"
-descripcion = "Verifica credenciales y decide quién accede al sistema"
+descripcion = "Verifica credenciales y decide quien accede al sistema"
 icono_imagen = ExtResource("5_f7ch6")
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=258673920]
+[node name="HBoxContainer2" type="HBoxContainer" parent="MainPanel/VBoxContainer" unique_id=1510099291]
 layout_mode = 2
 theme_override_constants/separation = 22
 
-[node name="MinigameCard" parent="PanelContainer/VBoxContainer/HBoxContainer2" unique_id=481520060 instance=ExtResource("1_34juq")]
+[node name="MinigameCard" parent="MainPanel/VBoxContainer/HBoxContainer2" unique_id=481520060 instance=ExtResource("1_34juq")]
 layout_mode = 2
 minigame_id = "phishing"
 requiere_enfoque_camara_3d = true
@@ -110,49 +303,48 @@ titulo = "Tienda de Transacciones"
 descripcion = "Evita estafas de phishing verificando certificados"
 icono_imagen = ExtResource("4_5cw81")
 
-[node name="MinigameCard2" parent="PanelContainer/VBoxContainer/HBoxContainer2" unique_id=1707418510 instance=ExtResource("1_34juq")]
+[node name="MinigameCard2" parent="MainPanel/VBoxContainer/HBoxContainer2" unique_id=1707418510 instance=ExtResource("1_34juq")]
 layout_mode = 2
 minigame_id = "log_stream"
-titulo = "Log Stream Defender"
-descripcion = "Clasifica el tráfico en vivo: ignora, bloquea o aísla"
+titulo = "Trafico de Red"
+descripcion = "Clasifica el trafico en vivo: ignora, bloquea o aislA"
 icono_imagen = ExtResource("6_f7ch6")
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=770386599]
+[node name="HBoxContainer3" type="HBoxContainer" parent="MainPanel/VBoxContainer" unique_id=398172772]
 layout_mode = 2
 theme_override_constants/separation = 22
 
-[node name="MinigameCard2" parent="PanelContainer/VBoxContainer/HBoxContainer3" unique_id=1309704075 instance=ExtResource("1_34juq")]
+[node name="MinigameCard2" parent="MainPanel/VBoxContainer/HBoxContainer3" unique_id=1309704075 instance=ExtResource("1_34juq")]
 layout_mode = 2
 minigame_id = "cyber_tools"
 es_en_mundo_3d = true
 requiere_enfoque_camara_3d = true
 titulo = "CyberTools"
-descripcion = "Empareja herramientas de ciberseguridad
-con su descripción"
+descripcion = "Empareja herramientas de ciberseguridad con su descripcion"
 icono_imagen = ExtResource("6_f7ch6")
 
-[node name="MinigameCard3" parent="PanelContainer/VBoxContainer/HBoxContainer3" unique_id=1309704076 instance=ExtResource("1_34juq")]
+[node name="MinigameCard3" parent="MainPanel/VBoxContainer/HBoxContainer3" unique_id=1309704076 instance=ExtResource("1_34juq")]
 layout_mode = 2
 minigame_id = "soc_td_3d"
 es_en_mundo_3d = true
-titulo = "SOC Defender TD"
+titulo = "Sistema de Amenazas"
 descripcion = "Defiende la red por carriles: coloca defensas y frena a las amenazas"
 
-[node name="HBoxContainer4" type="HBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=1707418504]
+[node name="HBoxContainer4" type="HBoxContainer" parent="MainPanel/VBoxContainer" unique_id=833071143]
 layout_mode = 2
 alignment = 1
 
-[node name="HBoxContainer5" type="HBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=1707418505]
+[node name="HBoxContainer5" type="HBoxContainer" parent="MainPanel/VBoxContainer" unique_id=1834657377]
 layout_mode = 2
 alignment = 1
 
-[node name="BackButton" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer5" unique_id=576873313]
+[node name="BackButton" type="Button" parent="MainPanel/VBoxContainer/HBoxContainer5" unique_id=576873313]
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("4_h1ya4")
 theme_override_font_sizes/font_size = 24
-theme_override_styles/normal = SubResource("StyleBoxFlat_5cw81")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_5cw81")
-theme_override_styles/hover = SubResource("StyleBoxFlat_5cw81")
+theme_override_styles/normal = SubResource("StyleBoxFlat_exit")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_exit")
+theme_override_styles/hover = SubResource("StyleBoxFlat_exit_hover")
 text = "Salir"
