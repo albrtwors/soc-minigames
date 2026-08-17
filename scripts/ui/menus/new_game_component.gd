@@ -17,6 +17,14 @@ signal canceled
 const PNFS = ["Informatica", "Electronica", "Telecomunicaciones", "Mantenimiento", "Mecanica", "Contaduria", "Administracion", "Electricidad"]
 const ROLES = ["Novato", "Estudiante", "Ciberexperto"]
 
+var _slot_id: int = 0
+
+func set_slot_id(id: int) -> void:
+	_slot_id = id
+
+func get_slot_id() -> int:
+	return _slot_id
+
 func _ready() -> void:
 	pnf_option.clear()
 	for pnf in PNFS:

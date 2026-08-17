@@ -1,35 +1,38 @@
 # SaveComponent.gd
 extends Node
 
-const SAVE_PATH = "user://soc_savegame.tres"
-
 func _ready() -> void:
 	EventBus.save_requested.connect(_on_save_requested)
 	EventBus.load_requested.connect(_on_load_requested)
+	EventBus.delete_save_requested.connect(_on_delete_requested)
 
-func _on_save_requested(save_data: SaveData) -> void:
+func _on_save_requested(save_data: SaveData, slot_id: int) -> void:
 	if not save_data:
-		EventBus.game_saved.emit(false)
+		EventBus.game_saved.emit(false, slot_id)
 		return
-		
-	var error = ResourceSaver.save(save_data, SAVE_PATH)
+	var error = ResourceSaver.save(save_data, GameManager._get_slot_path(slot_id))
 	if error == OK:
-		EventBus.game_saved.emit(true)
-		EventBus.game_loaded.emit(save_data)
+		EventBus.game_saved.emit(true, slot_id)
+		EventBus.game_loaded.emit(save_data, slot_id)
+		EventBus.saves_list_updated.emit(GameManager.get_all_slots())
 	else:
-		push_error("Error al guardar el recurso de partida: ", error)
-		EventBus.game_saved.emit(false)
+		push_error("Error al guardar en slot " + str(slot_id) + ": " + str(error))
+		EventBus.game_saved.emit(false, slot_id)
 
-func _on_load_requested() -> void:
-	if not ResourceLoader.exists(SAVE_PATH):
-		# Si no existe archivo previo, devolvemos un recurso nuevo con los valores por defecto
-		var new_save = SaveData.new()
-		EventBus.game_loaded.emit(new_save)
+func _on_load_requested(slot_id: int) -> void:
+	var path = GameManager._get_slot_path(slot_id)
+	if not ResourceLoader.exists(path):
+		EventBus.game_loaded.emit(SaveData.new(), slot_id)
 		return
-		
-	var loaded_save = ResourceLoader.load(SAVE_PATH) as SaveData
+	var loaded_save = ResourceLoader.load(path) as SaveData
 	if loaded_save:
-		EventBus.game_loaded.emit(loaded_save)
+		EventBus.game_loaded.emit(loaded_save, slot_id)
 	else:
-		push_warning("Archivo de guardado corrupto o incompatible. Creando uno nuevo.")
-		EventBus.game_loaded.emit(SaveData.new())
+		push_warning("Slot " + str(slot_id) + " corrupto. Creando uno nuevo.")
+		EventBus.game_loaded.emit(SaveData.new(), slot_id)
+
+func _on_delete_requested(slot_id: int) -> void:
+	var path = GameManager._get_slot_path(slot_id)
+	if ResourceLoader.exists(path):
+		DirAccess.remove_absolute(path)
+	EventBus.saves_list_updated.emit(GameManager.get_all_slots())

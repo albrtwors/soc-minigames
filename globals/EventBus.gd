@@ -5,18 +5,16 @@ extends Node
 signal menu_changed(target_menu_name: String)
 
 # --- PERSISTENCIA DE DATOS ---
-signal save_requested(save_data: SaveData)
-signal load_requested
-signal game_saved(success: bool)
-signal game_loaded(save_data: SaveData)
+signal save_requested(save_data: SaveData, slot_id: int)
+signal load_requested(slot_id: int)
+signal delete_save_requested(slot_id: int)
+signal game_saved(success: bool, slot_id: int)
+signal game_loaded(save_data: SaveData, slot_id: int)
+signal saves_list_updated(saves_info: Array[Dictionary])
 
 # --- FLUJO DE MINIJUEGOS ---
-# Emitido por la UI cuando el jugador selecciona un minijuego y nivel en el mapa
 signal minigame_selected(minigame_id: String, level: int)
-
-# Emitido por el minijuego activo al terminar (gane o pierda)
 signal minigame_completed(minigame_id: String, level: int, score: int, success: bool)
 signal puntos_actualizados(points: int)
-
 
 signal user_exit

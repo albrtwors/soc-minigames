@@ -10,6 +10,9 @@
 [ext_resource type="PackedScene" uid="uid://bjdlc3ct8asdk" path="res://scenes/ui/menus/minigames/minigame_menu.tscn" id="7_yyfjg"]
 [ext_resource type="PackedScene" uid="uid://b13rbd5r5knbf" path="res://scenes/ui/menus/minigames/minigame_frame/minigame_frame_updated.tscn" id="8_a8run"]
 [ext_resource type="Script" uid="uid://iwe5rebi4q1q" path="res://scripts/ui/menus/main_menu_3d.gd" id="8_b1x3f"]
+[ext_resource type="PackedScene" path="res://scenes/ui/menus/save_slots/save_slot_selector.tscn" id="9_slots"]
+[ext_resource type="PackedScene" path="res://scenes/ui/menus/save_slots/overwrite_modal.tscn" id="10_overwrite"]
+[ext_resource type="PackedScene" path="res://scenes/ui/menus/save_slots/delete_modal.tscn" id="11_delete"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hujxm"]
 bg_color = Color(0, 0.03529412, 0.0627451, 0.13333334)
@@ -65,6 +68,18 @@ layout_mode = 1
 mouse_filter = 2
 
 [node name="MinigameFrame" parent="MainUI" unique_id=931256169 instance=ExtResource("8_a8run")]
+visible = false
+layout_mode = 1
+
+[node name="SaveSlotSelector" parent="MainUI" instance=ExtResource("9_slots")]
+visible = false
+layout_mode = 1
+
+[node name="OverwriteModal" parent="MainUI" instance=ExtResource("10_overwrite")]
+visible = false
+layout_mode = 1
+
+[node name="DeleteModal" parent="MainUI" instance=ExtResource("11_delete")]
 visible = false
 layout_mode = 1
 
