@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://cke3aoduscsho"]
+
+[ext_resource type="AudioStream" uid="uid://cu7ysxkh6ucc3" path="res://assets/music/DavidKBD - Pink Bloom Pack - 09 - Lightyear City.ogg" id="1_3xvf0"]
+
+[node name="1Menu" type="AudioStreamPlayer" unique_id=210935172]
+stream = ExtResource("1_3xvf0")

@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="NivelTutorialData" format=3]
+
+[ext_resource type="Script" uid="uid://geoqhb1uar6d" path="res://scripts/data/NivelTutorialData.gd" id="1_script"]
+
+[resource]
+script = ExtResource("1_script")
+paginas_teoria = Array[Dictionary]([{
+"imagen": null,
+"texto": "[b]NIVEL 3 - TOPOLOGÍA RED DE ÁREAS[/b]\n\nÚltimo nivel de cableado puro: misma topología de switch que el nivel 2 ([b]4 cables[/b]) pero ahora con [b]150 segundos[/b] y equipos con muchas más directivas ya configuradas.\n\nTu única tarea sigue siendo tender los cables correctos."
+}, {
+"imagen": null,
+"texto": "[b]CABLES EXACTOS A TENDER:[/b]\n1. ROUTER EDGE → SWITCH CORE (EDGE→SW)\n2. SWITCH CORE → FIREWALL (SW→FW)\n3. FIREWALL → SERV. WEB (FW→WEB)\n4. FIREWALL → SERV. DB (FW→DB)\n\nRecuerda las posiciones: EDGE a la izquierda, SWITCH CORE en el centro-izquierda, FIREWALL en el centro-derecha, SERV. WEB a la derecha y SERV. DB abajo."
+}, {
+"imagen": null,
+"texto": "[b]¡ATENCIÓN, NUEVA TRAMPA![/b] Los 5 equipos traen ahora directivas avanzadas YA ACTIVADAS y correctas: SNMP v3, Spanning Tree, IDS/IPS en línea, MFA, Backups cifrados...\n\nNo abras el panel de directivas de ningún equipo ni desactives nada: si alteras una sola directiva correcta, la auditoría fallará y perderás un intento ([b]-150 PTS[/b])."
+}, {
+"imagen": null,
+"texto": "[b]AUDITORÍA FINAL:[/b] pulsa [b]ENTER[/b] o [b]LANZAR TEST[/b] cuando los 4 cables estén tendidos.\n\nCable extra o mal tendido: [b]-100 PTS[/b] de segmentación. Cada segundo restante: [b]+10 PTS[/b]. Tienes 3 intentos de auditoría como máximo."
+}])
+tiene_demo_jugable = false
+titulo_ui = "TUTORIAL NIVEL 3"
+tipo_nivel = 0

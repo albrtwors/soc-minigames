@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="NivelTutorialData" format=3]
+
+[ext_resource type="Script" uid="uid://geoqhb1uar6d" path="res://scripts/data/NivelTutorialData.gd" id="1_script"]
+
+[resource]
+script = ExtResource("1_script")
+paginas_teoria = Array[Dictionary]([{
+"imagen": null,
+"texto": "[b]NIVEL 5 - BASTIONADO CON SWITCH[/b]\n\nBastionado con [b]5 equipos[/b] (entra el SWITCH CORE) en [b]130 segundos[/b]. Los 4 cables ya vienen tendidos: concéntrate solo en las directivas.\n\nUn clic sobre cada equipo abre su panel de interruptores."
+}, {
+"imagen": null,
+"texto": "[b]ROUTER EDGE y SWITCH CORE:[/b]\n• ROUTER EDGE: ACTIVA HTTPS habilitado (443) y SNMP v3 configurado.\n• SWITCH CORE: ACTIVA VLAN de servidores segmentada y Port Security activado.\n• El Spanning Tree del switch ya está correcto: no lo toques."
+}, {
+"imagen": null,
+"texto": "[b]FIREWALL, WEB y DB:[/b]\n• FIREWALL: DESACTIVA ICMP desde WAN permitido y ACTIVA IDS/IPS en línea.\n• SERV. WEB: ACTIVA el Parche CVE-2026-3142 (el MFA ya está bien).\n• SERV. DB: DESACTIVA Conexiones root remotas y ACTIVA Backups cifrados diarios (el Cifrado en reposo ya está bien).\n\nEn total son 10 cambios."
+}, {
+"imagen": null,
+"texto": "[b]RECUERDA:[/b] cada nodo perfecto suma [b]+150 PTS[/b], un test fallido resta [b]-150 PTS[/b] (3 intentos) y el tiempo sobrante paga [b]+10 PTS[/b] por segundo. Revisa los 5 nodos antes de lanzar la auditoría con ENTER."
+}])
+tiene_demo_jugable = false
+titulo_ui = "TUTORIAL NIVEL 5"
+tipo_nivel = 0

@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://cvy8ywr8cin80"]
+
+[ext_resource type="PackedScene" uid="uid://b3dy3lsa4vmvi" path="res://assets/models/switch/8_port_ethernet_switch.glb" id="1_xaxds"]
+
+[node name="Sketchfab_Scene" unique_id=120539906 instance=ExtResource("1_xaxds")]
+transform = Transform3D(0.14, 0, 0, 0, 0.14, 0, 0, 0, 0.14, 0, 0, 0)

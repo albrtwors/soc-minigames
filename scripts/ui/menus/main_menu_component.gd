@@ -2,12 +2,14 @@ extends Control
 
 signal new_game_pressed
 signal load_game_pressed
+signal options_pressed
 signal exit_pressed
 
 @onready var title_label: Label = $Label
 @onready var buttons: Array[Button] = [
 	$ButtonColumn/Start,
 	$ButtonColumn/Load,
+	$ButtonColumn/Options,
 	$ButtonColumn/Exit
 ]
 
@@ -57,6 +59,9 @@ func _on_btn_nueva_partida_pressed() -> void:
 
 func _on_btn_cargar_partida_pressed() -> void:
 	load_game_pressed.emit()
+
+func _on_btn_opciones_pressed() -> void:
+	options_pressed.emit()
 
 func _on_btn_salir_pressed() -> void:
 	exit_pressed.emit()

@@ -1,0 +1,122 @@
+[gd_scene format=3 uid="uid://3fb0158rg6ou"]
+
+[ext_resource type="Script" uid="uid://cp3cerjhcc06" path="res://scripts/ui/minigames/score_viewer/score_viewer.gd" id="1_script"]
+[ext_resource type="FontFile" uid="uid://bqvys55l4eplu" path="res://assets/fonts/Orbitron-Black.ttf" id="2_font_display"]
+[ext_resource type="FontFile" uid="uid://dwslao7f08kcp" path="res://assets/fonts/RobotoMono-Bold.ttf" id="3_font_bold"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
+bg_color = Color(0.015409293, 0.027542468, 0.099538825, 0.9)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.0809, 0.8983, 1, 0.4)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+expand_margin_left = 25.0
+expand_margin_top = 25.0
+expand_margin_right = 25.0
+expand_margin_bottom = 25.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_back"]
+bg_color = Color(0.6862745, 0, 0.03529412, 0.30980393)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_back_hover"]
+bg_color = Color(0.6862745, 0, 0.03529412, 0.5)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.2, 0.2, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[node name="ScoreViewer" type="Control" unique_id=2123178800]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_script")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=382768413]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -450.0
+offset_top = -280.0
+offset_right = 450.0
+offset_bottom = 280.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=1494510271]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="LblTitulo" type="Label" parent="PanelContainer/VBoxContainer" unique_id=1980763922]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0809, 0.8983, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = -4
+theme_override_constants/shadow_offset_y = 4
+theme_override_fonts/font = ExtResource("2_font_display")
+theme_override_font_sizes/font_size = 28
+text = "PUNTUACIONES"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/VBoxContainer" unique_id=822944194]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/VBoxContainer" unique_id=566739908]
+custom_minimum_size = Vector2(0, 350)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ContainerContenido" type="VBoxContainer" parent="PanelContainer/VBoxContainer/ScrollContainer" unique_id=618390865]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 8
+
+[node name="HBoxBotones" type="HBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=695716843]
+layout_mode = 2
+alignment = 1
+
+[node name="BtnVolver" type="Button" parent="PanelContainer/VBoxContainer/HBoxBotones" unique_id=350608788]
+custom_minimum_size = Vector2(160, 45)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("3_font_bold")
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_back")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_back")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_back_hover")
+text = "Volver"

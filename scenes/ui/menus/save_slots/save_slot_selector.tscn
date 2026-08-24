@@ -1,10 +1,20 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://fsfybtcpddej"]
 
-[ext_resource type="Script" path="res://scripts/ui/menus/save_slots/save_slot_selector.gd" id="1_script"]
+[ext_resource type="Script" uid="uid://djd1xso6utsbx" path="res://scripts/ui/menus/save_slots/save_slot_selector.gd" id="1_script"]
 [ext_resource type="FontFile" uid="uid://bqvys55l4eplu" path="res://assets/fonts/Orbitron-Black.ttf" id="2_orbitron"]
 [ext_resource type="FontFile" uid="uid://dwslao7f08kcp" path="res://assets/fonts/RobotoMono-Bold.ttf" id="3_roboto"]
+[ext_resource type="Texture2D" uid="uid://2m2aserrf5yt" path="res://assets/icons/icon_plus.svg" id="4_0vq7s"]
+[ext_resource type="Script" uid="uid://1irs1k04ti5u" path="res://scripts/ui/menus/save_slots/slot_hoverEffect.gd" id="4_02y4f"]
+[ext_resource type="StyleBox" uid="uid://yan30o6fapj" path="res://scenes/ui/menus/save_slots/icon_btn_normal.tres" id="4_b2ij1"]
+[ext_resource type="StyleBox" uid="uid://husdf6of5756" path="res://scenes/ui/menus/save_slots/icon_btn_hover.tres" id="5_02y4f"]
+[ext_resource type="Texture2D" uid="uid://d0a4o1275h6ii" path="res://assets/icons/icon_play.svg" id="5_uas5x"]
+[ext_resource type="Texture2D" uid="uid://dwdfudgv87cea" path="res://assets/icons/icon_trash.svg" id="6_b2ij1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_main_panel"]
+content_margin_left = 30.0
+content_margin_top = 24.0
+content_margin_right = 30.0
+content_margin_bottom = 24.0
 bg_color = Color(0.015, 0.027, 0.1, 0.95)
 border_width_left = 1
 border_width_top = 1
@@ -15,10 +25,22 @@ corner_radius_top_left = 12
 corner_radius_top_right = 12
 corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
-content_margin_left = 30.0
-content_margin_top = 24.0
-content_margin_right = 30.0
-content_margin_bottom = 24.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_back"]
+content_margin_left = 14.0
+content_margin_top = 6.0
+content_margin_right = 14.0
+content_margin_bottom = 6.0
+bg_color = Color(0.686, 0, 0.035, 0.31)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_slot_empty"]
 bg_color = Color(0.04, 0.06, 0.12, 0.8)
@@ -32,83 +54,7 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_slot_occupied"]
-bg_color = Color(0.04, 0.06, 0.12, 0.8)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0, 0.75, 0.78, 0.7)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_empty_btn"]
-bg_color = Color(0.1, 0.15, 0.25, 0.4)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0.3, 0.4, 0.55, 0.3)
-corner_radius_top_left = 6
-corner_radius_top_right = 6
-corner_radius_bottom_right = 6
-corner_radius_bottom_left = 6
-content_margin_left = 10.0
-content_margin_top = 10.0
-content_margin_right = 10.0
-content_margin_bottom = 10.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_empty_btn_hover"]
-bg_color = Color(0.15, 0.22, 0.35, 0.6)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0.3, 0.5, 0.7, 0.5)
-corner_radius_top_left = 6
-corner_radius_top_right = 6
-corner_radius_bottom_right = 6
-corner_radius_bottom_left = 6
-content_margin_left = 10.0
-content_margin_top = 10.0
-content_margin_right = 10.0
-content_margin_bottom = 10.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_delete_btn"]
-bg_color = Color(0.4, 0.05, 0.05, 0.5)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(1, 0.2, 0.2, 0.6)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
-content_margin_left = 8.0
-content_margin_top = 4.0
-content_margin_right = 8.0
-content_margin_bottom = 4.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_back"]
-bg_color = Color(0.686, 0, 0.035, 0.31)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(1, 0, 0, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-content_margin_left = 14.0
-content_margin_top = 6.0
-content_margin_right = 14.0
-content_margin_bottom = 6.0
-
-[node name="SaveSlotSelector" type="Control"]
+[node name="SaveSlotSelector" type="Control" unique_id=88398457]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -117,7 +63,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_script")
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=2102471213]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -132,12 +78,12 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_main_panel")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=1076420530]
 layout_mode = 2
 theme_override_constants/separation = 20
 alignment = 1
 
-[node name="Title" type="Label" parent="PanelContainer/VBoxContainer"]
+[node name="Title" type="Label" parent="PanelContainer/VBoxContainer" unique_id=14070218]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0.75, 0.78, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.5)
@@ -148,231 +94,7 @@ theme_override_font_sizes/font_size = 22
 text = "SELECCIONA UNA RANURA"
 horizontal_alignment = 1
 
-[node name="SlotsContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 16
-alignment = 1
-
-[node name="Slot0" type="PanelContainer" parent="PanelContainer/VBoxContainer/SlotsContainer"]
-custom_minimum_size = Vector2(220, 140)
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_slot_empty")
-
-[node name="EmptyPanel" type="VBoxContainer" parent="PanelContainer/VBoxContainer/SlotsContainer/Slot0"]
-layout_mode = 2
-theme_override_constants/separation = 6
-alignment = 1
-
-[node name="LblEmpty" type="Label" parent="PanelContainer/VBoxContainer/SlotsContainer/Slot0/EmptyPanel"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.4, 0.5, 0.6, 0.6)
-theme_override_fonts/font = ExtResource("3_roboto")
-theme_override_font_sizes/font_size = 13
-text = "RANURA VACÍA"
-horizontal_alignment = 1
-
-[node name="ButtonEmpty" type="Button" parent="PanelContainer/VBoxContainer/SlotsContainer/Slot0/EmptyPanel"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("3_roboto")
-theme_override_font_sizes/font_size = 20
-theme_override_styles/normal = SubResource("StyleBoxFlat_empty_btn")
-theme_override_styles/hover = SubResource("StyleBoxFlat_empty_btn_hover")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_empty_btn")
-text = "+"
-
-[node name="DataPanel" type="VBoxContainer" parent="PanelContainer/VBoxContainer/SlotsContainer/Slot0"]
-visible = false
-layout_mode = 2
-theme_override_constants/separation = 4
-
-[node name="LblName" type="Label" parent="PanelContainer/VBoxContainer/SlotsContainer/Slot0/DataPanel"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0.75, 0.78, 1)
-theme_override_fonts/font = ExtResource("2_orbitron")
-theme_override_font_sizes/font_size = 14
-text = "Nombre Apellido"
-horizontal_alignment = 1
-
-[node name="LblRole" type="Label" parent="PanelContainer/VBoxContainer/SlotsContainer/Slot0/DataPanel"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.7, 0.75, 0.8, 0.7)
-theme_override_fonts/font = ExtResource("3_roboto")
-theme_override_font_sizes/font_size = 11
-text = "ROL"
-horizontal_alignment = 1
-
-[node name="LblScore" type="Label" parent="PanelContainer/VBoxContainer/SlotsContainer/Slot0/DataPanel"]
-layout_mode = 2
-theme_override_colors/font_color = Color(1, 0.75, 0, 0.8)
-theme_override_fonts/font = ExtResource("3_roboto")
-theme_override_font_sizes/font_size = 13
-text = "PTS: 0"
-horizontal_alignment = 1
-
-[node name="ButtonData" type="Button" parent="PanelContainer/VBoxContainer/SlotsContainer/Slot0/DataPanel"]
-layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_empty_btn")
-theme_override_styles/hover = SubResource("StyleBoxFlat_empty_btn_hover")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_empty_btn")
-text = "Cargar"
-
-[node name="DeleteButton" type="Button" parent="PanelContainer/VBoxContainer/SlotsContainer/Slot0/DataPanel"]
-visible = false
-layout_mode = 2
-theme_override_fonts/font = ExtResource("3_roboto")
-theme_override_font_sizes/font_size = 11
-theme_override_styles/normal = SubResource("StyleBoxFlat_delete_btn")
-theme_override_styles/hover = SubResource("StyleBoxFlat_delete_btn")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_delete_btn")
-text = "Borrar"
-
-[node name="Slot1" type="PanelContainer" parent="PanelContainer/VBoxContainer/SlotsContainer"]
-custom_minimum_size = Vector2(220, 140)
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_slot_empty")
-
-[node name="EmptyPanel" type="VBoxContainer" parent="PanelContainer/VBoxContainer/SlotsContainer/Slot1"]
-layout_mode = 2
-theme_override_constants/separation = 6
-alignment = 1
-
-[node name="LblEmpty" type="Label" parent="PanelContainer/VBoxContainer/SlotsContainer/Slot1/EmptyPanel"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.4, 0.5, 0.6, 0.6)
-theme_override_fonts/font = ExtResource("3_roboto")
-theme_override_font_sizes/font_size = 13
-text = "RANURA VACÍA"
-horizontal_alignment = 1
-
-[node name="ButtonEmpty" type="Button" parent="PanelContainer/VBoxContainer/SlotsContainer/Slot1/EmptyPanel"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("3_roboto")
-theme_override_font_sizes/font_size = 20
-theme_override_styles/normal = SubResource("StyleBoxFlat_empty_btn")
-theme_override_styles/hover = SubResource("StyleBoxFlat_empty_btn_hover")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_empty_btn")
-text = "+"
-
-[node name="DataPanel" type="VBoxContainer" parent="PanelContainer/VBoxContainer/SlotsContainer/Slot1"]
-visible = false
-layout_mode = 2
-theme_override_constants/separation = 4
-
-[node name="LblName" type="Label" parent="PanelContainer/VBoxContainer/SlotsContainer/Slot1/DataPanel"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0.75, 0.78, 1)
-theme_override_fonts/font = ExtResource("2_orbitron")
-theme_override_font_sizes/font_size = 14
-text = "Nombre Apellido"
-horizontal_alignment = 1
-
-[node name="LblRole" type="Label" parent="PanelContainer/VBoxContainer/SlotsContainer/Slot1/DataPanel"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.7, 0.75, 0.8, 0.7)
-theme_override_fonts/font = ExtResource("3_roboto")
-theme_override_font_sizes/font_size = 11
-text = "ROL"
-horizontal_alignment = 1
-
-[node name="LblScore" type="Label" parent="PanelContainer/VBoxContainer/SlotsContainer/Slot1/DataPanel"]
-layout_mode = 2
-theme_override_colors/font_color = Color(1, 0.75, 0, 0.8)
-theme_override_fonts/font = ExtResource("3_roboto")
-theme_override_font_sizes/font_size = 13
-text = "PTS: 0"
-horizontal_alignment = 1
-
-[node name="ButtonData" type="Button" parent="PanelContainer/VBoxContainer/SlotsContainer/Slot1/DataPanel"]
-layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_empty_btn")
-theme_override_styles/hover = SubResource("StyleBoxFlat_empty_btn_hover")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_empty_btn")
-text = "Cargar"
-
-[node name="DeleteButton" type="Button" parent="PanelContainer/VBoxContainer/SlotsContainer/Slot1/DataPanel"]
-visible = false
-layout_mode = 2
-theme_override_fonts/font = ExtResource("3_roboto")
-theme_override_font_sizes/font_size = 11
-theme_override_styles/normal = SubResource("StyleBoxFlat_delete_btn")
-theme_override_styles/hover = SubResource("StyleBoxFlat_delete_btn")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_delete_btn")
-text = "Borrar"
-
-[node name="Slot2" type="PanelContainer" parent="PanelContainer/VBoxContainer/SlotsContainer"]
-custom_minimum_size = Vector2(220, 140)
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_slot_empty")
-
-[node name="EmptyPanel" type="VBoxContainer" parent="PanelContainer/VBoxContainer/SlotsContainer/Slot2"]
-layout_mode = 2
-theme_override_constants/separation = 6
-alignment = 1
-
-[node name="LblEmpty" type="Label" parent="PanelContainer/VBoxContainer/SlotsContainer/Slot2/EmptyPanel"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.4, 0.5, 0.6, 0.6)
-theme_override_fonts/font = ExtResource("3_roboto")
-theme_override_font_sizes/font_size = 13
-text = "RANURA VACÍA"
-horizontal_alignment = 1
-
-[node name="ButtonEmpty" type="Button" parent="PanelContainer/VBoxContainer/SlotsContainer/Slot2/EmptyPanel"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("3_roboto")
-theme_override_font_sizes/font_size = 20
-theme_override_styles/normal = SubResource("StyleBoxFlat_empty_btn")
-theme_override_styles/hover = SubResource("StyleBoxFlat_empty_btn_hover")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_empty_btn")
-text = "+"
-
-[node name="DataPanel" type="VBoxContainer" parent="PanelContainer/VBoxContainer/SlotsContainer/Slot2"]
-visible = false
-layout_mode = 2
-theme_override_constants/separation = 4
-
-[node name="LblName" type="Label" parent="PanelContainer/VBoxContainer/SlotsContainer/Slot2/DataPanel"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0.75, 0.78, 1)
-theme_override_fonts/font = ExtResource("2_orbitron")
-theme_override_font_sizes/font_size = 14
-text = "Nombre Apellido"
-horizontal_alignment = 1
-
-[node name="LblRole" type="Label" parent="PanelContainer/VBoxContainer/SlotsContainer/Slot2/DataPanel"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.7, 0.75, 0.8, 0.7)
-theme_override_fonts/font = ExtResource("3_roboto")
-theme_override_font_sizes/font_size = 11
-text = "ROL"
-horizontal_alignment = 1
-
-[node name="LblScore" type="Label" parent="PanelContainer/VBoxContainer/SlotsContainer/Slot2/DataPanel"]
-layout_mode = 2
-theme_override_colors/font_color = Color(1, 0.75, 0, 0.8)
-theme_override_fonts/font = ExtResource("3_roboto")
-theme_override_font_sizes/font_size = 13
-text = "PTS: 0"
-horizontal_alignment = 1
-
-[node name="ButtonData" type="Button" parent="PanelContainer/VBoxContainer/SlotsContainer/Slot2/DataPanel"]
-layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_empty_btn")
-theme_override_styles/hover = SubResource("StyleBoxFlat_empty_btn_hover")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_empty_btn")
-text = "Cargar"
-
-[node name="DeleteButton" type="Button" parent="PanelContainer/VBoxContainer/SlotsContainer/Slot2/DataPanel"]
-visible = false
-layout_mode = 2
-theme_override_fonts/font = ExtResource("3_roboto")
-theme_override_font_sizes/font_size = 11
-theme_override_styles/normal = SubResource("StyleBoxFlat_delete_btn")
-theme_override_styles/hover = SubResource("StyleBoxFlat_delete_btn")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_delete_btn")
-text = "Borrar"
-
-[node name="BackButton" type="Button" parent="PanelContainer/VBoxContainer"]
+[node name="BackButton" type="Button" parent="PanelContainer/VBoxContainer" unique_id=283129252]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_fonts/font = ExtResource("3_roboto")
@@ -381,3 +103,247 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_back")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_back")
 theme_override_styles/hover = SubResource("StyleBoxFlat_back")
 text = "Volver"
+
+[node name="SlotsContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=1028579275]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Slot0" type="PanelContainer" parent="PanelContainer/VBoxContainer/SlotsContainer" unique_id=574498974]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_slot_empty")
+script = ExtResource("4_02y4f")
+
+[node name="EmptyPanel" type="VBoxContainer" parent="PanelContainer/VBoxContainer/SlotsContainer/Slot0" unique_id=866732600]
+layout_mode = 2
+theme_override_constants/separation = 6
+alignment = 1
+
+[node name="LblEmpty" type="Label" parent="PanelContainer/VBoxContainer/SlotsContainer/Slot0/EmptyPanel" unique_id=1336355413]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(0.4, 0.5, 0.6, 0.6)
+theme_override_fonts/font = ExtResource("3_roboto")
+theme_override_font_sizes/font_size = 13
+text = "RANURA VACÍA"
+horizontal_alignment = 1
+
+[node name="ButtonEmpty" type="Button" parent="PanelContainer/VBoxContainer/SlotsContainer/Slot0/EmptyPanel" unique_id=1735728975]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+tooltip_text = "Crear nueva partida"
+theme_override_constants/icon_max_width = 28
+theme_override_styles/normal = ExtResource("4_b2ij1")
+theme_override_styles/hover = ExtResource("5_02y4f")
+icon = ExtResource("4_0vq7s")
+flat = true
+
+[node name="DataPanel" type="VBoxContainer" parent="PanelContainer/VBoxContainer/SlotsContainer/Slot0" unique_id=500249687]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="LblName" type="Label" parent="PanelContainer/VBoxContainer/SlotsContainer/Slot0/DataPanel" unique_id=1184304547]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.75, 0.78, 1)
+theme_override_fonts/font = ExtResource("2_orbitron")
+theme_override_font_sizes/font_size = 14
+text = "Nombre Apellido"
+horizontal_alignment = 1
+
+[node name="LblRole" type="Label" parent="PanelContainer/VBoxContainer/SlotsContainer/Slot0/DataPanel" unique_id=710124448]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.75, 0.8, 0.7)
+theme_override_fonts/font = ExtResource("3_roboto")
+theme_override_font_sizes/font_size = 11
+text = "ROL"
+horizontal_alignment = 1
+
+[node name="LblScore" type="Label" parent="PanelContainer/VBoxContainer/SlotsContainer/Slot0/DataPanel" unique_id=1416828022]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.75, 0, 0.8)
+theme_override_fonts/font = ExtResource("3_roboto")
+theme_override_font_sizes/font_size = 13
+text = "PTS: 0"
+horizontal_alignment = 1
+
+[node name="ButtonData" type="Button" parent="PanelContainer/VBoxContainer/SlotsContainer/Slot0/DataPanel" unique_id=1852468591]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+tooltip_text = "Cargar partida"
+theme_override_constants/icon_max_width = 20
+theme_override_styles/normal = ExtResource("4_b2ij1")
+theme_override_styles/hover = ExtResource("5_02y4f")
+icon = ExtResource("5_uas5x")
+flat = true
+
+[node name="DeleteButton" type="Button" parent="PanelContainer/VBoxContainer/SlotsContainer/Slot0/DataPanel" unique_id=1449684026]
+visible = false
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+tooltip_text = "Borrar partida"
+theme_override_constants/icon_max_width = 18
+theme_override_styles/normal = ExtResource("4_b2ij1")
+theme_override_styles/hover = ExtResource("5_02y4f")
+icon = ExtResource("6_b2ij1")
+flat = true
+
+[node name="Slot1" type="PanelContainer" parent="PanelContainer/VBoxContainer/SlotsContainer" unique_id=633026335]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_slot_empty")
+script = ExtResource("4_02y4f")
+
+[node name="EmptyPanel" type="VBoxContainer" parent="PanelContainer/VBoxContainer/SlotsContainer/Slot1" unique_id=1595870035]
+layout_mode = 2
+theme_override_constants/separation = 6
+alignment = 1
+
+[node name="LblEmpty" type="Label" parent="PanelContainer/VBoxContainer/SlotsContainer/Slot1/EmptyPanel" unique_id=282561543]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(0.4, 0.5, 0.6, 0.6)
+theme_override_fonts/font = ExtResource("3_roboto")
+theme_override_font_sizes/font_size = 13
+text = "RANURA VACÍA"
+horizontal_alignment = 1
+
+[node name="ButtonEmpty" type="Button" parent="PanelContainer/VBoxContainer/SlotsContainer/Slot1/EmptyPanel" unique_id=2030328283]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+tooltip_text = "Crear nueva partida"
+theme_override_constants/icon_max_width = 28
+theme_override_styles/normal = ExtResource("4_b2ij1")
+theme_override_styles/hover = ExtResource("5_02y4f")
+icon = ExtResource("4_0vq7s")
+flat = true
+
+[node name="DataPanel" type="VBoxContainer" parent="PanelContainer/VBoxContainer/SlotsContainer/Slot1" unique_id=462330053]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="LblName" type="Label" parent="PanelContainer/VBoxContainer/SlotsContainer/Slot1/DataPanel" unique_id=2000699473]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.75, 0.78, 1)
+theme_override_fonts/font = ExtResource("2_orbitron")
+theme_override_font_sizes/font_size = 14
+text = "Nombre Apellido"
+horizontal_alignment = 1
+
+[node name="LblRole" type="Label" parent="PanelContainer/VBoxContainer/SlotsContainer/Slot1/DataPanel" unique_id=1144250328]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.75, 0.8, 0.7)
+theme_override_fonts/font = ExtResource("3_roboto")
+theme_override_font_sizes/font_size = 11
+text = "ROL"
+horizontal_alignment = 1
+
+[node name="LblScore" type="Label" parent="PanelContainer/VBoxContainer/SlotsContainer/Slot1/DataPanel" unique_id=1678220594]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.75, 0, 0.8)
+theme_override_fonts/font = ExtResource("3_roboto")
+theme_override_font_sizes/font_size = 13
+text = "PTS: 0"
+horizontal_alignment = 1
+
+[node name="ButtonData" type="Button" parent="PanelContainer/VBoxContainer/SlotsContainer/Slot1/DataPanel" unique_id=1594845899]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+tooltip_text = "Cargar partida"
+theme_override_constants/icon_max_width = 20
+theme_override_styles/normal = ExtResource("4_b2ij1")
+theme_override_styles/hover = ExtResource("5_02y4f")
+icon = ExtResource("5_uas5x")
+flat = true
+
+[node name="DeleteButton" type="Button" parent="PanelContainer/VBoxContainer/SlotsContainer/Slot1/DataPanel" unique_id=828799693]
+visible = false
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+tooltip_text = "Borrar partida"
+theme_override_constants/icon_max_width = 18
+theme_override_styles/normal = ExtResource("4_b2ij1")
+theme_override_styles/hover = ExtResource("5_02y4f")
+icon = ExtResource("6_b2ij1")
+flat = true
+
+[node name="Slot2" type="PanelContainer" parent="PanelContainer/VBoxContainer/SlotsContainer" unique_id=1637316076]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_slot_empty")
+script = ExtResource("4_02y4f")
+
+[node name="EmptyPanel" type="VBoxContainer" parent="PanelContainer/VBoxContainer/SlotsContainer/Slot2" unique_id=1863554954]
+layout_mode = 2
+theme_override_constants/separation = 6
+alignment = 1
+
+[node name="LblEmpty" type="Label" parent="PanelContainer/VBoxContainer/SlotsContainer/Slot2/EmptyPanel" unique_id=1648127475]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(0.4, 0.5, 0.6, 0.6)
+theme_override_fonts/font = ExtResource("3_roboto")
+theme_override_font_sizes/font_size = 13
+text = "RANURA VACÍA"
+horizontal_alignment = 1
+
+[node name="ButtonEmpty" type="Button" parent="PanelContainer/VBoxContainer/SlotsContainer/Slot2/EmptyPanel" unique_id=421564023]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+tooltip_text = "Crear nueva partida"
+theme_override_constants/icon_max_width = 28
+theme_override_styles/normal = ExtResource("4_b2ij1")
+theme_override_styles/hover = ExtResource("5_02y4f")
+icon = ExtResource("4_0vq7s")
+flat = true
+
+[node name="DataPanel" type="VBoxContainer" parent="PanelContainer/VBoxContainer/SlotsContainer/Slot2" unique_id=759216584]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="LblName" type="Label" parent="PanelContainer/VBoxContainer/SlotsContainer/Slot2/DataPanel" unique_id=268201995]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.75, 0.78, 1)
+theme_override_fonts/font = ExtResource("2_orbitron")
+theme_override_font_sizes/font_size = 14
+text = "Nombre Apellido"
+horizontal_alignment = 1
+
+[node name="LblRole" type="Label" parent="PanelContainer/VBoxContainer/SlotsContainer/Slot2/DataPanel" unique_id=1292737374]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.75, 0.8, 0.7)
+theme_override_fonts/font = ExtResource("3_roboto")
+theme_override_font_sizes/font_size = 11
+text = "ROL"
+horizontal_alignment = 1
+
+[node name="LblScore" type="Label" parent="PanelContainer/VBoxContainer/SlotsContainer/Slot2/DataPanel" unique_id=716330419]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.75, 0, 0.8)
+theme_override_fonts/font = ExtResource("3_roboto")
+theme_override_font_sizes/font_size = 13
+text = "PTS: 0"
+horizontal_alignment = 1
+
+[node name="ButtonData" type="Button" parent="PanelContainer/VBoxContainer/SlotsContainer/Slot2/DataPanel" unique_id=66700011]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+tooltip_text = "Cargar partida"
+theme_override_constants/icon_max_width = 20
+theme_override_styles/normal = ExtResource("4_b2ij1")
+theme_override_styles/hover = ExtResource("5_02y4f")
+icon = ExtResource("5_uas5x")
+flat = true
+
+[node name="DeleteButton" type="Button" parent="PanelContainer/VBoxContainer/SlotsContainer/Slot2/DataPanel" unique_id=1420131241]
+visible = false
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+tooltip_text = "Borrar partida"
+theme_override_constants/icon_max_width = 18
+theme_override_styles/normal = ExtResource("4_b2ij1")
+theme_override_styles/hover = ExtResource("5_02y4f")
+icon = ExtResource("6_b2ij1")
+flat = true

@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="NivelTutorialData" format=3]
+
+[ext_resource type="Script" uid="uid://geoqhb1uar6d" path="res://scripts/data/NivelTutorialData.gd" id="1_script"]
+
+[resource]
+script = ExtResource("1_script")
+paginas_teoria = Array[Dictionary]([{
+"imagen": null,
+"texto": "[b]NIVEL 1 - TOPOLOGÍA BÁSICA[/b]\n\nTu misión: tender [b]3 cables[/b] para construir la red mínima de la organización antes de que acaben los [b]120 segundos[/b].\n\nEsta fase es [b]SOLO CABLEADO[/b]: las directivas de seguridad ya vienen correctamente configuradas y NO debes tocarlas."
+}, {
+"imagen": null,
+"texto": "[b]LOS DISPOSITIVOS:[/b] En la mesa hay 4 equipos:\n• [b]ROUTER EDGE[/b] (izquierda): puerta de enlace hacia Internet.\n• [b]FIREWALL[/b] (centro): guardián de la red.\n• [b]SERV. WEB[/b] (derecha).\n• [b]SERV. DB[/b] (abajo, al centro).\n\n[b]Controles:[/b] un clic IZQUIERDO selecciona un equipo y un clic sobre otro equipo tiende el cable entre ambos ([b]+200 PTS[/b])."
+}, {
+"imagen": null,
+"texto": "[b]CABLES EXACTOS A TENDER:[/b]\n1. ROUTER EDGE → FIREWALL (EDGE→FW)\n2. FIREWALL → SERV. WEB (FW→WEB)\n3. FIREWALL → SERV. DB (FW→DB)\n\nEl patrón es una cadena: el paquete sale del ROUTER EDGE, pasa por el FIREWALL y de ahí se reparte a los dos servidores.\n\nUn cable fuera de esta lista es un error de segmentación: [b]-100 PTS[/b]."
+}, {
+"imagen": null,
+"texto": "[b]AUDITORÍA FINAL:[/b] con los 3 cables tendidos pulsa [b]ENTER[/b] o el botón [b]LANZAR TEST[/b]: un paquete recorrerá la red validándola.\n\nSi fallas pierdes un intento ([b]-150 PTS[/b], máximo 3). Cada segundo restante suma [b]+10 PTS[/b]. ¡Rápido y sin errores!"
+}])
+tiene_demo_jugable = false
+titulo_ui = "TUTORIAL NIVEL 1"
+tipo_nivel = 0

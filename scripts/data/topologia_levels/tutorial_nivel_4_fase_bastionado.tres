@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="NivelTutorialData" format=3]
+
+[ext_resource type="Script" uid="uid://geoqhb1uar6d" path="res://scripts/data/NivelTutorialData.gd" id="1_script"]
+
+[resource]
+script = ExtResource("1_script")
+paginas_teoria = Array[Dictionary]([{
+"imagen": null,
+"texto": "[b]NIVEL 4 - BASTIONADO BÁSICO[/b]\n\nNueva mecánica: fase [b]SOLO BASTIONADO[/b]. Los 3 cables ya están tendidos automáticamente; tu misión es corregir la configuración de seguridad de los 4 equipos en [b]120 segundos[/b].\n\nAhora basta [b]UN clic[/b] sobre un equipo para enfocarlo y abrir su panel de directivas (interruptores). Clic derecho o ESC para volver a la vista macro."
+}, {
+"imagen": null,
+"texto": "[b]CORRECCIONES - PARTE 1:[/b]\n• [b]ROUTER EDGE:[/b] ACTIVA el interruptor HTTPS habilitado (443), está apagado.\n• [b]FIREWALL:[/b] DESACTIVA ICMP desde WAN permitido: es una trampa, debe permanecer apagado. La Regla default DROP déjala activada.\n\nEn este nivel cada equipo tiene exactamente UN interruptor mal puesto."
+}, {
+"imagen": null,
+"texto": "[b]CORRECCIONES - PARTE 2:[/b]\n• [b]SERV. WEB:[/b] ACTIVA el Parche CVE-2026-3142 aplicado.\n• [b]SERV. DB:[/b] DESACTIVA Conexiones root remotas (otra trampa). El Cifrado en reposo déjalo activado.\n\nCuando todas las directivas de un nodo quedan como corresponde ganas [b]+150 PTS[/b] (BASTIONADO PERFECTO) y el hint cambia a ESTADO: BASTIONADO OK."
+}, {
+"imagen": null,
+"texto": "[b]AUDITORÍA FINAL:[/b] pulsa [b]ENTER[/b] o [b]LANZAR TEST[/b] cuando los 4 nodos estén blindados: los paquetes comprobarán cable y directivas de cada conexión.\n\nFallo: [b]-150 PTS[/b] e intento perdido (máximo 3). Bonus de tiempo: [b]+10 PTS[/b] por segundo restante."
+}])
+tiene_demo_jugable = false
+titulo_ui = "TUTORIAL NIVEL 4"
+tipo_nivel = 0

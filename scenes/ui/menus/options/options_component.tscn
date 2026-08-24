@@ -1,0 +1,151 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/menus/options/options_component.gd" id="1_script"]
+[ext_resource type="FontFile" path="res://assets/fonts/RobotoMono-Bold.ttf" id="2_font"]
+[ext_resource type="FontFile" path="res://assets/fonts/Orbitron-Black.ttf" id="3_title"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
+content_margin_left = 36.0
+content_margin_top = 28.0
+content_margin_right = 36.0
+content_margin_bottom = 28.0
+bg_color = Color(0.006, 0.04, 0.09, 0.92)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.08085386, 0.89833015, 0.99999994, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color(0.08085386, 0.89833015, 0.15, 1)
+shadow_size = 8
+shadow_offset = Vector2(0, 4)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_button"]
+bg_color = Color(0.005916232, 0.080498, 0.17764312, 0.65882355)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.08085386, 0.89833015, 0.99999994, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+corner_detail = 5
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[node name="OptionsComponent" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_script")
+
+[node name="MainPanel" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(560, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -280.0
+offset_top = -220.0
+offset_right = 280.0
+offset_bottom = 220.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainPanel"]
+layout_mode = 2
+theme_override_constants/separation = 22
+
+[node name="Title" type="Label" parent="MainPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.41275156, 0.85660833, 0.87169224, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = -6
+theme_override_fonts/font = ExtResource("3_title")
+theme_override_font_sizes/font_size = 34
+text = "OPCIONES"
+horizontal_alignment = 1
+
+[node name="MusicRow" type="VBoxContainer" parent="MainPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="MusicHeader" type="HBoxContainer" parent="MainPanel/VBoxContainer/MusicRow"]
+layout_mode = 2
+
+[node name="MusicLabel" type="Label" parent="MainPanel/VBoxContainer/MusicRow/MusicHeader"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 20
+text = "Musica"
+
+[node name="MusicValue" type="Label" parent="MainPanel/VBoxContainer/MusicRow/MusicHeader"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.75, 0, 1)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 18
+text = "100%"
+
+[node name="MusicSlider" type="HSlider" parent="MainPanel/VBoxContainer/MusicRow"]
+custom_minimum_size = Vector2(0, 26)
+layout_mode = 2
+max_value = 100.0
+step = 1.0
+value = 100.0
+
+[node name="SfxRow" type="VBoxContainer" parent="MainPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="SfxHeader" type="HBoxContainer" parent="MainPanel/VBoxContainer/SfxRow"]
+layout_mode = 2
+
+[node name="SfxLabel" type="Label" parent="MainPanel/VBoxContainer/SfxRow/SfxHeader"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 20
+text = "Efectos"
+
+[node name="SfxValue" type="Label" parent="MainPanel/VBoxContainer/SfxRow/SfxHeader"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.75, 0, 1)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 18
+text = "100%"
+
+[node name="SfxSlider" type="HSlider" parent="MainPanel/VBoxContainer/SfxRow"]
+custom_minimum_size = Vector2(0, 26)
+layout_mode = 2
+max_value = 100.0
+step = 1.0
+value = 100.0
+
+[node name="Spacer" type="Control" parent="MainPanel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="BackButton" type="Button" parent="MainPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 27
+theme_override_styles/normal = SubResource("StyleBoxFlat_button")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_button")
+theme_override_styles/hover = SubResource("StyleBoxFlat_button")
+text = "Volver"

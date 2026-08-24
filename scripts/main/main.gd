@@ -7,6 +7,7 @@ var current_slot: int = 0
 func _ready() -> void:
 	EventBus.game_loaded.connect(_on_game_loaded)
 	EventBus.minigame_completed.connect(_on_minigame_completed)
+	
 
 func _on_game_loaded(save_data: SaveData, slot_id: int) -> void:
 	partida_actual = save_data

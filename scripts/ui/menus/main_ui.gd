@@ -10,6 +10,8 @@ extends Control
 @onready var save_slot_selector: Control = $SaveSlotSelector
 @onready var overwrite_modal: Control = $OverwriteModal
 @onready var delete_modal: Control = $DeleteModal
+@onready var score_viewer: Control = $ScoreViewer
+@onready var options_component: Control = $OptionsComponent
 
 @onready var main_menu_3d: Node3D = $"../MainMenu3D"
 
@@ -30,14 +32,18 @@ const MINIJUEGOS_EN_MAPA_3D: Array[String] = [
 	"MinigameMenu": minigame_menu,
 	"MinigameFrame": minigame_frame,
 	"SaveSlotSelector": save_slot_selector,
+	"ScoreViewer": score_viewer,
+	"OptionsComponent": options_component,
 }
 
 var current_view: Control = null
 var pending_slot_id: int = 0
 
 func _ready() -> void:
+	MusicManager.play("res://assets/music/DavidKBD - Pink Bloom Pack - 09 - Lightyear City.ogg")
 	overwrite_modal.visible = false
 	delete_modal.visible = false
+	options_component.visible = false
 	_conectar_senales()
 	_switch_to_view(main_menu_component)
 
@@ -46,8 +52,14 @@ func _conectar_senales() -> void:
 		main_menu_component.new_game_pressed.connect(_on_new_game_pressed)
 	if main_menu_component.has_signal("load_game_pressed"):
 		main_menu_component.load_game_pressed.connect(_on_load_game_pressed)
+	if main_menu_component.has_signal("options_pressed"):
+		main_menu_component.options_pressed.connect(_on_options_pressed)
 	if main_menu_component.has_signal("exit_pressed"):
 		main_menu_component.exit_pressed.connect(func(): get_tree().quit())
+
+	# Options
+	if options_component.has_signal("back_pressed"):
+		options_component.back_pressed.connect(_on_options_back)
 
 	if minigame_frame.has_signal("solicitar_montar_pc_3d"):
 		minigame_frame.solicitar_montar_pc_3d.connect(_on_solicitar_montar_pc_3d)
@@ -63,6 +75,12 @@ func _conectar_senales() -> void:
 
 	if minigame_menu.has_signal("exit_requested"):
 		minigame_menu.exit_requested.connect(_on_minigame_menu_exit)
+	if minigame_menu.has_signal("score_button_pressed"):
+		minigame_menu.score_button_pressed.connect(_on_score_button_pressed)
+
+	# Score Viewer
+	if score_viewer.has_signal("back_pressed"):
+		score_viewer.back_pressed.connect(_on_score_viewer_back)
 
 	# Save Slot Selector
 	if save_slot_selector.has_signal("slot_selected"):
@@ -98,6 +116,13 @@ func _on_menu_changed_requested(view_name: String) -> void:
 	if views.has(view_name):
 		_switch_to_view(views[view_name])
 
+# --- SLOT SELECTION ---
+func _on_options_pressed() -> void:
+	_switch_to_view(options_component)
+
+func _on_options_back() -> void:
+	_switch_to_view(main_menu_component)
+
 # --- FLUJO DE NUEVA PARTIDA ---
 func _on_new_game_pressed() -> void:
 	save_slot_selector.setup(save_slot_selector.Mode.NEW)
@@ -105,6 +130,7 @@ func _on_new_game_pressed() -> void:
 
 # --- FLUJO DE CARGA ---
 func _on_load_game_pressed() -> void:
+	
 	save_slot_selector.setup(save_slot_selector.Mode.LOAD)
 	_switch_to_view(save_slot_selector)
 
@@ -227,6 +253,13 @@ func _on_minigame_menu_exit() -> void:
 			main_menu_3d.show()
 		_switch_to_view(main_menu_component)
 		EventBus.menu_changed.emit("MainMenuComponent")
+
+# --- PUNTUACIONES ---
+func _on_score_button_pressed() -> void:
+	_switch_to_view(score_viewer)
+
+func _on_score_viewer_back() -> void:
+	_switch_to_view(minigame_menu)
 
 # --- TRANSICIÓN Y CARGA 3D ---
 func _start_game_sequence() -> void:

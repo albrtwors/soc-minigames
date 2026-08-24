@@ -64,6 +64,15 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_hujxm")
 theme_override_styles/hover = SubResource("StyleBoxFlat_hujxm")
 text = "Cargar Partida"
 
+[node name="Options" type="Button" parent="ButtonColumn"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_tobqf")
+theme_override_font_sizes/font_size = 27
+theme_override_styles/normal = SubResource("StyleBoxFlat_hujxm")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_hujxm")
+theme_override_styles/hover = SubResource("StyleBoxFlat_hujxm")
+text = "Opciones"
+
 [node name="Exit" type="Button" parent="ButtonColumn" unique_id=1950620407]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_tobqf")
@@ -91,4 +100,5 @@ horizontal_alignment = 1
 
 [connection signal="pressed" from="ButtonColumn/Start" to="." method="_on_btn_nueva_partida_pressed"]
 [connection signal="pressed" from="ButtonColumn/Load" to="." method="_on_btn_cargar_partida_pressed"]
+[connection signal="pressed" from="ButtonColumn/Options" to="." method="_on_btn_opciones_pressed"]
 [connection signal="pressed" from="ButtonColumn/Exit" to="." method="_on_btn_salir_pressed"]

@@ -21,6 +21,17 @@
 # DETENER:
 #   SoundManager.stop_all()
 #   SoundManager.stop_category("ui")
+#
+# AJUSTES DE VOLUMEN (persistencia automatica):
+#   SoundManager.set_music_volume(0.8)  # lineal 0.0-1.0, aplica al bus "Music"
+#   SoundManager.set_sfx_volume(0.5)    # lineal 0.0-1.0, aplica al bus "SFX"
+#   SoundManager.get_music_volume()
+#   SoundManager.get_sfx_volume()
+#
+# Los volúmenes se aplican sobre los buses "Music" y "SFX"
+# (ver res://default_bus_layout.tres), afectando también a los
+# sonidos ya en reproducción, y se guardan solos en
+# user://settings.cfg (ajuste global, ajeno a las partidas).
 # ============================================================
 extends Node
 
@@ -35,8 +46,19 @@ var categories: Dictionary = {
 var _players: Array[AudioStreamPlayer] = []
 var _max_concurrent: int = 32
 
+const SETTINGS_PATH := "user://settings.cfg"
+const SETTINGS_SECTION := "audio"
+const MIN_BUS_LINEAR := 0.0001  # evita -inf en linear_to_db; <=0.001 silencia el bus
+
+signal audio_settings_changed(music_volume: float, sfx_volume: float)
+
+## Volúmenes globales (lineal 0.0 - 1.0), persistidos automáticamente.
+var music_volume: float = 1.0
+var sfx_volume: float = 1.0
+
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
+	_load_audio_settings()
 
 # --- API PÚBLICA ---
 
@@ -65,6 +87,8 @@ func play(stream, options: Dictionary = {}) -> AudioStreamPlayer:
 	player.stream = audio_stream
 	player.volume_db = options.get("volume_db", 0.0) + linear_to_db(cat_volume)
 	player.pitch_scale = options.get("pitch", 1.0)
+	# Meta necesario para que stop_category() pueda filtrar por categoría.
+	player.set_meta("category", category)
 	player.play(options.get("from_position", 0.0))
 
 	return player
@@ -109,9 +133,33 @@ func resume_all() -> void:
 		if player.stream_paused:
 			player.stream_paused = false
 
+## Establece el volumen global de música (lineal, 0.0 a 1.0).
+## Aplica al bus "Music" y guarda el ajuste automáticamente.
+func set_music_volume(linear: float) -> void:
+	music_volume = clamp(linear, 0.0, 1.0)
+	_apply_bus_volume("Music", music_volume)
+	_save_audio_settings()
+	audio_settings_changed.emit(music_volume, sfx_volume)
+
+## Obtiene el volumen global de música.
+func get_music_volume() -> float:
+	return music_volume
+
+## Establece el volumen global de efectos (lineal, 0.0 a 1.0).
+## Aplica al bus "SFX" y guarda el ajuste automáticamente.
+func set_sfx_volume(linear: float) -> void:
+	sfx_volume = clamp(linear, 0.0, 1.0)
+	_apply_bus_volume("SFX", sfx_volume)
+	_save_audio_settings()
+	audio_settings_changed.emit(music_volume, sfx_volume)
+
+## Obtiene el volumen global de efectos.
+func get_sfx_volume() -> float:
+	return sfx_volume
+
 ## Establece el volumen global de SFX (lineal, 0.0 a 1.0).
 func set_global_volume(linear: float) -> void:
-	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("SFX"), linear_to_db(clamp(linear, 0.0, 1.0)))
+	set_sfx_volume(linear)
 
 ## Establece el volumen de una categoría (lineal, 0.0 a 1.0).
 func set_category_volume(category: String, linear: float) -> void:
@@ -128,6 +176,41 @@ func get_playing_count() -> int:
 		if player.playing:
 			count += 1
 	return count
+
+# --- AJUSTES DE VOLUMEN (user://settings.cfg) ---
+
+## Guarda los ajustes de audio en disco (ajuste global, ajeno a las partidas).
+func save_settings() -> void:
+	_save_audio_settings()
+
+func _save_audio_settings() -> void:
+	var config := ConfigFile.new()
+	config.set_value(SETTINGS_SECTION, "music_volume", music_volume)
+	config.set_value(SETTINGS_SECTION, "sfx_volume", sfx_volume)
+	var error := config.save(SETTINGS_PATH)
+	if error != OK:
+		push_error("SoundManager: No se pudo guardar %s (error %d)" % [SETTINGS_PATH, error])
+
+func _load_audio_settings() -> void:
+	var config := ConfigFile.new()
+	if config.load(SETTINGS_PATH) != OK:
+		_apply_all_bus_volumes()  # Primera ejecución: valores por defecto.
+		return
+	music_volume = clamp(float(config.get_value(SETTINGS_SECTION, "music_volume", 1.0)), 0.0, 1.0)
+	sfx_volume = clamp(float(config.get_value(SETTINGS_SECTION, "sfx_volume", 1.0)), 0.0, 1.0)
+	_apply_all_bus_volumes()
+
+func _apply_all_bus_volumes() -> void:
+	_apply_bus_volume("Music", music_volume)
+	_apply_bus_volume("SFX", sfx_volume)
+
+func _apply_bus_volume(bus_name: String, linear: float) -> void:
+	var bus_index := AudioServer.get_bus_index(bus_name)
+	if bus_index < 0:
+		push_warning("SoundManager: El bus de audio '%s' no existe." % bus_name)
+		return
+	AudioServer.set_bus_mute(bus_index, linear <= 0.001)
+	AudioServer.set_bus_volume_db(bus_index, linear_to_db(maxf(linear, MIN_BUS_LINEAR)))
 
 # --- INTERNOS ---
 
@@ -146,7 +229,7 @@ func _get_free_player() -> AudioStreamPlayer:
 	# Crear uno nuevo si no se superó el límite
 	if _players.size() < _max_concurrent:
 		var player = AudioStreamPlayer.new()
-		player.bus = "Master"
+		player.bus = "SFX"
 		add_child(player)
 		_players.append(player)
 		return player

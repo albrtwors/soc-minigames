@@ -69,6 +69,13 @@ func _crear_dispositivo(def: Dictionary) -> Dictionary:
 	node.position = Vector3(x, tam.y * 0.5, z)
 	devices_container.add_child(node)
 
+	# Modelo 3D opcional ("modelo_3d": ruta .tscn). Si falta o falla la carga,
+	# se conserva la caja procedural como fallback.
+	var info := {"node": node, "material": mat, "color": color, "meshes_modelo": []}
+	var ruta_modelo := str(def.get("modelo_3d", ""))
+	if not ruta_modelo.is_empty():
+		info["meshes_modelo"] = _montar_modelo(node, ruta_modelo, tam)
+
 	var area := Area3D.new()
 	area.name = "Area"
 	area.collision_layer = 1
@@ -101,7 +108,99 @@ func _crear_dispositivo(def: Dictionary) -> Dictionary:
 	node.add_child(focus)
 	focus.look_at(node.global_position, Vector3.UP)
 
-	return {"node": node, "material": mat, "color": color}
+	return info
+
+# --- Modelos 3D de dispositivos ---
+
+## Instancia la escena del modelo, normaliza su escala a la huella lógica del
+## tipo y lo apoya sobre la mesa. Oculta la caja fallback. Devuelve los meshes
+## del modelo para el resaltado; [] si no se pudo montar (fallback activo).
+func _montar_modelo(raiz: MeshInstance3D, ruta: String, tam: Vector3) -> Array:
+	var packed: PackedScene = load(ruta)
+	if packed == null:
+		push_warning("Modelo 3D inexistente (%s): se usa la caja por defecto." % ruta)
+		return []
+	var inst := packed.instantiate() as Node3D
+	if inst == null:
+		push_warning("El recurso no es una escena 3D (%s): fallback." % ruta)
+		return []
+
+	inst.name = "Modelo3D"
+	raiz.add_child(inst)
+
+	var aabb := _aabb_local_de(inst)
+	if aabb.size.length() <= 0.001:
+		push_warning("Modelo 3D sin mallas (%s): fallback." % ruta)
+		inst.queue_free()
+		return []
+
+	var objetivo := maxf(tam.x, maxf(tam.y, tam.z)) * 1.35
+	var mayor := maxf(aabb.size.x, maxf(aabb.size.y, aabb.size.z))
+	inst.scale *= objetivo / mayor
+
+	# Apoyado sobre la mesa (la superficie está a -tam.y*0.5 local) y centrado.
+	aabb = _aabb_local_de(inst)
+	inst.position = Vector3(
+		-(aabb.position.x + aabb.size.x * 0.5),
+		-aabb.position.y - tam.y * 0.5,
+		-(aabb.position.z + aabb.size.z * 0.5)
+	)
+
+	raiz.mesh = null
+	return _recolectar_meshes(inst)
+
+## AABB combinado de todas las mallas del subárbol, en el espacio de "nodo".
+func _aabb_local_de(nodo: Node3D) -> AABB:
+	var total := AABB()
+	var primero := true
+	for hijo in nodo.find_children("*", "MeshInstance3D", true, false):
+		var mi := hijo as MeshInstance3D
+		if mi.mesh == null and not mi.is_visible_in_tree():
+			continue
+		var rel: Transform3D = nodo.global_transform.affine_inverse() * mi.global_transform
+		var caja := rel * mi.get_aabb()
+		total = caja if primero else total.merge(caja)
+		primero = false
+	return total
+
+func _recolectar_meshes(nodo: Node3D) -> Array:
+	var lista: Array = []
+	for hijo in nodo.find_children("*", "MeshInstance3D", true, false):
+		var mi := hijo as MeshInstance3D
+		var originales: Array = []
+		if mi.mesh:
+			for i in range(mi.mesh.get_surface_count()):
+				originales.append(mi.get_surface_override_material(i))
+		lista.append({"mi": mi, "override_original": mi.material_override, "superficies": originales})
+	return lista
+
+func _destacar_meshes(meshes: Array, activo: bool) -> void:
+	for entrada in meshes:
+		var mi: MeshInstance3D = entrada["mi"]
+		var override_original: Material = entrada["override_original"]
+		if activo:
+			if override_original:
+				var dup_ov: Material = override_original.duplicate()
+				_activar_emision(dup_ov)
+				mi.material_override = dup_ov
+			elif mi.mesh:
+				for i in range(mi.mesh.get_surface_count()):
+					var fuente: Material = mi.get_active_material(i)
+					var dup: Material = fuente.duplicate() if fuente else StandardMaterial3D.new()
+					_activar_emision(dup)
+					mi.set_surface_override_material(i, dup)
+		else:
+			mi.material_override = override_original
+			if mi.mesh:
+				for i in range(mi.mesh.get_surface_count()):
+					mi.set_surface_override_material(i, entrada["superficies"][i])
+
+func _activar_emision(mat: Material) -> void:
+	var std := mat as BaseMaterial3D
+	if std:
+		std.emission_enabled = true
+		std.emission = COLOR_SELECCION
+		std.emission_energy_multiplier = 0.55
 
 # --- Consultas ---
 
@@ -134,6 +233,8 @@ func destacar(id: String, activo: bool) -> void:
 		mat.emission_energy_multiplier = 0.8
 	else:
 		mat.emission_enabled = false
+	if not _nodos[id]["meshes_modelo"].is_empty():
+		_destacar_meshes(_nodos[id]["meshes_modelo"], activo)
 
 # --- Cables ---
 

@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="NivelTutorialData" format=3]
+
+[ext_resource type="Script" uid="uid://geoqhb1uar6d" path="res://scripts/data/NivelTutorialData.gd" id="1_script"]
+
+[resource]
+script = ExtResource("1_script")
+paginas_teoria = Array[Dictionary]([{
+"imagen": null,
+"texto": "[b]NIVEL 6 - BASTIONADO AVANZADO[/b]\n\nSe une el [b]BASTIÓN[/b]: el servidor de acceso administrativo remoto. Son [b]6 equipos[/b] a blindar en [b]150 segundos[/b]; los 5 cables ya están tendidos automáticamente.\n\nClic sobre cada equipo para abrir sus directivas (o teclas 1-9)."
+}, {
+"imagen": null,
+"texto": "[b]ROUTER EDGE, SWITCH y FIREWALL:[/b]\n• ROUTER EDGE: ACTIVA HTTPS habilitado (443) y SNMP v3 configurado.\n• SWITCH CORE: ACTIVA VLAN de servidores segmentada y Port Security activado (Spanning Tree ya está bien).\n• FIREWALL: DESACTIVA ICMP desde WAN permitido y ACTIVA IDS/IPS en línea."
+}, {
+"imagen": null,
+"texto": "[b]WEB, DB y BASTIÓN:[/b]\n• SERV. WEB: ACTIVA el Parche CVE-2026-3142 y TLS 1.3 habilitado (el MFA ya está bien).\n• SERV. DB: DESACTIVA Conexiones root remotas y ACTIVA Backups cifrados diarios.\n• BASTIÓN: ACTIVA Auditoría de sesiones y MFA en bastión (el Hardening del SO ya está bien).\n\nTotal: 12 cambios."
+}, {
+"imagen": null,
+"texto": "[b]CONSEJO:[/b] es el mismo ritmo del nivel 5 con 2 ajustes más. Recorre los equipos metódicamente y lanza el test solo cuando todos digan ESTADO: BASTIONADO OK.\n\nNodo perfecto: [b]+150 PTS[/b]. Test fallido: [b]-150 PTS[/b]. Tiempo sobrante: [b]+10 PTS[/b]/segundo."
+}])
+tiene_demo_jugable = false
+titulo_ui = "TUTORIAL NIVEL 6"
+tipo_nivel = 0

@@ -49,12 +49,12 @@ var _fade_time: float = 1.0
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	_layer_a = AudioStreamPlayer.new()
-	_layer_a.bus = "Master"
+	_layer_a.bus = "Music"
 	_layer_a.name = "MusicLayerA"
 	add_child(_layer_a)
 
 	_layer_b = AudioStreamPlayer.new()
-	_layer_b.bus = "Master"
+	_layer_b.bus = "Music"
 	_layer_b.name = "MusicLayerB"
 	add_child(_layer_b)
 

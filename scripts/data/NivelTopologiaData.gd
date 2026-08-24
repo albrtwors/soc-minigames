@@ -15,6 +15,8 @@ enum FaseMinijuego { TOPOLOGIA = 0, BASTIONADO = 1, INTEGRADO = 2 }
 ##   "nombre": String (Ej: "ROUTER EDGE"),
 ##   "tipo": String ("router" | "switch" | "firewall" | "servidor" | "bastion"),
 ##   "x": float, "z": float (posición sobre la mesa),
+##   "modelo_3d": String opcional (ruta .tscn del modelo a instanciar;
+##     si se omite o falla la carga, se usa la caja procedural por defecto),
 ##   "directivas": [ { "id": String, "etiqueta": String, "correcta": bool, "estado": bool } ]
 ## }
 ## "correcta" define el estado esperado (bastionado); "estado" es el estado inicial.

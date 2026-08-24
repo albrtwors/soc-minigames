@@ -1,0 +1,100 @@
+[gd_resource type="Resource" script_class="NivelTopologiaData" format=3]
+
+[ext_resource type="Script" uid="uid://de2umdc2swvbf" path="res://scripts/data/NivelTopologiaData.gd" id="1_topologia"]
+
+[resource]
+script = ExtResource("1_topologia")
+id_nivel = "infra_bastionado_1"
+titulo_ui = "NIVEL 4 - BASTIONADO BÁSICO"
+tiempo_limite = 120.0
+puntos_por_acierto = 100
+penalizacion_error = 25
+fase = 1
+puntos_cable_correcto = 200
+puntos_nodo_perfecto = 150
+puntos_bonus_por_segundo = 10
+penalizacion_segmentacion = 100
+penalizacion_test = 150
+intentos_test = 3
+velocidad_test = 2.0
+dispositivos = Array[Dictionary]([{
+"id": "router_edge",
+"nombre": "ROUTER EDGE",
+"tipo": "router",
+"modelo_3d": "res://scenes/models/switch/switch.tscn",
+"x": -4.0,
+"z": -2.0,
+"directivas": [{
+"id": "https",
+"etiqueta": "HTTPS habilitado (443)",
+"correcta": true,
+"estado": false
+}, {
+"id": "ssh_root",
+"etiqueta": "SSH root deshabilitado",
+"correcta": true,
+"estado": true
+}]
+}, {
+"id": "firewall",
+"nombre": "FIREWALL",
+"tipo": "firewall",
+"modelo_3d": "res://scenes/models/firewall/firewall.tscn",
+"x": 0.0,
+"z": -2.5,
+"directivas": [{
+"id": "drop",
+"etiqueta": "Regla default DROP",
+"correcta": true,
+"estado": true
+}, {
+"id": "icmp",
+"etiqueta": "ICMP desde WAN permitido",
+"correcta": false,
+"estado": true
+}]
+}, {
+"id": "web",
+"nombre": "SERV. WEB",
+"tipo": "servidor",
+"modelo_3d": "res://scenes/models/server/server.tscn",
+"x": 4.0,
+"z": -2.0,
+"directivas": [{
+"id": "patch",
+"etiqueta": "Parche CVE-2026-3142 aplicado",
+"correcta": true,
+"estado": false
+}]
+}, {
+"id": "db",
+"nombre": "SERV. DB",
+"tipo": "servidor",
+"modelo_3d": "res://scenes/models/server/server.tscn",
+"x": 0.0,
+"z": 2.2,
+"directivas": [{
+"id": "cifrado",
+"etiqueta": "Cifrado en reposo",
+"correcta": true,
+"estado": true
+}, {
+"id": "root",
+"etiqueta": "Conexiones root remotas",
+"correcta": false,
+"estado": true
+}]
+}])
+conexiones_requeridas = Array[Dictionary]([{
+"origen": "router_edge",
+"destino": "firewall",
+"etiqueta": "EDGE→FW"
+}, {
+"origen": "firewall",
+"destino": "web",
+"etiqueta": "FW→WEB"
+}, {
+"origen": "firewall",
+"destino": "db",
+"etiqueta": "FW→DB"
+}])

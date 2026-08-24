@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://skalibhrmbmy"]
+
+[ext_resource type="PackedScene" uid="uid://b6hffvpc3wyqd" path="res://assets/models/firewall/firewall.glb" id="1_pynks"]
+
+[node name="firewall" unique_id=1256072885 instance=ExtResource("1_pynks")]
+
+[node name="Cube_M_Bricks_Var_3_0" parent="." index="0" unique_id=45884582]
+transform = Transform3D(-0.31374466, 3.9816094e-08, 1.7404167e-15, 0, -1.9908047e-08, 0.45544302, 2.742843e-08, 0.45544302, 1.9908047e-08, 0, 0, 0)

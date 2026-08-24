@@ -5,8 +5,8 @@
 [resource]
 script = ExtResource("1_topologia")
 id_nivel = "infra_bastionado_2"
-titulo_ui = "NIVEL 5 - BASTIONADO"
-tiempo_limite = 100.0
+titulo_ui = "NIVEL 5 - BASTIONADO CON SWITCH"
+tiempo_limite = 130.0
 puntos_por_acierto = 100
 penalizacion_error = 25
 fase = 1
@@ -21,8 +21,9 @@ dispositivos = Array[Dictionary]([{
 "id": "router_edge",
 "nombre": "ROUTER EDGE",
 "tipo": "router",
+"modelo_3d": "res://scenes/models/switch/switch.tscn",
 "x": -5.0,
-"z": -2.5,
+"z": -2.0,
 "directivas": [{
 "id": "https",
 "etiqueta": "HTTPS habilitado (443)",
@@ -43,13 +44,14 @@ dispositivos = Array[Dictionary]([{
 "id": "switch_core",
 "nombre": "SWITCH CORE",
 "tipo": "switch",
+"modelo_3d": "res://scenes/models/switch/switch.tscn",
 "x": -1.5,
-"z": -2.8,
+"z": -2.5,
 "directivas": [{
 "id": "vlan",
 "etiqueta": "VLAN de servidores segmentada",
 "correcta": true,
-"estado": true
+"estado": false
 }, {
 "id": "port_security",
 "etiqueta": "Port Security activado",
@@ -65,7 +67,8 @@ dispositivos = Array[Dictionary]([{
 "id": "firewall",
 "nombre": "FIREWALL",
 "tipo": "firewall",
-"x": 2.5,
+"modelo_3d": "res://scenes/models/firewall/firewall.tscn",
+"x": 2.0,
 "z": -2.5,
 "directivas": [{
 "id": "drop",
@@ -87,7 +90,8 @@ dispositivos = Array[Dictionary]([{
 "id": "web",
 "nombre": "SERV. WEB",
 "tipo": "servidor",
-"x": 4.5,
+"modelo_3d": "res://scenes/models/server/server.tscn",
+"x": 5.0,
 "z": -0.5,
 "directivas": [{
 "id": "patch",
@@ -99,23 +103,19 @@ dispositivos = Array[Dictionary]([{
 "etiqueta": "MFA obligatorio en admin",
 "correcta": true,
 "estado": true
-}, {
-"id": "tls",
-"etiqueta": "TLS 1.3 habilitado",
-"correcta": true,
-"estado": false
 }]
 }, {
 "id": "db",
 "nombre": "SERV. DB",
 "tipo": "servidor",
+"modelo_3d": "res://scenes/models/server/server.tscn",
 "x": 2.0,
 "z": 2.5,
 "directivas": [{
 "id": "cifrado",
 "etiqueta": "Cifrado en reposo",
 "correcta": true,
-"estado": false
+"estado": true
 }, {
 "id": "root",
 "etiqueta": "Conexiones root remotas",
@@ -125,7 +125,7 @@ dispositivos = Array[Dictionary]([{
 "id": "backup",
 "etiqueta": "Backups cifrados diarios",
 "correcta": true,
-"estado": true
+"estado": false
 }]
 }])
 conexiones_requeridas = Array[Dictionary]([{

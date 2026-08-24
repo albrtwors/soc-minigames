@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="NivelTutorialData" format=3]
+
+[ext_resource type="Script" uid="uid://geoqhb1uar6d" path="res://scripts/data/NivelTutorialData.gd" id="1_script"]
+
+[resource]
+script = ExtResource("1_script")
+paginas_teoria = Array[Dictionary]([{
+"imagen": null,
+"texto": "[b]NIVEL 9 - INTEGRADO REDUNDANCIA[/b]\n\nAparece el [b]FW RESERVA[/b]: redundancia de firewalls para alta disponibilidad. Son [b]6 equipos[/b] y [b]170 segundos[/b] en fase integrada."
+}, {
+"imagen": null,
+"texto": "[b]LOS 6 CABLES:[/b]\n1. ROUTER EDGE → SWITCH CORE (EDGE→SW)\n2. SWITCH CORE → FIREWALL (SW→FW)\n3. SWITCH CORE → FW RESERVA (SW→FW2)\n4. FIREWALL → SERV. WEB (FW→WEB)\n5. FIREWALL → SERV. DB (FW→DB)\n6. FW RESERVA → SERV. WEB (FW2→WEB)\n\nAmbos firewalls protegen el SERV. WEB: no dejes ninguno sin cable."
+}, {
+"imagen": null,
+"texto": "[b]BASTIONADO ESTÁNDAR:[/b]\n• ROUTER EDGE: ACTIVA HTTPS habilitado (443) y SNMP v3 configurado.\n• SWITCH CORE: ACTIVA VLAN de servidores segmentada y Port Security activado.\n• FIREWALL principal: DESACTIVA ICMP desde WAN permitido y ACTIVA IDS/IPS en línea.\n• SERV. WEB: ACTIVA Parche CVE-2026-3142 y TLS 1.3 habilitado.\n• SERV. DB: DESACTIVA Conexiones root remotas y ACTIVA Backups cifrados diarios."
+}, {
+"imagen": null,
+"texto": "[b]FW RESERVA:[/b] ACTIVA Sincronización de estado activa (su Regla default DROP ya está correcta).\n\nEn total: 6 cables + 11 correcciones. Si el test falla, cada paquete de FALLO te dice si el problema fue un CABLE o el HARDENING de un nodo. Bonus: [b]+10 PTS[/b]/segundo."
+}])
+tiene_demo_jugable = false
+titulo_ui = "TUTORIAL NIVEL 9"
+tipo_nivel = 0

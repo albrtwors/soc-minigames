@@ -6,19 +6,19 @@
 script = ExtResource("1_script")
 paginas_teoria = Array[Dictionary]([{
 "imagen": null,
-"texto": "Construye la infraestructura de red de la organización sobre la mesa antes de que el tiempo se agote."
+"texto": "[b]Objetivo:[/b] Construye y asegura la infraestructura de red de una organización antes de que el tiempo se agote."
 }, {
 "imagen": null,
-"texto": "[b]Click IZQUIERDO[/b] sobre un dispositivo lo selecciona. Click IZQUIERDO sobre otro dispositivo tiende el cable entre ambos."
+"texto": "[b]TOPOLOGÍA (cables):[/b] Click IZQUIERDO sobre un dispositivo lo selecciona. Click IZQUIERDO sobre otro tiende el cable.\n\nCable correcto [b]+200 PTS[/b]. Cable no requerido = error de segmentación [b]-100 PTS[/b]."
 }, {
 "imagen": null,
-"texto": "Conecta únicamente los cables que pide el nivel (por ejemplo ROUTER EDGE → FIREWALL → SERVIDORES). Cable correcto [b]+200 PTS[/b]; un cable no requerido es un error de segmentación [b]-100 PTS[/b]."
+"texto": "[b]BASTIONADO (directivas):[/b] Doble click sobre un dispositivo abre sus directivas de seguridad. Activa las correctas para protegerlo.\n\nCada directiva correcta [b]+150 PTS[/b]."
 }, {
 "imagen": null,
-"texto": "Con la red lista, pulsa [b]ENTER[/b] o el botón [b]LANZAR TEST[/b] para auditar. Si los cables y el bastionado están en orden, los paquetes verdes superan la auditoría."
+"texto": "[b]AUDITORÍA:[/b] Cuando todo esté listo, pulsa [b]ENTER[/b] o el botón [b]LANZAR TEST[/b].\n\nSi pasas la auditoría → ganas. Si fallas → [b]-150 PTS[/b] y pierdes un intento (máximo 3)."
 }, {
 "imagen": null,
-"texto": "[b]Doble click[/b] sobre un dispositivo abre su bastionado: activa las directivas correctas. Un TEST fallido cuesta [b]-150 PTS[/b] y una auditoría. ¡Corrige y reintenta!"
+"texto": "[b]CONSEJO:[/b] Observa los nombres de los dispositivos. Un paquete viaja desde el ROUTER EDGE → FIREWALL → SERVIDORES.\n\n¡Cuida el tiempo! Cada segundo restante vale [b]+10 PTS[/b] de bonificación."
 }])
 tiene_demo_jugable = false
 titulo_ui = "TUTORIAL INFRAESTRUCTURA"

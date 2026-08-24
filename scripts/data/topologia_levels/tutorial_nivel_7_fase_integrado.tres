@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="NivelTutorialData" format=3]
+
+[ext_resource type="Script" uid="uid://geoqhb1uar6d" path="res://scripts/data/NivelTutorialData.gd" id="1_script"]
+
+[resource]
+script = ExtResource("1_script")
+paginas_teoria = Array[Dictionary]([{
+"imagen": null,
+"texto": "[b]NIVEL 7 - INTEGRADO BÁSICO[/b]\n\nComienza la fase [b]INTEGRADA[/b]: ahora hay que [b]CABLEAR Y BASTIONAR[/b]. Misma mesa pequeña del nivel 1 (4 equipos) y [b]150 segundos[/b].\n\nPlan recomendado: primero tiende todos los cables y después bastiona equipo por equipo."
+}, {
+"imagen": null,
+"texto": "[b]PASO 1 - LOS 3 CABLES:[/b]\n1. ROUTER EDGE → FIREWALL (EDGE→FW)\n2. FIREWALL → SERV. WEB (FW→WEB)\n3. FIREWALL → SERV. DB (FW→DB)\n\nClic IZQUIERDO en el origen y clic en el destino ([b]+200 PTS[/b] por cable correcto). Sin cables extra: [b]-100 PTS[/b]."
+}, {
+"imagen": null,
+"texto": "[b]PASO 2 - DOBLE CLIC PARA BASTIONAR:[/b] un doble clic (o las teclas 1-9) sobre cada equipo abre sus directivas:\n• ROUTER EDGE: ACTIVA HTTPS habilitado (443).\n• FIREWALL: DESACTIVA ICMP desde WAN permitido.\n• SERV. WEB: ACTIVA el Parche CVE-2026-3142 aplicado.\n• SERV. DB: DESACTIVA Conexiones root remotas.\n\nClic derecho o ESC para salir de la vista micro."
+}, {
+"imagen": null,
+"texto": "[b]AUDITORÍA COMPLETA:[/b] el test valida AMBAS cosas: si falta un cable o un nodo no está perfecto verás paquetes de FALLO indicando el motivo (CABLE u HARDENING).\n\nFallo: [b]-150 PTS[/b] (máximo 3 intentos). Bonus: [b]+10 PTS[/b] por segundo restante."
+}])
+tiene_demo_jugable = false
+titulo_ui = "TUTORIAL NIVEL 7"
+tipo_nivel = 0

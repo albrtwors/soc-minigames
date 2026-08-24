@@ -10,7 +10,7 @@ enum Mode { NEW, LOAD }
 var mode: Mode = Mode.LOAD
 
 @onready var title_label: Label = $PanelContainer/VBoxContainer/Title
-@onready var slots_container: HBoxContainer = $PanelContainer/VBoxContainer/SlotsContainer
+@onready var slots_container: VBoxContainer = $PanelContainer/VBoxContainer/SlotsContainer
 @onready var back_button: Button = $PanelContainer/VBoxContainer/BackButton
 @onready var slot_cards: Array[PanelContainer] = []
 

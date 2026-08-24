@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="NivelTutorialData" format=3]
+
+[ext_resource type="Script" uid="uid://geoqhb1uar6d" path="res://scripts/data/NivelTutorialData.gd" id="1_script"]
+
+[resource]
+script = ExtResource("1_script")
+paginas_teoria = Array[Dictionary]([{
+"imagen": null,
+"texto": "[b]NIVEL 10 - RED EMPRESARIAL[/b]\n\nVuelve el [b]BASTIÓN[/b] a la mesa: 6 equipos y [b]180 segundos[/b] en fase integrada (cables + bastionado).\n\nLa red crece, pero el patrón que ya conoces se mantiene."
+}, {
+"imagen": null,
+"texto": "[b]LOS 5 CABLES:[/b]\n1. ROUTER EDGE → SWITCH CORE (EDGE→SW)\n2. SWITCH CORE → FIREWALL (SW→FW)\n3. FIREWALL → SERV. WEB (FW→WEB)\n4. FIREWALL → SERV. DB (FW→DB)\n5. SWITCH CORE → BASTIÓN (SW→BASTIÓN)\n\nEl BASTIÓN (abajo a la izquierda) cuelga del SWITCH CORE."
+}, {
+"imagen": null,
+"texto": "[b]BASTIONADO COMPLETO:[/b]\n• ROUTER EDGE: ACTIVA HTTPS y SNMP v3.\n• SWITCH CORE: ACTIVA VLAN y Port Security.\n• FIREWALL: DESACTIVA ICMP desde WAN y ACTIVA IDS/IPS.\n• SERV. WEB: ACTIVA Parche CVE-2026-3142 y TLS 1.3.\n• SERV. DB: DESACTIVA root remoto y ACTIVA Backups cifrados diarios.\n• BASTIÓN: ACTIVA Auditoría de sesiones y MFA en bastión."
+}, {
+"imagen": null,
+"texto": "[b]ESTRATEGIA:[/b] 12 correcciones + 5 cables en 180 s. Tiende primero los 5 cables de un tirón y después recorre los equipos de izquierda a derecha bastionándolos.\n\nNodo perfecto: [b]+150 PTS[/b]. Cable extra: [b]-100 PTS[/b]. Test fallido: [b]-150 PTS[/b]."
+}])
+tiene_demo_jugable = false
+titulo_ui = "TUTORIAL NIVEL 10"
+tipo_nivel = 0

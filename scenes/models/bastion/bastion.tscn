@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://7bbkcevydgob"]
+
+[ext_resource type="PackedScene" uid="uid://cvg3gypmk2re7" path="res://assets/models/bastion/servers_-_data_center.glb" id="1_rlnd5"]
+
+[node name="Sketchfab_Scene" unique_id=1736702385 instance=ExtResource("1_rlnd5")]

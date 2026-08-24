@@ -50,12 +50,30 @@ signal minijuego_completado_global(id_minijuego: String, score_final: int)
 	],
 	"infrastructure_rush": [
 		"res://scripts/data/topologia_levels/tutorial_infrastructure_rush.tres",
+		"res://scripts/data/topologia_levels/tutorial_nivel_1_fase_topologia.tres",
 		"res://scripts/data/topologia_levels/nivel_1_fase_topologia.tres",
-		"res://scripts/data/topologia_levels/nivel_2_fase_bastionado.tres",
-		"res://scripts/data/topologia_levels/nivel_3_integrado.tres",
-		"res://scripts/data/topologia_levels/nivel_4_fase_topologia.tres",
+		"res://scripts/data/topologia_levels/tutorial_nivel_2_fase_topologia.tres",
+		"res://scripts/data/topologia_levels/nivel_2_fase_topologia.tres",
+		"res://scripts/data/topologia_levels/tutorial_nivel_3_fase_topologia.tres",
+		"res://scripts/data/topologia_levels/nivel_3_fase_topologia.tres",
+		"res://scripts/data/topologia_levels/tutorial_nivel_4_fase_bastionado.tres",
+		"res://scripts/data/topologia_levels/nivel_4_fase_bastionado.tres",
+		"res://scripts/data/topologia_levels/tutorial_nivel_5_fase_bastionado.tres",
 		"res://scripts/data/topologia_levels/nivel_5_fase_bastionado.tres",
-		"res://scripts/data/topologia_levels/nivel_6_fase_integrado.tres"
+		"res://scripts/data/topologia_levels/tutorial_nivel_6_fase_bastionado.tres",
+		"res://scripts/data/topologia_levels/nivel_6_fase_bastionado.tres",
+		"res://scripts/data/topologia_levels/tutorial_nivel_7_fase_integrado.tres",
+		"res://scripts/data/topologia_levels/nivel_7_fase_integrado.tres",
+		"res://scripts/data/topologia_levels/tutorial_nivel_8_fase_integrado.tres",
+		"res://scripts/data/topologia_levels/nivel_8_fase_integrado.tres",
+		"res://scripts/data/topologia_levels/tutorial_nivel_9_fase_integrado.tres",
+		"res://scripts/data/topologia_levels/nivel_9_fase_integrado.tres",
+		"res://scripts/data/topologia_levels/tutorial_nivel_10_fase_integrado.tres",
+		"res://scripts/data/topologia_levels/nivel_10_fase_integrado.tres",
+		"res://scripts/data/topologia_levels/tutorial_nivel_11_fase_integrado.tres",
+		"res://scripts/data/topologia_levels/nivel_11_fase_integrado.tres",
+		"res://scripts/data/topologia_levels/tutorial_nivel_12_capstone.tres",
+		"res://scripts/data/topologia_levels/nivel_12_capstone.tres"
 	],
 	"soc_td_3d": [
 		"res://scripts/data/soc_td_levels/tutorial_soc_td.tres",
@@ -316,11 +334,13 @@ func _on_nivel_siguiente_pressed() -> void:
 
 func _on_tutorial_pressed() -> void:
 	var rutas = level_data_resources.get(minijuego_id_actual, [])
-	if rutas.size() > 0:
-		var res_data = load(rutas[0])
+	# Busca SIEMPRE el último tutorial de la lista de niveles, nunca el primero.
+	for i in range(rutas.size() - 1, -1, -1):
+		var res_data = load(rutas[i])
 		if res_data is NivelTutorialData:
 			_detener_partida()
-			_iniciar_tutorial(res_data)
+			_cargar_nivel_por_indice(i)
+			return
 
 # --- 5. CONTROL DE PUNTOS Y TIEMPO ---
 func _on_puntos_actualizados(puntos: int) -> void:

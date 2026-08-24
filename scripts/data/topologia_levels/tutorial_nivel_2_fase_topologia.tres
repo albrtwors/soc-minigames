@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="NivelTutorialData" format=3]
+
+[ext_resource type="Script" uid="uid://geoqhb1uar6d" path="res://scripts/data/NivelTutorialData.gd" id="1_script"]
+
+[resource]
+script = ExtResource("1_script")
+paginas_teoria = Array[Dictionary]([{
+"imagen": null,
+"texto": "[b]NIVEL 2 - SEGMENTACIÓN CON SWITCH[/b]\n\nTu misión: tender [b]4 cables[/b] para montar una red segmentada con switch central en [b]120 segundos[/b].\n\nSigue siendo fase [b]SOLO CABLEADO[/b]: las directivas vienen bien configuradas y no debes modificarlas."
+}, {
+"imagen": null,
+"texto": "[b]LOS DISPOSITIVOS:[/b] ahora hay 5 equipos:\n• [b]ROUTER EDGE[/b] (izquierda).\n• [b]SWITCH CORE[/b] (centro-izquierda): la novedad de este nivel.\n• [b]FIREWALL[/b] (centro-derecha).\n• [b]SERV. WEB[/b] (derecha).\n• [b]SERV. DB[/b] (abajo, a la derecha del centro).\n\n[b]Controles:[/b] clic IZQUIERDO en un equipo y luego clic en otro para tender el cable ([b]+200 PTS[/b])."
+}, {
+"imagen": null,
+"texto": "[b]CABLES EXACTOS A TENDER:[/b]\n1. ROUTER EDGE → SWITCH CORE (EDGE→SW)\n2. SWITCH CORE → FIREWALL (SW→FW)\n3. FIREWALL → SERV. WEB (FW→WEB)\n4. FIREWALL → SERV. DB (FW→DB)\n\nLa novedad: todo el tráfico pasa ahora por el SWITCH CORE antes de llegar al FIREWALL. Nada de cable directo EDGE→FIREWALL ni entre servidores: cada cable fuera de la lista cuesta [b]-100 PTS[/b]."
+}, {
+"imagen": null,
+"texto": "[b]AUDITORÍA FINAL:[/b] con los 4 cables tendidos pulsa [b]ENTER[/b] o [b]LANZAR TEST[/b].\n\nFallo de auditoría: [b]-150 PTS[/b] e intento perdido (máximo 3). Bonus por tiempo: [b]+10 PTS[/b] por cada segundo sobrante."
+}])
+tiene_demo_jugable = false
+titulo_ui = "TUTORIAL NIVEL 2"
+tipo_nivel = 0
