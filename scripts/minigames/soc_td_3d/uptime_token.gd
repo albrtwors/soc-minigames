@@ -24,7 +24,7 @@ signal token_caducado(token: Node3D)
 var valor: int = 25
 
 ## Segundos antes de caducar.
-@export var vida_seg: float = 12.0
+@export var vida_seg: float = 15.0
 
 var _timer: Timer
 var _recogido: bool = false

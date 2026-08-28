@@ -25,7 +25,7 @@ func _ready() -> void:
 	id_defensa = "wall_ids"
 	hp_max = hp_blindaje
 	hp = hp_blindaje
-	costo = 75
+	costo = 60
 	# Un muro no necesita puntos de disparo.
 	if spawn_shoot_point:
 		spawn_shoot_point.queue_free()

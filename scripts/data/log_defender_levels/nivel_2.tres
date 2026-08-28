@@ -1,0 +1,38 @@
+[gd_resource type="Resource" script_class="NivelLogArcadeData" format=3 uid="uid://j0rm3n8o5q7r"]
+
+[ext_resource type="Script" uid="uid://so0qa2djjrcq" path="res://scripts/data/LogArcadeData.gd" id="1_log"]
+
+[resource]
+script = ExtResource("1_log")
+id_nivel = "log_defender_2"
+titulo_ui = "NIVEL 2 - TRÁFICO SOSPECHOSO"
+tiempo_limite = 40.0
+puntos_por_acierto = 120
+penalizacion_error = 30
+cantidad_carriles = 3
+velocidad_caida = 0.18
+lista_logs = Array[Dictionary]([{
+"texto": "GET /api/users 200 OK",
+"respuesta": 0
+}, {
+"texto": "POST /admin/login 403 [120 req/s]",
+"respuesta": 1
+}, {
+"texto": "10.0.0.15 -> 198.51.100.x:8443 [C2 Beacon]",
+"respuesta": 2
+}, {
+"texto": "SSH brute-force: 45 intentos en 60s",
+"respuesta": 1
+}, {
+"texto": "GET /health 200 OK",
+"respuesta": 0
+}, {
+"texto": "DNS query: evil-domain.xyz [Tier-2]",
+"respuesta": 2
+}, {
+"texto": "PUT /config/db_backup 200 OK",
+"respuesta": 0
+}, {
+"texto": "ICMP flood desde 203.0.113.x [DDoS]",
+"respuesta": 1
+}])

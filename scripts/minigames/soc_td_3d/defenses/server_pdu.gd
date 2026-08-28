@@ -18,7 +18,7 @@ extends "res://scripts/minigames/soc_td_3d/defenses/base_defense_3d.gd"
 ## (declarada en base_defense_3d.gd).
 
 ## Intervalo entre tokens (segundos).
-@export var intervalo_generacion: float = 7.0
+@export var intervalo_generacion: float = 5.0
 
 ## Valor de cada token en $.
 @export var valor_token: int = 25
@@ -31,7 +31,7 @@ func _ready() -> void:
 	id_defensa = "server_pdu"
 	hp_max = 60.0
 	hp = hp_max
-	costo = 50
+	costo = 40
 
 	# Timer que dispara la generación de moneda periódicamente.
 	_timer = Timer.new()

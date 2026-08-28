@@ -1,0 +1,82 @@
+[gd_resource type="Resource" script_class="NivelPhishingArcadeData" format=3 uid="uid://f6ni9j4k1m3n"]
+
+[ext_resource type="Script" uid="uid://dxobj2i0rmdy5" path="res://scripts/data/NivelPhishingArcadeData.gd" id="1_ieqa2"]
+
+[resource]
+script = ExtResource("1_ieqa2")
+items_auditoria = Array[Dictionary]([{
+"asunto": "Solicitud de Acceso VPN Corporativa",
+"cuerpo": "Estimado equipo de TI, necesito acceso VPN de emergencia para trabajar desde casa esta semana. Adjunto solicitud formal.",
+"emisor": "vpn-admin@empresa-corp.com",
+"es_fraude": false,
+"hash_impreso": "a1b2c3d4e5f6",
+"hash_real": "a1b2c3d4e5f6",
+"monto": "$0.00",
+"motivo_fraude": "",
+"ssl_valido": true
+}, {
+"asunto": "ALERTA: Intento de acceso no autorizado a tu cuenta",
+"cuerpo": "Hemos detectado un intento de inicio de sesión desde una ubicación desconocida. Haz clic aquí para verificar tu identidad y proteger tu cuenta.",
+"emisor": "seguridad@microsoft-secuirty.com",
+"es_fraude": true,
+"hash_impreso": "b2c3d4e5f6a1",
+"hash_real": "998877665544",
+"monto": "$0.00",
+"motivo_fraude": "Dominio falso (typosquatting 'secuirty' en lugar de 'security'), enlace de phishing y SSL no válido.",
+"ssl_valido": false
+}, {
+"asunto": "Renovación de Licencia VMware vSphere",
+"cuerpo": "Su licencia de virtualización expira en 3 días. Adjuntamos la orden de compra para renovación anual del cluster de producción.",
+"emisor": "licencias@vmware-renewal.net",
+"es_fraude": true,
+"hash_impreso": "c3d4e5f6a1b2",
+"hash_real": "112233445566",
+"monto": "$4,800.00",
+"motivo_fraude": "Dominio no oficial (.net en lugar de .com), hash impreso no coincide con el real.",
+"ssl_valido": true
+}, {
+"asunto": "Reporte de Vulnerabilidades Mensual",
+"cuerpo": "Adjunto el reporte trimestral de escaneo de vulnerabilidades del segmento de producción. Pendiente de revisión por el equipo de seguridad.",
+"emisor": "scan-reports@qualys-corp.com",
+"es_fraude": false,
+"hash_impreso": "d4e5f6a1b2c3",
+"hash_real": "d4e5f6a1b2c3",
+"monto": "$0.00",
+"motivo_fraude": "",
+"ssl_valido": true
+}, {
+"asunto": "Urgente: Actualización de Certificado SSL",
+"cuerpo": "Su certificado SSL expira en 24 horas. Para evitar la suspensión del servicio, descargue e instale el nuevo certificado desde el enlace adjunto.",
+"emisor": "certificados@letsencrypt-ssl.org",
+"es_fraude": true,
+"hash_impreso": "e5f6a1b2c3d4",
+"hash_real": "ffeeddccbbaa",
+"monto": "$150.00",
+"motivo_fraude": "Dominio falso (letsencrypt-ssl.org no es el dominio oficial), enlace a descarga maliciosa.",
+"ssl_valido": false
+}, {
+"asunto": "Solicitud de Compra: Equipos de Red",
+"cuerpo": "Solicito aprobación para la adquisición de 5 switches Cisco para la expansión del datacenter. Presupuesto aprobado por Dirección.",
+"emisor": "compras@empresa.com",
+"es_fraude": false,
+"hash_impreso": "f6a1b2c3d4e5",
+"hash_real": "f6a1b2c3d4e5",
+"monto": "$12,500.00",
+"motivo_fraude": "",
+"ssl_valido": true
+}, {
+"asunto": "Notificación de Pago Pendiente - AWS",
+"cuerpo": "Su factura de servicios cloud del mes anterior no ha sido procesada. El acceso a la consola se verá afectado si no se regulariza en 48 horas.",
+"emisor": "billing@aws-payments.com",
+"es_fraude": true,
+"hash_impreso": "a1b2c3d4e5f7",
+"hash_real": "001122334455",
+"monto": "$2,340.00",
+"motivo_fraude": "Dominio falso (aws-payments.com no es oficial), urgencia artificial y hash alterado.",
+"ssl_valido": false
+}])
+tiempo_limite = 50.0
+penalizacion_error = 35
+id_nivel = "phishing_arc2"
+titulo_ui = "NIVEL 2: AUDITORÍA AVANZADA"
+metadata/_custom_type_script = "uid://dxobj2i0rmdy5"

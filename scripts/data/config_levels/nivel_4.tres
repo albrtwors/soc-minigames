@@ -1,0 +1,70 @@
+[gd_resource type="Resource" script_class="NivelConfigData" format=3 uid="uid://c4nf7g2h9k1l"]
+
+[ext_resource type="Script" uid="uid://doe8pxqccsw5c" path="res://scripts/data/NivelConfigData.gd" id="1_wjmxs"]
+
+[resource]
+script = ExtResource("1_wjmxs")
+nivel_id = 4
+titulo = "Nivel 4: Red Empresarial con DMZ y Respaldo"
+briefing_teoria = "Una arquitectura de red empresarial separa los servidores públicos (DMZ) de los internos. El tráfico externo debe pasar por un router de borde, luego por un firewall, y finalmente alcanzar la DMZ o la red interna. Los enlaces de respaldo garantizan disponibilidad si un componente falla."
+briefing_mision = "Conecta 'PC_External' al 'Servidor_Publico' (DMZ) y al 'Servidor_BD_Interno' (red interna). El tráfico externo usa el 'Router_Borde' → 'Firewall Principal'. El respaldo del servidor interno pasa por 'Switch_Respaldo'. Usa cables AZUL para tráfico cifrado y ROJO para enlaces de respaldo."
+debriefing_exito = "¡Red empresarial correctamente configurada! La DMZ está aislada del tráfico interno, el firewall inspecciona todo el tráfico entrante, y los enlaces de respaldo garantizan alta disponibilidad."
+conexiones_requeridas = Array[Dictionary]([{
+"cable": "AZUL",
+"destino": "Router_Borde",
+"origen": "PC_External"
+}, {
+"cable": "AZUL",
+"destino": "Firewall_Principal",
+"origen": "Router_Borde"
+}, {
+"cable": "AZUL",
+"destino": "Servidor_Publico",
+"origen": "Firewall_Principal"
+}, {
+"cable": "AZUL",
+"destino": "Switch_Interno",
+"origen": "Firewall_Principal"
+}, {
+"cable": "AZUL",
+"destino": "Servidor_BD_Interno",
+"origen": "Switch_Interno"
+}, {
+"cable": "ROJO",
+"destino": "Switch_Respaldo",
+"origen": "Servidor_BD_Interno"
+}, {
+"cable": "ROJO",
+"destino": "Switch_Respaldo",
+"origen": "Servidor_Publico"
+}])
+nodos_disponibles = Array[Dictionary]([{
+"id": "PC_External",
+"posicion": Vector2(60, 200),
+"tipo": "CLIENTE"
+}, {
+"id": "Router_Borde",
+"posicion": Vector2(220, 200),
+"tipo": "ROUTER"
+}, {
+"id": "Firewall_Principal",
+"posicion": Vector2(400, 200),
+"tipo": "FIREWALL"
+}, {
+"id": "Servidor_Publico",
+"posicion": Vector2(620, 100),
+"tipo": "SERVIDOR"
+}, {
+"id": "Switch_Interno",
+"posicion": Vector2(620, 300),
+"tipo": "SWITCH"
+}, {
+"id": "Servidor_BD_Interno",
+"posicion": Vector2(840, 300),
+"tipo": "SERVIDOR"
+}, {
+"id": "Switch_Respaldo",
+"posicion": Vector2(840, 180),
+"tipo": "SWITCH"
+}])
+metadata/_custom_type_script = "uid://doe8pxqccsw5c"

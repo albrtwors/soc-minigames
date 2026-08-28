@@ -5,30 +5,24 @@
 [resource]
 script = ExtResource("1")
 id_nivel = "soc_td_nivel_1"
-titulo_ui = "NIVEL 1"
-tiempo_limite = 90.0
-presupuesto_inicial = 150
-duracion_partida = 90.0
-valor_token_uptime = 25
-penalizacion_token_caducado = 5
-tiempo_entre_amenazas = 2.2
-velocidad_base = 1.0
+titulo_ui = "NIVEL 1 — INTRODUCCION"
+tiempo_limite = 120.0
+presupuesto_inicial = 250
+duracion_partida = 120.0
+valor_token_uptime = 35
+penalizacion_token_caducado = 2
+tiempo_entre_amenazas = 3.5
+velocidad_base = 0.7
 pool_amenazas = Array[Dictionary]([{
 "id": "script_kdd",
-"peso": 5.0
+"peso": 6.0
 }, {
 "id": "script_kdd",
-"peso": 5.0
+"peso": 6.0
 }, {
-"id": "ddos_swarm",
-"peso": 2.5
-}, {
-"id": "ransomware",
-"peso": 1.5
-}, {
-"id": "apt",
-"peso": 1.0
+"id": "script_kdd",
+"peso": 4.0
 }])
 puntos_por_amenaza = 10
-penalizacion_brecha = 100
-puntos_por_dolar_restante = 1
+penalizacion_brecha = 50
+puntos_por_dolar_restante = 2

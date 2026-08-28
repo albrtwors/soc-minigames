@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="NivelSocTdData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/NivelSocTdData.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id_nivel = "soc_td_nivel_2"
+titulo_ui = "NIVEL 2 — INTERMEDIO"
+tiempo_limite = 110.0
+presupuesto_inicial = 225
+duracion_partida = 110.0
+valor_token_uptime = 30
+penalizacion_token_caducado = 3
+tiempo_entre_amenazas = 3.0
+velocidad_base = 0.9
+pool_amenazas = Array[Dictionary]([{
+"id": "script_kdd",
+"peso": 5.0
+}, {
+"id": "script_kdd",
+"peso": 5.0
+}, {
+"id": "ddos_swarm",
+"peso": 2.5
+}, {
+"id": "ddos_swarm",
+"peso": 2.0
+}])
+puntos_por_amenaza = 15
+penalizacion_brecha = 75
+puntos_por_dolar_restante = 1

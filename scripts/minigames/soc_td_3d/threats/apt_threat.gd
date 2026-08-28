@@ -21,7 +21,7 @@ extends "res://scripts/minigames/soc_td_3d/threats/base_threat_3d.gd"
 func _ready() -> void:
 	super._ready()
 	id_amenaza = "apt"
-	hp_max = 20.0
+	hp_max = 25.0
 	hp = hp_max
-	velocidad = 2.0
-	puntos = 30
+	velocidad = 1.5
+	puntos = 40

@@ -18,6 +18,25 @@ extends Control
 const MAPA_3D_SCENE_PATH = "res://scenes/levels/main/main_level_3d.tscn"
 const POST_LOAD_DELAY: float = 0.8
 
+# --- PLAYLIST GLOBAL DE MUSICA (DavidKBD - Pink Bloom Pack) ---
+const MUSIC_PLAYLIST: Array[String] = [
+	"res://assets/music/DavidKBD - Pink Bloom Pack - 01 - Pink Bloom.ogg",
+	"res://assets/music/DavidKBD - Pink Bloom Pack - 02 - Portal to Underworld.ogg",
+	"res://assets/music/DavidKBD - Pink Bloom Pack - 03 - To the Unknown.ogg",
+	"res://assets/music/DavidKBD - Pink Bloom Pack - 04 - Valley of Spirits.ogg",
+	"res://assets/music/DavidKBD - Pink Bloom Pack - 05 - Western Cyberhorse.ogg",
+	"res://assets/music/DavidKBD - Pink Bloom Pack - 06 - Diamonds on The Ceiling.ogg",
+	"res://assets/music/DavidKBD - Pink Bloom Pack - 07 - The Hidden One.ogg",
+	"res://assets/music/DavidKBD - Pink Bloom Pack - 08 - Lost Spaceship's Signal.ogg",
+	"res://assets/music/DavidKBD - Pink Bloom Pack - 09 - Lightyear City.ogg",
+	"res://assets/music/Hotline Miami Soundtrack Paris.mp3",
+	"res://assets/music/Y2Mate.is - 31_4-rootkali0cc.mp3"
+	
+]
+
+
+const NOW_PLAYING_ICON := preload("res://assets/icons/icon_play.svg")
+
 const MINIJUEGOS_EN_MAPA_3D: Array[String] = [
 	"configuracion_cables",
 	"servidor_fisico",
@@ -40,13 +59,19 @@ var current_view: Control = null
 var pending_slot_id: int = 0
 
 func _ready() -> void:
-	MusicManager.play("res://assets/music/DavidKBD - Pink Bloom Pack - 09 - Lightyear City.ogg")
+	MusicManager.play_playlist(MUSIC_PLAYLIST)
+	MusicManager.track_changed.connect(_on_track_changed)
 	overwrite_modal.visible = false
 	delete_modal.visible = false
 	options_component.visible = false
 	_conectar_senales()
 	_switch_to_view(main_menu_component)
 
+func _input(event: InputEvent) -> void:
+	# Checks if the "zoom_in" action was just pressed
+	if event.is_action_pressed("zoom_in"):
+		MusicManager._play_next_track()
+		
 func _conectar_senales() -> void:
 	if main_menu_component.has_signal("new_game_pressed"):
 		main_menu_component.new_game_pressed.connect(_on_new_game_pressed)
@@ -207,6 +232,12 @@ func _do_load_slot(slot_id: int) -> void:
 	_start_game_sequence()
 
 # --- FLUJO DE MINIJUEGOS ---
+func _on_track_changed(track_path: String) -> void:
+	var base := track_path.get_file().get_basename()
+	var parts := base.split(" - ")
+	var title: String = parts[parts.size() - 1] if parts.size() > 0 else base
+	Toast.info("Now Playing", title, NOW_PLAYING_ICON)
+
 func _on_minigame_selected(minigame_id: String, es_3d_custom: bool = false, requiere_camara: bool = false) -> void:
 	_switch_to_view(minigame_frame)
 	minigame_frame.abrir_minijuego(minigame_id, es_3d_custom, requiere_camara)

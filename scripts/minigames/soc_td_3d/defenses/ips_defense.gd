@@ -24,7 +24,7 @@ func _ready() -> void:
 	id_defensa = "ips"
 	hp_max = 1.0
 	hp = hp_max
-	costo = 150
+	costo = 125
 	if spawn_shoot_point:
 		spawn_shoot_point.queue_free()
 		spawn_shoot_point = null

@@ -19,16 +19,16 @@ extends "res://scripts/minigames/soc_td_3d/defenses/base_defense_3d.gd"
 ## (declarada en base_defense_3d.gd).
 
 ## Daño pequeño que hace la vacuna al impactar.
-@export var dano: float = 5.0
+@export var dano: float = 10.0
 
-## Multiplicador de velocidad que aplica (0.35 = queda al 35% de su velocidad).
-@export var factor_lento: float = 0.35
+## Multiplicador de velocidad que aplica (0.30 = queda al 30% de su velocidad).
+@export var factor_lento: float = 0.30
 
 ## Duración de la cuarentena en segundos.
-@export var duracion_cuarentena: float = 3.0
+@export var duracion_cuarentena: float = 4.0
 
 ## Segundos entre disparos.
-@export var intervalo_disparo: float = 1.1
+@export var intervalo_disparo: float = 1.0
 
 @export var alcance_ray: float = 14.0
 
@@ -41,7 +41,7 @@ func _ready() -> void:
 	id_defensa = "antivirus"
 	hp_max = 80.0
 	hp = hp_max
-	costo = 125
+	costo = 100
 
 	_raycast = RayCast3D.new()
 	_raycast.target_position = Vector3(alcance_ray, 0, 0)

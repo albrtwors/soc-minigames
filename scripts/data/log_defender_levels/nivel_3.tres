@@ -1,0 +1,44 @@
+[gd_resource type="Resource" script_class="NivelLogArcadeData" format=3 uid="uid://k1sn4o9p6r8s"]
+
+[ext_resource type="Script" uid="uid://so0qa2djjrcq" path="res://scripts/data/LogArcadeData.gd" id="1_log"]
+
+[resource]
+script = ExtResource("1_log")
+id_nivel = "log_defender_3"
+titulo_ui = "NIVEL 3 - AMENAZA ACTIVA"
+tiempo_limite = 35.0
+puntos_por_acierto = 150
+penalizacion_error = 35
+cantidad_carriles = 4
+velocidad_caida = 0.24
+lista_logs = Array[Dictionary]([{
+"texto": "GET /index.html 200 OK",
+"respuesta": 0
+}, {
+"texto": "POST /wp-login.php 401 [200 req/s]",
+"respuesta": 1
+}, {
+"texto": "Reverse shell: 10.0.0.8 -> 45.33.x:4444",
+"respuesta": 2
+}, {
+"texto": "LDAP bind attempt: cn=admin [FAIL]",
+"respuesta": 1
+}, {
+"texto": "GET /css/style.css 200 OK",
+"respuesta": 0
+}, {
+"texto": "Exfiltration: 2.4MB -> tor-relay.onion",
+"respuesta": 2
+}, {
+"texto": "POST /api/upload 200 OK [3.2MB]",
+"respuesta": 0
+}, {
+"texto": "RDP login: user=admin src=172.16.x [FAIL x80]",
+"respuesta": 1
+}, {
+"texto": "GET /robots.txt 200 OK",
+"respuesta": 0
+}, {
+"texto": "C2 traffic: beacon every 30s -> 198.51.x:8080",
+"respuesta": 2
+}])

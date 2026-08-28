@@ -11,12 +11,12 @@ const DEFAULT_NIVEL_PATH := "res://scripts/data/soc_td_levels/nivel_1.tres"
 @export var token_scene: PackedScene
 
 const COSTOS_DEFECTO := {
-	"server_pdu": 50,
-	"firewall": 100,
-	"wall_ids": 75,
-	"antivirus": 125,
-	"honeypot": 100,
-	"ips": 150,
+	"server_pdu": 40,
+	"firewall": 75,
+	"wall_ids": 60,
+	"antivirus": 100,
+	"honeypot": 75,
+	"ips": 125,
 }
 
 @onready var grid_board: GridBoard3D = $GridBoard3D
@@ -44,7 +44,10 @@ var _defensa_seleccionada: String = ""
 var _ocupadas: Dictionary = {}
 var _amenazas: Array[BaseThreat3D] = []
 var _defensas_por_carril: Array = [[], [], [], [], []]
-var _backup_usado: Array[bool] = [false, false, false, false, false]
+var _backup_usado: Array[int] = [0, 0, 0, 0, 0]
+var _max_backup_por_carril: int = 2
+var _valor_token_nivel: int = 25
+var _penalizacion_token_caducado: int = 5
 
 var X_INICIAL: float = GridBoard3D.X_INICIAL
 
@@ -86,8 +89,9 @@ func inicializar_minijuego(data_nivel: Resource) -> void:
 		nivel_td = data_nivel as NivelSocTdData
 		presupuesto = nivel_td.presupuesto_inicial
 		_tiempo_restante = nivel_td.duracion_partida
-		# Asignación más alta para que la velocidad del nivel se sienta dinámica
 		_velocidad_base = maxf(0.3, nivel_td.velocidad_base)
+		_valor_token_nivel = nivel_td.valor_token_uptime
+		_penalizacion_token_caducado = nivel_td.penalizacion_token_caducado
 		for k in nivel_td.costos_defensas:
 			if int(k) != 0:
 				_costos[str(k)] = int(nivel_td.costos_defensas[k])
@@ -277,7 +281,7 @@ func _spawnear_token(pos: Vector3) -> void:
 	if pos_elevada.y < 0.6:
 		pos_elevada.y = 0.9
 		
-	token.setup(pos_elevada, 25)
+	token.setup(pos_elevada, _valor_token_nivel)
 	
 	token.token_recogido.connect(func(t: Node3D):
 		presupuesto += (t as UptimeToken).valor
@@ -286,7 +290,7 @@ func _spawnear_token(pos: Vector3) -> void:
 		_emitir_puntos()
 	)
 	token.token_caducado.connect(func(t: Node3D):
-		presupuesto = max(0, presupuesto - 5)
+		presupuesto = max(0, presupuesto - _penalizacion_token_caducado)
 		if hud:
 			hud.set_presupuesto(presupuesto)
 	)
@@ -333,8 +337,8 @@ func _on_amenaza_muerta(amenaza: BaseThreat3D) -> void:
 
 func _on_cruce_perimetro(amenaza: BaseThreat3D) -> void:
 	var lane: int = amenaza.lane
-	if not _backup_usado[lane]:
-		_backup_usado[lane] = true
+	if _backup_usado[lane] < _max_backup_por_carril:
+		_backup_usado[lane] += 1
 		_eliminar_amenazas_carril(lane)
 	else:
 		_fin_de_partida(puntos_actuales)
@@ -410,7 +414,7 @@ func _limpiar_partida() -> void:
 	_defensa_seleccionada = ""
 	_ocupadas.clear()
 	_amenazas.clear()
-	_backup_usado = [false, false, false, false, false]
+	_backup_usado = [0, 0, 0, 0, 0]
 	_defensas_por_carril = [[], [], [], [], []]
 	for child in defense_container.get_children():
 		child.queue_free()

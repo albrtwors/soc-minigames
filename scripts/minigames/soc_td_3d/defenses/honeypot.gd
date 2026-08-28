@@ -19,7 +19,7 @@ extends "res://scripts/minigames/soc_td_3d/defenses/base_defense_3d.gd"
 @export var dano_explosion: float = 500.0
 
 ## Radio en celdas del área 3x3 (1 = la celda + las 8 vecinas).
-@export var radio_celdas: int = 1
+@export var radio_celdas: int = 2
 
 ## Zona de detección (Area3D) que avisa cuando una amenaza entra en contacto.
 var _detector: Area3D
@@ -31,9 +31,9 @@ var _explotada: bool = false
 func _ready() -> void:
 	super._ready()
 	id_defensa = "honeypot"
-	hp_max = 1.0   # No se puede destruir a golpes: explota al primer contacto.
+	hp_max = 1.0
 	hp = hp_max
-	costo = 100
+	costo = 75
 	if spawn_shoot_point:
 		spawn_shoot_point.queue_free()
 		spawn_shoot_point = null

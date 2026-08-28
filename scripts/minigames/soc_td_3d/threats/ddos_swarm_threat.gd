@@ -27,10 +27,10 @@ var _timer_rafaga: Timer
 func _ready() -> void:
 	super._ready()
 	id_amenaza = "ddos_swarm"
-	hp_max = 140.0
+	hp_max = 80.0
 	hp = hp_max
 	velocidad = 1.0
-	puntos = 20
+	puntos = 25
 
 	# Oscilador de ráfaga: cada 0.9s alterna crucero/arranque.
 	_timer_rafaga = Timer.new()

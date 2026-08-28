@@ -24,17 +24,23 @@ signal minijuego_completado_global(id_minijuego: String, score_final: int)
 
 @export var level_data_resources: Dictionary = {
 	"configuracion_cables": [
-		"res://scripts/data/config_levels/00_tutorial_cables.tres",
-		"res://scripts/data/config_levels/nivel_1_arcade.tres",
-		"res://scripts/data/config_levels/nivel_2_arcade.tres"
+		"res://scripts/data/config_levels/nivel_1.tres",
+		"res://scripts/data/config_levels/nivel_2.tres",
+		"res://scripts/data/config_levels/nivel_3.tres",
+		"res://scripts/data/config_levels/nivel_4.tres",
+		"res://scripts/data/config_levels/nivel_5.tres"
 	],
 	"phishing": [
 		"res://scripts/data/phishing_levels/tutorials/phishing_arc1.tres",
-		"res://scripts/data/phishing_levels/phising_arc1.tres"
+		"res://scripts/data/phishing_levels/phising_arc1.tres",
+		"res://scripts/data/phishing_levels/phising_arc2.tres",
+		"res://scripts/data/phishing_levels/phising_arc3.tres"
 	],
 	"cyber_tools": [
 		"res://scripts/data/cyber_tools_levels/tutorial_cyber_tools.tres",
-		"res://scripts/data/cyber_tools_levels/nivel_1.tres"
+		"res://scripts/data/cyber_tools_levels/nivel_1.tres",
+		"res://scripts/data/cyber_tools_levels/nivel_2.tres",
+		"res://scripts/data/cyber_tools_levels/nivel_3.tres"
 	],
 	"bullet_dodge": [
 		"res://scripts/data/cyber_tools_levels/tutorial_bullet_dodge.tres",
@@ -46,7 +52,9 @@ signal minijuego_completado_global(id_minijuego: String, score_final: int)
 	],
 	"log_stream": [
 		"res://scripts/data/log_defender_levels/tutorial_log_stream.tres",
-		"res://scripts/data/log_defender_levels/nivel_1.tres"
+		"res://scripts/data/log_defender_levels/nivel_1.tres",
+		"res://scripts/data/log_defender_levels/nivel_2.tres",
+		"res://scripts/data/log_defender_levels/nivel_3.tres"
 	],
 	"infrastructure_rush": [
 		"res://scripts/data/topologia_levels/tutorial_infrastructure_rush.tres",
@@ -77,7 +85,9 @@ signal minijuego_completado_global(id_minijuego: String, score_final: int)
 	],
 	"soc_td_3d": [
 		"res://scripts/data/soc_td_levels/tutorial_soc_td.tres",
-		"res://scripts/data/soc_td_levels/nivel_1.tres"
+		"res://scripts/data/soc_td_levels/nivel_1.tres",
+		"res://scripts/data/soc_td_levels/nivel_2.tres",
+		"res://scripts/data/soc_td_levels/nivel_3.tres"
 	]
 }
 

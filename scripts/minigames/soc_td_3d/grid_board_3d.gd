@@ -22,7 +22,7 @@ extends Node3D
 class_name GridBoard3D
 
 # CONSTANTES DE GRID (modifícalas aquí y se propaga a todo el juego):
-const COLUMNAS := 9          # Celdas en el eje X
+const COLUMNAS := 15          # Celdas en el eje X
 const CARILES := 5           # Celdas en el eje Z
 const TAM_CELDA := 1.0       # Tamaño de celda en unidades 3D
 const X_INICIAL := -4.0      # X de la primera columna

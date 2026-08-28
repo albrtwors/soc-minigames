@@ -51,7 +51,7 @@ transform = Transform3D(0.9999761, -0.0069108023, 0.0001261366, 0, 0.01824905, 0
 shadow_enabled = true
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=838056995]
-transform = Transform3D(0.9996879, 0.005542884, -0.002649243, 0, 0.4311229, 0.9020177, 0.006143729, -0.90200067, 0.4311147, 0.033753306, 4.935705, 2.6525483)
+transform = Transform3D(0.9999811, 0.005544756, -0.002650138, 0, 0.4312301, 0.902242, 0.006145531, -0.90222496, 0.43122196, 2.8919344, 6.370429, 3.1633015)
 current = true
 
 [node name="GridBoard3D" parent="." unique_id=744909612 instance=ExtResource("2")]

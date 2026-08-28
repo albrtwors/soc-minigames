@@ -1,8 +1,8 @@
 # res://scripts/minigames/soc_td_3d/defenses/firewall_turret.gd
 extends "res://scripts/minigames/soc_td_3d/defenses/base_defense_3d.gd"
 
-@export var dano: float = 25.0
-@export var intervalo_disparo: float = 1.4
+@export var dano: float = 35.0
+@export var intervalo_disparo: float = 1.2
 @export var alcance_ray: float = 14.0
 
 var _timer: Timer
@@ -14,7 +14,7 @@ func _ready() -> void:
 	id_defensa = "firewall"
 	hp_max = 90.0
 	hp = hp_max
-	costo = 100
+	costo = 75
 
 	# RayCast elevado a Y = 0.3 para alinearse con el centro de las amenazas
 	_raycast = RayCast3D.new()

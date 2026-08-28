@@ -1,0 +1,90 @@
+[gd_resource type="Resource" script_class="NivelConfigData" format=3 uid="uid://e5mh8i3j0l2m"]
+
+[ext_resource type="Script" uid="uid://doe8pxqccsw5c" path="res://scripts/data/NivelConfigData.gd" id="1_wjmxs"]
+
+[resource]
+script = ExtResource("1_wjmxs")
+nivel_id = 5
+titulo = "Nivel 5: Centro de Datos con Seguridad en Capas"
+briefing_teoria = "La seguridad en profundidad (Defense in Depth) requiere múltiples capas de protección. Un centro de datos moderno separa tráfico de administración, producción y clientes. Cada capa tiene su propio firewall y segmentación. Los saltos entre capas deben ser explícitos y auditados."
+briefing_mision = "Conecta tres orígenes a sus destinos correspondientes atravesando todas las capas de seguridad. 'PC_Admin' accede al 'Servidor_Gestion' (capa de administración). 'PC_Cliente_1' accede al 'Servidor_Web' (capa de producción). 'PC_Cliente_2' accede al 'Servidor_App' (capa de aplicaciones). Cada flujo debe pasar por su firewall dedicado. Usa AZUL para administración, ROJO para clientes."
+debriefing_exito = "¡Centro de datos con seguridad en capas operativo! Cada flujo de tráfico está aislado en su propia capa, con firewalls independientes y segmentación completa. La arquitectura Defense in Depth está correctamente implementada."
+conexiones_requeridas = Array[Dictionary]([{
+"cable": "AZUL",
+"destino": "Firewall_Admin",
+"origen": "PC_Admin"
+}, {
+"cable": "AZUL",
+"destino": "Servidor_Gestion",
+"origen": "Firewall_Admin"
+}, {
+"cable": "ROJO",
+"destino": "Firewall_Produccion",
+"origen": "PC_Cliente_1"
+}, {
+"cable": "ROJO",
+"destino": "Servidor_Web",
+"origen": "Firewall_Produccion"
+}, {
+"cable": "ROJO",
+"destino": "Firewall_App",
+"origen": "PC_Cliente_2"
+}, {
+"cable": "ROJO",
+"destino": "Servidor_App",
+"origen": "Firewall_App"
+}, {
+"cable": "AZUL",
+"destino": "Switch_Core",
+"origen": "Servidor_Gestion"
+}, {
+"cable": "ROJO",
+"destino": "Switch_Core",
+"origen": "Servidor_Web"
+}, {
+"cable": "ROJO",
+"destino": "Switch_Core",
+"origen": "Servidor_App"
+}])
+nodos_disponibles = Array[Dictionary]([{
+"id": "PC_Admin",
+"posicion": Vector2(60, 80),
+"tipo": "CLIENTE"
+}, {
+"id": "PC_Cliente_1",
+"posicion": Vector2(60, 220),
+"tipo": "CLIENTE"
+}, {
+"id": "PC_Cliente_2",
+"posicion": Vector2(60, 360),
+"tipo": "CLIENTE"
+}, {
+"id": "Firewall_Admin",
+"posicion": Vector2(260, 80),
+"tipo": "FIREWALL"
+}, {
+"id": "Firewall_Produccion",
+"posicion": Vector2(260, 220),
+"tipo": "FIREWALL"
+}, {
+"id": "Firewall_App",
+"posicion": Vector2(260, 360),
+"tipo": "FIREWALL"
+}, {
+"id": "Servidor_Gestion",
+"posicion": Vector2(480, 80),
+"tipo": "SERVIDOR"
+}, {
+"id": "Servidor_Web",
+"posicion": Vector2(480, 220),
+"tipo": "SERVIDOR"
+}, {
+"id": "Servidor_App",
+"posicion": Vector2(480, 360),
+"tipo": "SERVIDOR"
+}, {
+"id": "Switch_Core",
+"posicion": Vector2(720, 220),
+"tipo": "SWITCH"
+}])
+metadata/_custom_type_script = "uid://doe8pxqccsw5c"

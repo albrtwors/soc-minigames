@@ -14,7 +14,7 @@ extends "res://scripts/minigames/soc_td_3d/threats/base_threat_3d.gd"
 func _ready() -> void:
 	super._ready()
 	id_amenaza = "script_kdd"
-	hp_max = 45.0
+	hp_max = 35.0
 	hp = hp_max
 	velocidad = 0.9
-	puntos = 10
+	puntos = 15

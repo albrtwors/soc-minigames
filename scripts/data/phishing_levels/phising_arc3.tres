@@ -1,0 +1,102 @@
+[gd_resource type="Resource" script_class="NivelPhishingArcadeData" format=3 uid="uid://g7oj0k5l2n4o"]
+
+[ext_resource type="Script" uid="uid://dxobj2i0rmdy5" path="res://scripts/data/NivelPhishingArcadeData.gd" id="1_ieqa2"]
+
+[resource]
+script = ExtResource("1_ieqa2")
+items_auditoria = Array[Dictionary]([{
+"asunto": "Mantenimiento Programado - Base de Datos Principal",
+"cuerpo": "Se realizará mantenimiento nocturno de la base de datos principal el próximo sábado de 02:00 a 06:00 UTC. Se espera downtime de 15 minutos.",
+"emisor": "dba-team@empresa.com",
+"es_fraude": false,
+"hash_impreso": "112233445566",
+"hash_real": "112233445566",
+"monto": "$0.00",
+"motivo_fraude": "",
+"ssl_valido": true
+}, {
+"asunto": "INVITACIÓN: Webinar Seguridad Cloud 2026",
+"cuerpo": "Le invitamos a nuestro webinar exclusivo sobre las nuevas amenazas en entornos cloud. Regístrese con su correo corporativo para acceder.",
+"emisor": "events@cloudsecurity-summit.com",
+"es_fraude": true,
+"hash_impreso": "223344556677",
+"hash_real": "aabbccddeeff",
+"monto": "$0.00",
+"motivo_fraude": "Dominio no corporativo, recopilación de correos para spear-phishing futuro, hash no coincide.",
+"ssl_valido": true
+}, {
+"asunto": "Factura de Soporte Técnico - Q1 2026",
+"cuerpo": "Adjuntamos la factura por servicios de soporte técnico del primer trimestre. Incluye soporte 24/7 para servidores críticos.",
+"emisor": "facturacion@support-enterprise.com",
+"es_fraude": true,
+"hash_impreso": "334455667788",
+"hash_real": "110022334455",
+"monto": "$3,750.00",
+"motivo_fraude": "Dominio falso (support-enterprise.com), hash impreso no coincide con el real, monto sospechosamente alto.",
+"ssl_valido": false
+}, {
+"asunto": "Aprobación de Política de Contraseñas Actualizada",
+"cuerpo": "Se ha actualizado la política de contraseñas de la empresa. Requiere implementación inmediata en todos los sistemas. Adjunto el documento con los cambios.",
+"emisor": "seguridad-corporativa@empresa.com",
+"es_fraude": false,
+"hash_impreso": "445566778899",
+"hash_real": "445566778899",
+"monto": "$0.00",
+"motivo_fraude": "",
+"ssl_valido": true
+}, {
+"asunto": "CRÍTICO: Vulnerabilidad Zero-Day en Fortinet",
+"cuerpo": "Se ha descubierto una vulnerabilidad crítica en FortiGate. Actualice inmediatamente el firmware desde el enlace oficial. Cada minuto cuenta.",
+"emisor": "fortinet-advisories@forti-net.com",
+"es_fraude": true,
+"hash_impreso": "556677889900",
+"hash_real": "ff00ee11dd22",
+"monto": "$0.00",
+"motivo_fraude": "Dominio falso (forti-net.com no es el oficial), enlace a firmware malicioso, urgencia manipulativa.",
+"ssl_valido": false
+}, {
+"asunto": "Solicitud de cambio de horario - Turno Nocturno",
+"cuerpo": "Solicito cambio de turno por razones personales. Adjunto formato aprobado por mi supervisor directo.",
+"emisor": "rrhh@empresa.com",
+"es_fraude": false,
+"hash_impreso": "667788990011",
+"hash_real": "667788990011",
+"monto": "$0.00",
+"motivo_fraude": "",
+"ssl_valido": true
+}, {
+"asunto": "Alerta de Fraude Financiero Detectado",
+"cuerpo": "Hemos detectado transacciones sospechosas en la cuenta corporativa. Para proteger sus fondos, confirme su identidad proporcionando los datos de acceso adjuntos.",
+"emisor": "fraud-alert@bankofamerica-secure.com",
+"es_fraude": true,
+"hash_impreso": "778899001122",
+"hash_real": "334455667788",
+"monto": "$8,900.00",
+"motivo_fraude": "Dominio falso (bankofamerica-secure.com), solicita credenciales, hash alterado, urgencia financiera.",
+"ssl_valido": false
+}, {
+"asunto": "Inventario de Activos - Auditoría Anual",
+"cuerpo": "Solicitamos la actualización del inventario de activos de TI para la auditoría anual. Por favor complete el formulario adjunto antes del viernes.",
+"emisor": "auditoria@empresa.com",
+"es_fraude": false,
+"hash_impreso": "889900112233",
+"hash_real": "889900112233",
+"monto": "$0.00",
+"motivo_fraude": "",
+"ssl_valido": true
+}, {
+"asunto": "Actualización de Seguridad - Chrome Enterprise",
+"cuerpo": "Google ha lanzado una actualización crítica de seguridad para Chrome Enterprise. Descargue el parche desde el enlace para proteger su navegador corporativo.",
+"emisor": "updates@chromium-security.net",
+"es_fraude": true,
+"hash_impreso": "990011223344",
+"hash_real": "aabb1122ccdd",
+"monto": "$0.00",
+"motivo_fraude": "Dominio falso (chromium-security.net), enlace a descarga de malware disfrazada de parche.",
+"ssl_valido": true
+}])
+tiempo_limite = 45.0
+penalizacion_error = 40
+id_nivel = "phishing_arc3"
+titulo_ui = "NIVEL 3: AUDITORÍA EXPERTA"
+metadata/_custom_type_script = "uid://dxobj2i0rmdy5"

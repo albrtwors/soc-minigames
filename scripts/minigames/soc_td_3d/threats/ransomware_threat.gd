@@ -25,7 +25,7 @@ func _ready() -> void:
 	hp_max = 30.0
 	hp = hp_max
 	velocidad = 1.15
-	puntos = 25
+	puntos = 35
 	sigilosa = true
 
 

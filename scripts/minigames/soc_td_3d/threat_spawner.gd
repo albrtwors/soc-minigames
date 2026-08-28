@@ -21,8 +21,8 @@ func _ready() -> void:
 
 func iniciar(p_pool: Array, p_tiempo_entre: float) -> void:
 	pool = p_pool
-	# Se asegura un intervalo mínimo de 2.0 segundos entre cada spawn
-	tiempo_entre = maxf(2.0, p_tiempo_entre)
+	# Se asegura un intervalo mínimo de 1.5 segundos entre cada spawn
+	tiempo_entre = maxf(1.5, p_tiempo_entre)
 	_timer.wait_time = tiempo_entre
 	_timer.start()
 

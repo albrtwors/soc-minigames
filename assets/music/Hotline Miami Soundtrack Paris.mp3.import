@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cs3b2n4irjesx"
+path="res://.godot/imported/Hotline Miami Soundtrack Paris.mp3-012f6644c6be501b983f6c9a63466d2d.mp3str"
+
+[deps]
+
+source_file="res://assets/music/Hotline Miami Soundtrack Paris.mp3"
+dest_files=["res://.godot/imported/Hotline Miami Soundtrack Paris.mp3-012f6644c6be501b983f6c9a63466d2d.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
